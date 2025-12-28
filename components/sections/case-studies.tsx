@@ -5,7 +5,20 @@ import Image from "next/image";
 import { ArrowRight, TrendingUp, ExternalLink } from "lucide-react";
 import { fadeInUp, staggerContainer } from "@/lib/utils";
 
-const caseStudies = [
+interface CaseStudy {
+    title: string;
+    client?: string;      // Made optional with ?
+    category: string;
+    results: string;
+    description: string;
+    tech: string[];
+    gradient: string;
+    image: string;
+    liveUrl: string;
+    detailsUrl?: string;  // Made optional with ?
+}
+
+const caseStudies: CaseStudy[] = [
     {
         title: " NGO Web App",
         // client: "Ananta Technology",
@@ -14,7 +27,7 @@ const caseStudies = [
         description: "Dheodha Vikas Samiti is a community development organization website built to showcase village development initiatives, social welfare programs, and community empowerment activities.",
         tech: ["React.js", "Next.js", "Versel", "Tailwind", "AWS"],
         gradient: "from-neon-green to-neon-cyan",
-        image: "https://res.cloudinary.com/dusalynec/image/upload/v1763976347/Screenshot_2025-11-24_144533_lgo4ge.png", // Add your image
+        image: "https://res.cloudinary.com/dusalynec/image/upload/v1763976347/Screenshot_2025-11-24_144533_lgo4ge.png",
         liveUrl: "https://www.dheodhavikassamiti.org/",
         // detailsUrl: "https://www.anantatechnology.com/projects/project-details/1",
     },
@@ -27,7 +40,7 @@ const caseStudies = [
         description: "AI-powered ag-analytics dashboard empowering farmers with data-driven insights for smarter agricultural decisions.",
         tech: ["React.js", "Express.js", "Node.js", "MongoDB", "AWS"],
         gradient: "from-neon-green to-neon-cyan",
-        image: "/projects/project1.png", // Add your image
+        image: "/projects/project1.png",
         liveUrl: "https://my.agrospace.io/",
         // detailsUrl: "https://www.anantatechnology.com/projects/project-details/1",
     },
@@ -159,10 +172,14 @@ export default function CaseStudies() {
                                     <div>
                                         {/* Category & Client */}
                                         <div className="flex flex-wrap items-center gap-3 mb-4">
-                                            <span className="px-4 py-1 bg-white/5 rounded-full text-sm text-neon-blue border border-neon-blue/30">
-                                                {study.category}
-                                            </span>
-                                            <span className="text-sm text-gray-500">{study.client}</span>
+                                            {study.category && (
+                                                <span className="px-4 py-1 bg-white/5 rounded-full text-sm text-neon-blue border border-neon-blue/30">
+                                                    {study.category}
+                                                </span>
+                                            )}
+                                            {study.client && (
+                                                <span className="text-sm text-gray-500">{study.client}</span>
+                                            )}
                                         </div>
 
                                         {/* Title */}
@@ -206,16 +223,18 @@ export default function CaseStudies() {
                                             <ExternalLink className="w-4 h-4" />
                                         </motion.a>
 
-                                        <motion.a
-                                            href={study.detailsUrl}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            whileHover={{ x: 5 }}
-                                            className="flex items-center space-x-2 px-6 py-3 bg-white/5 border border-white/10 rounded-lg text-gray-300 hover:text-white hover:border-white/30 transition-all"
-                                        >
-                                            <span>View Details</span>
-                                            <ArrowRight className="w-5 h-5" />
-                                        </motion.a>
+                                        {study.detailsUrl && (
+                                            <motion.a
+                                                href={study.detailsUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                whileHover={{ x: 5 }}
+                                                className="flex items-center space-x-2 px-6 py-3 bg-white/5 border border-white/10 rounded-lg text-gray-300 hover:text-white hover:border-white/30 transition-all"
+                                            >
+                                                <span>View Details</span>
+                                                <ArrowRight className="w-5 h-5" />
+                                            </motion.a>
+                                        )}
                                     </div>
                                 </div>
                             </div>
