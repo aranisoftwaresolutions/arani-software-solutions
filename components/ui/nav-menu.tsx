@@ -4,9 +4,11 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 
 export default function NavMenu() {
     const [isOpen, setIsOpen] = useState(false);
+    const { scrollToSection } = useSmoothScroll();
 
     const navItems = [
         { name: "Home", href: "/" },
@@ -15,6 +17,11 @@ export default function NavMenu() {
         { name: "About", href: "/about" },
         { name: "Contact", href: "/contact" },
     ];
+
+    const handleSmoothScroll = (e: React.MouseEvent, sectionId: string) => {
+        e.preventDefault();
+        scrollToSection(sectionId);
+    };
 
     return (
         <motion.nav

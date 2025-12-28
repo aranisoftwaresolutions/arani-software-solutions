@@ -19,7 +19,7 @@ export default function ContactPage() {
                 >
                     <motion.div variants={fadeInUp} className="text-center mb-16">
                         <h1 className="text-6xl md:text-7xl font-bold mb-6">
-                            Let's Build <span className="holographic">Together</span>
+                            {"Let's"} Build <span className="holographic">Together</span>
                         </h1>
                         <p className="text-xl text-gray-400 max-w-2xl mx-auto">
                             Transform your vision into reality with our expert team.

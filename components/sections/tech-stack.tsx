@@ -4,12 +4,12 @@ import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/lib/utils";
 
 const techStack = {
-    "Frontend": ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    "Frontend": ["React", "Next.js", "Javascript", "TypeScript", "Tailwind CSS", "Framer Motion", "Redux-Toolkit"],
     "Backend": ["Node.js", "Express", "GraphQL", "REST APIs", "WebSockets"],
-    "Mobile": ["React Native", "Swift", "Kotlin", "Flutter", "Expo"],
-    "AI/ML": ["TensorFlow", "PyTorch", "OpenAI", "LangChain", "Hugging Face"],
-    "Cloud": ["AWS", "Azure", "GCP", "Docker", "Kubernetes"],
-    "Database": ["MongoDB", "PostgreSQL", "Redis", "DynamoDB", "Elasticsearch"],
+    "Mobile": ["React Native", "Kotlin", "Expo"],
+    // "AI/ML": ["TensorFlow", "PyTorch", "OpenAI", "LangChain", "Hugging Face"],
+    "Cloud": ["AWS"],
+    "Database": ["MongoDB", "PostgreSQL", "Redis", "Firebase",],
 };
 
 export default function TechStack() {

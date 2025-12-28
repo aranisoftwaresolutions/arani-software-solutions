@@ -23,4 +23,262 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  @apply overflow-x-hidden;
+}
+
+
+/* Chatbot Shimmer Animation */
+.chatbot-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+
+
+
+
+
+/* AI Glow Effects */
+.ai-glow {
+  animation: ai-pulse 3s ease-in-out infinite;
+}
+
+@keyframes ai-pulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.5), 0 0 40px rgba(184, 69, 255, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 40px rgba(0, 212, 255, 0.8), 0 0 60px rgba(184, 69, 255, 0.5);
+  }
+}
+
+/* Data Stream Effect */
+.data-stream {
+  background: linear-gradient(0deg,
+      transparent 0%,
+      rgba(0, 212, 255, 0.1) 50%,
+      transparent 100%);
+  background-size: 100% 200%;
+  animation: stream 3s linear infinite;
+}
+
+@keyframes stream {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  100% {
+    background-position: 0% 200%;
+  }
+}
+
+/* Matrix Rain Effect */
+.matrix-bg {
+  background-image:
+    linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  animation: matrix-scroll 20s linear infinite;
+}
+
+@keyframes matrix-scroll {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 0 400px;
+  }
+}
+
+/* Holographic Card */
+.holo-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.holo-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg,
+      transparent,
+      rgba(0, 212, 255, 0.1),
+      transparent);
+  transform: rotate(45deg);
+  animation: holo-shine 3s linear infinite;
+}
+
+@keyframes holo-shine {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
+/* Cyber Border */
+.cyber-border {
+  position: relative;
+  border: 2px solid transparent;
+  background: linear-gradient(#0a0a0f, #0a0a0f) padding-box,
+    linear-gradient(45deg, #00d4ff, #b845ff, #ff006e) border-box;
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Improved Glassmorphism */
+.glass-ultra {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(30px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow:
+    0 8px 32px 0 rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+}
+
+
+
+
+/* Lenis Smooth Scroll */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Ultra Smooth Transitions */
+* {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhance Image Loading */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Smooth Transform */
+.smooth-transform {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Advanced Hover Effects */
+.hover-lift {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+}
+
+/* Fluid Typography */
+h1,
+h2,
+h3 {
+  font-optical-sizing: auto;
+  text-rendering: optimizeLegibility;
+}
+
+/* Performance Boost */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Magnetic Effect */
+.magnetic {
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+
+/* Advanced Lenis Smooth Scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent-wheel] {
+  overscroll-behavior: none;
+}
+
+/* Disable smooth scroll on specific elements */
+.no-smooth-scroll {
+  overscroll-behavior: auto !important;
+}
+
+/* Performance Optimization */
+.smooth-element {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Smooth Image Loading */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  transform: translateZ(0);
+}
+
+/* Prevent Layout Shift */
+* {
+  scroll-behavior: auto;
+}
+
+/* Enhanced GPU Acceleration */
+.gpu-boost {
+  transform: translate3d(0, 0, 0);
+  will-change: transform, opacity;
 }
