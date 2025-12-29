@@ -11,7 +11,7 @@ export default function Home() {
     <>
       <Hero />
       <ServicesGrid />
-      <AIShowcase />
+      {/* <AIShowcase /> */}
       <CaseStudies />
       <TechStack />
       <Testimonials />

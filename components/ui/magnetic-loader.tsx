@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { useEffect, useState, useRef, useMemo } from "react";
 
 interface MagneticLoaderProps {
     isLoading: boolean;
@@ -11,35 +11,73 @@ interface MagneticLoaderProps {
 export default function MagneticLoader({ isLoading, onComplete }: MagneticLoaderProps) {
     const [progress, setProgress] = useState(0);
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+    const prefersReducedMotion = useReducedMotion();
+    const rafRef = useRef<number>();
+    const progressRef = useRef(0);
 
+    // Optimized progress update with RAF
     useEffect(() => {
         if (!isLoading) return;
 
-        const interval = setInterval(() => {
-            setProgress((prev) => {
-                if (prev >= 100) {
-                    clearInterval(interval);
-                    setTimeout(() => onComplete?.(), 500);
-                    return 100;
-                }
-                return prev + 1;
-            });
-        }, 30);
+        const startTime = Date.now();
+        const duration = 3000; // 3 seconds
 
-        return () => clearInterval(interval);
-    }, [isLoading, onComplete]);
+        const updateProgress = () => {
+            const elapsed = Date.now() - startTime;
+            const newProgress = Math.min((elapsed / duration) * 100, 100);
 
-    useEffect(() => {
-        const handleMouseMove = (e: MouseEvent) => {
-            setMousePosition({
-                x: (e.clientX / window.innerWidth - 0.5) * 60,
-                y: (e.clientY / window.innerHeight - 0.5) * 60,
-            });
+            progressRef.current = newProgress;
+            setProgress(Math.floor(newProgress));
+
+            if (newProgress < 100) {
+                rafRef.current = requestAnimationFrame(updateProgress);
+            } else {
+                setTimeout(() => onComplete?.(), 500);
+            }
         };
 
-        window.addEventListener("mousemove", handleMouseMove);
-        return () => window.removeEventListener("mousemove", handleMouseMove);
-    }, []);
+        rafRef.current = requestAnimationFrame(updateProgress);
+
+        return () => {
+            if (rafRef.current) cancelAnimationFrame(rafRef.current);
+        };
+    }, [isLoading, onComplete]);
+
+    // Throttled mouse tracking with RAF
+    useEffect(() => {
+        if (prefersReducedMotion) return;
+
+        let rafId: number;
+        let lastX = 0;
+        let lastY = 0;
+
+        const handleMouseMove = (e: MouseEvent) => {
+            lastX = (e.clientX / window.innerWidth - 0.5) * 30;
+            lastY = (e.clientY / window.innerHeight - 0.5) * 30;
+
+            if (!rafId) {
+                rafId = requestAnimationFrame(() => {
+                    setMousePosition({ x: lastX, y: lastY });
+                    rafId = 0;
+                });
+            }
+        };
+
+        window.addEventListener("mousemove", handleMouseMove, { passive: true });
+        return () => {
+            window.removeEventListener("mousemove", handleMouseMove);
+            if (rafId) cancelAnimationFrame(rafId);
+        };
+    }, [prefersReducedMotion]);
+
+    // Memoized ring configurations
+    const rings = useMemo(() => [
+        { size: 200, duration: 4, color: "#00e5ff", delay: 0 },
+        { size: 260, duration: 5, color: "#a855f7", delay: 0.5 },
+        { size: 320, duration: 6, color: "#00ffff", delay: 1 },
+    ], []);
+
+    const shouldAnimate = !prefersReducedMotion;
 
     return (
         <AnimatePresence mode="wait">
@@ -47,90 +85,87 @@ export default function MagneticLoader({ isLoading, onComplete }: MagneticLoader
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    exit={{ opacity: 0, scale: 1.1 }}
-                    transition={{ duration: 0.5 }}
+                    exit={{ opacity: 0, scale: 1.05 }}
+                    transition={{ duration: 0.4 }}
                     className="fixed inset-0 z-[9999] flex items-center justify-center bg-black overflow-hidden"
+                    style={{ willChange: "opacity" }}
                 >
-                    {/* Animated Grid Background */}
-                    <div className="absolute inset-0 brutal-grid opacity-20" />
-
-                    {/* Scan Line Effect */}
-                    <motion.div
-                        className="absolute inset-0 h-1 bg-gradient-to-r from-transparent via-neon-blue to-transparent"
-                        animate={{
-                            y: ["0vh", "100vh"],
-                        }}
-                        transition={{
-                            duration: 3,
-                            repeat: Infinity,
-                            ease: "linear",
-                        }}
-                        style={{ filter: "blur(2px)" }}
-                    />
-
-                    {/* Floating Gradient Orbs with Mouse Tracking */}
-                    <motion.div
-                        className="absolute w-[500px] h-[500px] bg-neon-blue/20 rounded-full blur-[120px]"
+                    {/* Optimized Background Grid */}
+                    <div
+                        className="absolute inset-0 opacity-10"
                         style={{
-                            x: mousePosition.x,
-                            y: mousePosition.y,
-                        }}
-                        animate={{
-                            scale: [1, 1.2, 1],
-                            opacity: [0.3, 0.6, 0.3],
-                        }}
-                        transition={{
-                            duration: 4,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                        }}
-                    />
-                    <motion.div
-                        className="absolute w-[600px] h-[600px] bg-neon-purple/20 rounded-full blur-[120px]"
-                        style={{
-                            x: -mousePosition.x,
-                            y: -mousePosition.y,
-                        }}
-                        animate={{
-                            scale: [1.2, 1, 1.2],
-                            opacity: [0.4, 0.7, 0.4],
-                        }}
-                        transition={{
-                            duration: 5,
-                            repeat: Infinity,
-                            ease: "easeInOut",
+                            backgroundImage: 'linear-gradient(rgba(0,229,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,229,255,0.1) 1px, transparent 1px)',
+                            backgroundSize: '50px 50px',
                         }}
                     />
 
-                    {/* Main Loader Container with 3D Effect */}
+                    {/* Scan Line - Simplified */}
+                    {shouldAnimate && (
+                        <motion.div
+                            className="absolute inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-cyan-400 to-transparent"
+                            animate={{ y: ["0vh", "100vh"] }}
+                            transition={{
+                                duration: 3,
+                                repeat: Infinity,
+                                ease: "linear",
+                            }}
+                            style={{
+                                filter: "blur(1px)",
+                                willChange: "transform",
+                            }}
+                        />
+                    )}
+
+                    {/* Floating Orbs - Optimized */}
+                    {shouldAnimate && (
+                        <>
+                            <motion.div
+                                className="absolute w-96 h-96 rounded-full pointer-events-none"
+                                style={{
+                                    background: "radial-gradient(circle, rgba(0,229,255,0.15) 0%, transparent 70%)",
+                                    filter: "blur(80px)",
+                                    x: mousePosition.x,
+                                    y: mousePosition.y,
+                                    willChange: "transform",
+                                }}
+                            />
+                            <motion.div
+                                className="absolute w-[450px] h-[450px] rounded-full pointer-events-none"
+                                style={{
+                                    background: "radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 70%)",
+                                    filter: "blur(80px)",
+                                    x: -mousePosition.x * 0.5,
+                                    y: -mousePosition.y * 0.5,
+                                    willChange: "transform",
+                                }}
+                            />
+                        </>
+                    )}
+
+                    {/* Main Loader - Optimized */}
                     <motion.div
                         className="relative"
                         style={{
                             transformStyle: "preserve-3d",
                             perspective: "1000px",
-                            x: mousePosition.x * 0.5,
-                            y: mousePosition.y * 0.5,
+                            x: mousePosition.x * 0.3,
+                            y: mousePosition.y * 0.3,
+                            willChange: "transform",
                         }}
                     >
-                        {/* 3D Rotating Rings System */}
-                        {[
-                            { size: 300, duration: 4, color: "neon-blue", delay: 0 },
-                            { size: 380, duration: 5, color: "neon-purple", delay: 0.5 },
-                            { size: 460, duration: 6, color: "neon-cyan", delay: 1 },
-                        ].map((ring, index) => (
+                        {/* Simplified Rotating Rings */}
+                        {rings.map((ring, index) => (
                             <motion.div
                                 key={index}
                                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                                 style={{
                                     width: ring.size,
                                     height: ring.size,
-                                    transformStyle: "preserve-3d",
+                                    willChange: "transform",
                                 }}
-                                animate={{
-                                    rotateX: [0, 360],
-                                    rotateY: [0, -360],
-                                    rotateZ: [0, 360],
-                                }}
+                                animate={shouldAnimate ? {
+                                    rotate: 360,
+                                } : {}}
                                 transition={{
                                     duration: ring.duration,
                                     repeat: Infinity,
@@ -138,28 +173,29 @@ export default function MagneticLoader({ isLoading, onComplete }: MagneticLoader
                                     delay: ring.delay,
                                 }}
                             >
-                                {/* Ring with Gradient Border */}
+                                {/* Optimized Ring */}
                                 <div
-                                    className={`w-full h-full rounded-full border-[3px]`}
+                                    className="w-full h-full rounded-full border-2"
                                     style={{
-                                        borderImage: `linear-gradient(45deg, rgba(0,229,255,${progress / 100
-                                            }), rgba(168,85,247,${progress / 100}), transparent) 1`,
-                                        boxShadow: `0 0 40px rgba(0, 229, 255, ${progress / 200}), inset 0 0 40px rgba(168, 85, 247, ${progress / 200
-                                            })`,
+                                        borderColor: `${ring.color}${Math.floor((progress / 100) * 255).toString(16).padStart(2, '0')}`,
+                                        boxShadow: `0 0 20px ${ring.color}40`,
+                                        willChange: "border-color, box-shadow",
                                     }}
                                 />
 
-                                {/* Orbiting Particles on Rings */}
-                                {[0, 120, 240].map((angle, i) => {
+                                {/* Simplified Particles - Only 2 per ring */}
+                                {shouldAnimate && [0, 180].map((angle, i) => {
                                     const radian = (angle * Math.PI) / 180;
                                     return (
                                         <motion.div
                                             key={i}
-                                            className={`absolute w-4 h-4 bg-${ring.color} rounded-full`}
+                                            className="absolute w-2 h-2 rounded-full"
                                             style={{
+                                                background: ring.color,
+                                                boxShadow: `0 0 10px ${ring.color}`,
                                                 top: "50%",
                                                 left: "50%",
-                                                boxShadow: `0 0 20px currentColor`,
+                                                willChange: "transform",
                                             }}
                                             animate={{
                                                 x: [
@@ -170,7 +206,6 @@ export default function MagneticLoader({ isLoading, onComplete }: MagneticLoader
                                                     Math.sin(radian) * (ring.size / 2),
                                                     Math.sin(radian + Math.PI) * (ring.size / 2),
                                                 ],
-                                                scale: [1, 1.5, 1],
                                             }}
                                             transition={{
                                                 duration: ring.duration,
@@ -183,74 +218,52 @@ export default function MagneticLoader({ isLoading, onComplete }: MagneticLoader
                             </motion.div>
                         ))}
 
-                        {/* Central Hexagon Core */}
+                        {/* Central Core - Simplified */}
                         <motion.div
-                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40"
-                            animate={{
-                                rotateZ: 360,
-                            }}
+                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32"
+                            animate={shouldAnimate ? { rotate: 360 } : {}}
                             transition={{
                                 duration: 8,
                                 repeat: Infinity,
                                 ease: "linear",
                             }}
+                            style={{ willChange: "transform" }}
                         >
-                            {/* Hexagon SVG with Animated Path */}
+                            {/* Hexagon SVG - Simplified */}
                             <svg viewBox="0 0 100 100" className="w-full h-full">
                                 <defs>
-                                    <linearGradient id="hexGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <linearGradient id="hexGradient">
                                         <stop offset="0%" stopColor="#00e5ff" />
                                         <stop offset="50%" stopColor="#a855f7" />
                                         <stop offset="100%" stopColor="#10b981" />
                                     </linearGradient>
-                                    <filter id="glow">
-                                        <feGaussianBlur stdDeviation="4" result="coloredBlur" />
-                                        <feMerge>
-                                            <feMergeNode in="coloredBlur" />
-                                            <feMergeNode in="SourceGraphic" />
-                                        </feMerge>
-                                    </filter>
                                 </defs>
 
-                                {/* Hexagon Shape */}
-                                <motion.path
+                                <path
                                     d="M50 5 L90 27.5 L90 72.5 L50 95 L10 72.5 L10 27.5 Z"
                                     fill="none"
                                     stroke="url(#hexGradient)"
-                                    strokeWidth="3"
-                                    filter="url(#glow)"
-                                    initial={{ pathLength: 0, opacity: 0 }}
-                                    animate={{
-                                        pathLength: progress / 100,
-                                        opacity: 1,
+                                    strokeWidth="2"
+                                    strokeDasharray="400"
+                                    strokeDashoffset={400 - (progress / 100) * 400}
+                                    style={{
+                                        filter: "drop-shadow(0 0 10px rgba(0,229,255,0.6))",
+                                        transition: "stroke-dashoffset 0.1s linear",
                                     }}
-                                    transition={{ duration: 0.5 }}
                                 />
 
-                                {/* Inner Hexagon */}
-                                <motion.path
+                                <path
                                     d="M50 15 L80 32.5 L80 67.5 L50 85 L20 67.5 L20 32.5 Z"
                                     fill="rgba(0, 229, 255, 0.1)"
                                     stroke="url(#hexGradient)"
-                                    strokeWidth="2"
-                                    animate={{
-                                        scale: [1, 1.1, 1],
-                                        opacity: [0.5, 1, 0.5],
-                                    }}
-                                    transition={{
-                                        duration: 2,
-                                        repeat: Infinity,
-                                        ease: "easeInOut",
-                                    }}
+                                    strokeWidth="1"
                                 />
                             </svg>
 
-                            {/* Center Pulsing Core */}
+                            {/* Center Core */}
                             <motion.div
                                 className="absolute inset-0 flex items-center justify-center"
-                                animate={{
-                                    scale: [1, 1.3, 1],
-                                }}
+                                animate={shouldAnimate ? { scale: [1, 1.2, 1] } : {}}
                                 transition={{
                                     duration: 2,
                                     repeat: Infinity,
@@ -258,64 +271,47 @@ export default function MagneticLoader({ isLoading, onComplete }: MagneticLoader
                                 }}
                             >
                                 <div
-                                    className="w-20 h-20 rounded-full bg-gradient-to-r from-neon-blue to-neon-purple"
+                                    className="w-16 h-16 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500"
                                     style={{
-                                        boxShadow: "0 0 60px rgba(0, 229, 255, 1), 0 0 100px rgba(168, 85, 247, 0.5)",
+                                        boxShadow: "0 0 40px rgba(0, 229, 255, 0.8), 0 0 80px rgba(168, 85, 247, 0.4)",
                                     }}
                                 />
                             </motion.div>
                         </motion.div>
 
-                        {/* Progress Percentage with Glitch Effect */}
+                        {/* Progress Percentage - Optimized */}
                         <motion.div
-                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                            key={progress}
-                            initial={{ scale: 0.8, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            transition={{ duration: 0.2 }}
+                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+                            style={{ willChange: "auto" }}
                         >
                             <div className="relative">
-                                {/* Main Text */}
-                                <span className="text-6xl font-bold holographic block">{progress}%</span>
-
-                                {/* Glitch Layers */}
-                                <span
-                                    className="absolute inset-0 text-6xl font-bold text-neon-blue opacity-50"
-                                    style={{ transform: "translate(-2px, 0)" }}
-                                >
-                                    {progress}%
-                                </span>
-                                <span
-                                    className="absolute inset-0 text-6xl font-bold text-neon-purple opacity-50"
-                                    style={{ transform: "translate(2px, 0)" }}
-                                >
+                                <span className="text-5xl font-bold holographic block">
                                     {progress}%
                                 </span>
                             </div>
                         </motion.div>
 
-                        {/* Magnetic Field Lines */}
-                        {[...Array(24)].map((_, i) => {
-                            const angle = (i * 15);
+                        {/* Simplified Magnetic Field Lines - Reduced count */}
+                        {shouldAnimate && [...Array(12)].map((_, i) => {
+                            const angle = i * 30;
                             return (
                                 <motion.div
                                     key={i}
-                                    className="absolute top-1/2 left-1/2 origin-top"
+                                    className="absolute top-1/2 left-1/2 origin-top pointer-events-none"
                                     style={{
-                                        width: 2,
-                                        height: 100,
-                                        background: `linear-gradient(to bottom, rgba(0, 229, 255, ${(progress / 100) * 0.8
-                                            }), transparent)`,
-                                        transform: `rotate(${angle}deg) translateY(-200px)`,
+                                        width: 1,
+                                        height: 80,
+                                        background: `linear-gradient(to bottom, rgba(0, 229, 255, ${(progress / 100) * 0.6}), transparent)`,
+                                        transform: `rotate(${angle}deg) translateY(-160px)`,
+                                        willChange: "opacity",
                                     }}
                                     animate={{
-                                        scaleY: [0, 1, 0],
-                                        opacity: [0, 1, 0],
+                                        opacity: [0, 0.8, 0],
                                     }}
                                     transition={{
                                         duration: 2,
                                         repeat: Infinity,
-                                        delay: i * 0.05,
+                                        delay: i * 0.1,
                                         ease: "easeInOut",
                                     }}
                                 />
@@ -323,133 +319,107 @@ export default function MagneticLoader({ isLoading, onComplete }: MagneticLoader
                         })}
                     </motion.div>
 
-                    {/* Dynamic Status Text */}
+                    {/* Status Text - Optimized */}
                     <motion.div
-                        className="absolute top-2/3 left-1/2 -translate-x-1/2 text-center"
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3 }}
+                        className="absolute top-2/3 left-1/2 -translate-x-1/2 text-center mt-20"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.2 }}
                     >
-                        <motion.h2
-                            className="text-5xl font-bold mb-4"
-                            key={Math.floor(progress / 33)}
-                        >
-                            <span className="holographic">
-                                {progress < 33
-                                    ? ""
-                                    : progress < 66
-                                        ? ""
-                                        : ""}
-                            </span>
-                        </motion.h2>
-
-                        {/* Animated Loading Dots */}
-                        <div className="flex items-center justify-center space-x-3 mb-6">
+                        {/* Loading Dots */}
+                        <div className="flex items-center justify-center gap-2 mb-6">
                             {[0, 1, 2, 3].map((i) => (
                                 <motion.div
                                     key={i}
-                                    className="w-3 h-3 bg-neon-blue rounded-full"
-                                    animate={{
-                                        scale: [1, 1.8, 1],
-                                        opacity: [0.3, 1, 0.3],
-                                    }}
+                                    className="w-2 h-2 bg-cyan-400 rounded-full"
+                                    animate={shouldAnimate ? {
+                                        scale: [1, 1.5, 1],
+                                        opacity: [0.4, 1, 0.4],
+                                    } : {}}
                                     transition={{
-                                        duration: 1.5,
+                                        duration: 1.2,
                                         repeat: Infinity,
                                         delay: i * 0.15,
                                     }}
                                     style={{
-                                        boxShadow: "0 0 15px rgba(0, 229, 255, 1)",
+                                        boxShadow: "0 0 10px rgba(0, 229, 255, 0.8)",
+                                        willChange: "transform, opacity",
                                     }}
                                 />
                             ))}
                         </div>
 
                         {/* Subtitle */}
-                        <motion.p
-                            className="text-sm text-gray-400 uppercase tracking-wider"
-                            animate={{
-                                opacity: [0.5, 1, 0.5],
-                            }}
-                            transition={{
-                                duration: 2,
-                                repeat: Infinity,
-                            }}
-                        >
+                        <p className="text-xs text-gray-400 uppercase tracking-wider">
                             Arani Software Solutions • Powered by AI
-                        </motion.p>
+                        </p>
                     </motion.div>
 
-                    {/* Enhanced Progress Bar at Bottom */}
+                    {/* Progress Bar - Optimized */}
                     <motion.div
-                        className="absolute bottom-16 left-1/2 -translate-x-1/2 w-[600px]"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.5 }}
+                        className="absolute bottom-16 left-1/2 -translate-x-1/2 w-full max-w-xl px-4"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.3 }}
                     >
-                        {/* Bar Container */}
-                        <div className="relative h-3 bg-white/5 rounded-full overflow-hidden backdrop-blur-xl border border-white/10">
-                            {/* Progress Fill */}
+                        <div className="relative h-2 bg-white/5 rounded-full overflow-hidden backdrop-blur-md border border-white/10">
                             <motion.div
                                 className="absolute inset-y-0 left-0 rounded-full"
                                 style={{
+                                    width: `${progress}%`,
                                     background: "linear-gradient(90deg, #00e5ff 0%, #a855f7 50%, #10b981 100%)",
-                                    boxShadow: "0 0 30px rgba(0, 229, 255, 0.8)",
+                                    boxShadow: "0 0 20px rgba(0, 229, 255, 0.6)",
+                                    willChange: "width",
+                                    transition: "width 0.1s linear",
                                 }}
-                                initial={{ width: "0%" }}
-                                animate={{ width: `${progress}%` }}
-                                transition={{ duration: 0.3 }}
                             />
 
                             {/* Scanning Beam */}
-                            <motion.div
-                                className="absolute inset-y-0 w-32 bg-gradient-to-r from-transparent via-white/80 to-transparent"
-                                animate={{
-                                    x: ["-100%", "700%"],
-                                }}
-                                transition={{
-                                    duration: 2,
-                                    repeat: Infinity,
-                                    ease: "linear",
-                                }}
-                            />
+                            {shouldAnimate && (
+                                <motion.div
+                                    className="absolute inset-y-0 w-20 bg-gradient-to-r from-transparent via-white/60 to-transparent pointer-events-none"
+                                    animate={{ x: ["-100%", "600%"] }}
+                                    transition={{
+                                        duration: 2,
+                                        repeat: Infinity,
+                                        ease: "linear",
+                                    }}
+                                    style={{ willChange: "transform" }}
+                                />
+                            )}
                         </div>
 
-                        {/* Progress Percentage Labels */}
                         <div className="flex justify-between mt-2 text-xs text-gray-500">
                             <span>0%</span>
-                            <span className="text-neon-blue font-bold">{progress}%</span>
+                            <span className="text-cyan-400 font-bold">{progress}%</span>
                             <span>100%</span>
                         </div>
                     </motion.div>
 
-                    {/* Corner HUD Elements */}
-                    {["top-left", "top-right", "bottom-left", "bottom-right"].map((corner, idx) => {
-                        const positions = {
-                            "top-left": { top: "40px", left: "40px" },
-                            "top-right": { top: "40px", right: "40px" },
-                            "bottom-left": { bottom: "40px", left: "40px" },
-                            "bottom-right": { bottom: "40px", right: "40px" },
+                    {/* Corner HUD - Simplified */}
+                    {["top-left", "top-right", "bottom-left", "bottom-right"].map((corner) => {
+                        const positions: Record<string, React.CSSProperties> = {
+                            "top-left": { top: 40, left: 40 },
+                            "top-right": { top: 40, right: 40 },
+                            "bottom-left": { bottom: 40, left: 40 },
+                            "bottom-right": { bottom: 40, right: 40 },
                         };
 
                         return (
                             <motion.div
                                 key={corner}
-                                className="absolute w-24 h-24"
-                                style={positions[corner as keyof typeof positions]}
-                                initial={{ opacity: 0, scale: 0 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ delay: 0.2 + idx * 0.1 }}
+                                className="absolute w-16 h-16 pointer-events-none"
+                                style={positions[corner]}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.5 }}
                             >
                                 <svg viewBox="0 0 50 50" className="w-full h-full">
-                                    <motion.path
+                                    <path
                                         d="M 0 15 L 0 0 L 15 0"
                                         fill="none"
                                         stroke="url(#hexGradient)"
                                         strokeWidth="2"
-                                        initial={{ pathLength: 0 }}
-                                        animate={{ pathLength: 1 }}
-                                        transition={{ duration: 1, delay: 0.5 }}
                                     />
                                 </svg>
                             </motion.div>

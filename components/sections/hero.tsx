@@ -12,10 +12,9 @@ import GeometricShapes from "@/components/backgrounds/geometric-shapes";
 import LiquidMorphBackground from "@/components/backgrounds/liquid-morph-background";
 import MagneticCursorEffect from "@/components/backgrounds/magnetic-cursor-effect";
 
-
 export default function Hero() {
     return (
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32">
             {/* Advanced AI-Inspired Multi-Layer Backgrounds */}
             <AnimatedMeshBackground />
             <NeuralWaveBackground />
@@ -37,15 +36,15 @@ export default function Hero() {
                 variants={staggerContainer}
                 initial="hidden"
                 animate="show"
-                className="relative z-10 max-w-7xl mx-auto px-6 text-center"
+                className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
             >
-                {/* Magnetic Badge */}
+                {/* Magnetic Badge - FIXED */}
                 <Reveal delay={0}>
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         whileHover={{ scale: 1.05 }}
-                        className="inline-flex items-center space-x-2 glass-effect px-6 py-3 rounded-full mb-8 backdrop-blur-xl border border-neon-blue/40 hover:border-neon-blue/80 transition-all cursor-pointer group"
+                        className="inline-flex items-center space-x-2 glass-effect px-4 sm:px-6 py-2 sm:py-3 rounded-full mb-6 sm:mb-8 backdrop-blur-xl border border-neon-blue/40 hover:border-neon-blue/80 transition-all cursor-pointer group relative"
                     >
                         <motion.div
                             animate={{ rotate: 360 }}
@@ -53,16 +52,24 @@ export default function Hero() {
                         >
                             <Sparkles className="w-4 h-4 text-neon-blue" />
                         </motion.div>
-                        <span className="text-sm font-medium  from-neon-blue to-neon-cyan bg-clip-text text-transparent group-hover:from-neon-cyan group-hover:to-neon-blue transition-all">
+                        <span className="text-xs sm:text-sm font-medium text-white group-hover:text-neon-cyan transition-colors relative z-10">
                             Next-Gen Software Architecture
                         </span>
+                        {/* Optional: Add gradient overlay on hover */}
+                        <motion.div
+                            className="absolute inset-0 bg-gradient-to-r from-neon-blue/10 to-neon-cyan/10 rounded-full"
+                            initial={{ opacity: 0 }}
+                            whileHover={{ opacity: 1 }}
+                            transition={{ duration: 0.3 }}
+                        />
                     </motion.div>
                 </Reveal>
+
 
                 {/* Main Heading with Magnetic Effect */}
                 <Reveal delay={0.2}>
                     <motion.h1
-                        className="text-6xl md:text-8xl lg:text-9xl font-bold mb-6 leading-tight cursor-default"
+                        className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold mb-4 sm:mb-6 leading-tight cursor-default px-4"
                         whileHover={{ scale: 1.02 }}
                         transition={{ type: "spring", stiffness: 300 }}
                     >
@@ -77,7 +84,7 @@ export default function Hero() {
                         >
                             Future of Tech
                             <motion.div
-                                className="absolute -inset-2 bg-gradient-to-r from-neon-blue/20 to-neon-purple/20 blur-xl -z-10"
+                                className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-neon-blue/20 to-neon-purple/20 blur-xl sm:blur-2xl -z-10"
                                 animate={{
                                     scale: [1, 1.2, 1],
                                     opacity: [0.3, 0.6, 0.3],
@@ -95,7 +102,7 @@ export default function Hero() {
                 {/* Subheading */}
                 <Reveal delay={0.4}>
                     <motion.p
-                        className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-12 leading-relaxed"
+                        className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-400 max-w-xs sm:max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto mb-8 sm:mb-12 leading-relaxed px-4"
                         whileHover={{ scale: 1.02, color: "#9ca3af" }}
                     >
                         Enterprise-grade mobile, web, and AI solutions powered by cutting-edge
@@ -105,12 +112,12 @@ export default function Hero() {
 
                 {/* Enhanced CTA Buttons */}
                 <Reveal delay={0.6}>
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-4">
                         <MagneticButton>
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="group px-8 py-4 bg-gradient-to-r from-neon-blue to-neon-purple rounded-xl font-semibold text-lg flex items-center space-x-2 hover:shadow-2xl hover:shadow-neon-blue/50 transition-all relative overflow-hidden"
+                                className="group w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-neon-blue to-neon-purple rounded-xl font-semibold text-base sm:text-lg flex items-center justify-center space-x-2 hover:shadow-2xl hover:shadow-neon-blue/50 transition-all relative overflow-hidden"
                             >
                                 <motion.div
                                     className="absolute inset-0 bg-gradient-to-r from-neon-purple to-neon-pink"
@@ -119,7 +126,7 @@ export default function Hero() {
                                     transition={{ duration: 0.3 }}
                                 />
                                 <span className="relative z-10">Explore Solutions</span>
-                                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform relative z-10" />
+                                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform relative z-10" />
                             </motion.button>
                         </MagneticButton>
 
@@ -127,7 +134,7 @@ export default function Hero() {
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="px-8 py-4 glass-effect rounded-xl font-semibold text-lg hover:bg-white/10 transition-all border border-white/10 backdrop-blur-xl relative overflow-hidden group"
+                                className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 glass-effect rounded-xl font-semibold text-base sm:text-lg hover:bg-white/10 transition-all border border-white/10 backdrop-blur-xl relative overflow-hidden group"
                             >
                                 <motion.div
                                     className="absolute inset-0 bg-gradient-to-r from-neon-blue/10 to-neon-purple/10"
@@ -143,7 +150,7 @@ export default function Hero() {
 
                 {/* Enhanced Magnetic Stats */}
                 <Reveal delay={0.8}>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20 max-w-4xl mx-auto">
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mt-12 sm:mt-16 md:mt-20 max-w-4xl mx-auto px-4">
                         {[
                             { label: "Projects Delivered", value: "500+", icon: Zap, color: "neon-blue" },
                             { label: "Enterprise Clients", value: "120+", icon: Sparkles, color: "neon-purple" },
@@ -153,12 +160,11 @@ export default function Hero() {
                             <motion.div
                                 key={index}
                                 whileHover={{
-                                    y: -15,
-                                    scale: 1.08,
-                                    rotateY: 5,
+                                    y: -10,
+                                    scale: 1.05,
                                 }}
                                 transition={{ type: "spring", stiffness: 300 }}
-                                className="glass-card p-6 text-center cursor-pointer backdrop-blur-xl border border-white/10 relative overflow-hidden group"
+                                className="glass-card p-4 sm:p-6 text-center cursor-pointer backdrop-blur-xl border border-white/10 relative overflow-hidden group"
                                 style={{ transformStyle: "preserve-3d" }}
                             >
                                 <motion.div
@@ -182,15 +188,15 @@ export default function Hero() {
                                     whileHover={{ rotate: 360, scale: 1.2 }}
                                     transition={{ duration: 0.6 }}
                                 >
-                                    <stat.icon className={`w-6 h-6 text-${stat.color} mx-auto mb-3 relative z-10`} />
+                                    <stat.icon className={`w-5 h-5 sm:w-6 sm:h-6 text-${stat.color} mx-auto mb-2 sm:mb-3 relative z-10`} />
                                 </motion.div>
                                 <motion.div
-                                    className="text-3xl font-bold holographic mb-2 relative z-10"
+                                    className="text-2xl sm:text-3xl font-bold holographic mb-1 sm:mb-2 relative z-10"
                                     whileHover={{ scale: 1.1 }}
                                 >
                                     {stat.value}
                                 </motion.div>
-                                <div className="text-sm text-gray-400 relative z-10">{stat.label}</div>
+                                <div className="text-xs sm:text-sm text-gray-400 relative z-10">{stat.label}</div>
                             </motion.div>
                         ))}
                     </div>
@@ -200,12 +206,12 @@ export default function Hero() {
             {/* Enhanced Magnetic Parallax Floating Orbs */}
             <Parallax speed={0.3}>
                 <motion.div
-                    className="absolute top-20 left-10 w-72 h-72 bg-neon-blue/20 rounded-full blur-3xl"
+                    className="absolute top-10 sm:top-20 left-5 sm:left-10 w-48 sm:w-56 md:w-72 h-48 sm:h-56 md:h-72 bg-neon-blue/20 rounded-full blur-2xl sm:blur-3xl pointer-events-none"
                     animate={{
                         scale: [1, 1.2, 1],
                         opacity: [0.3, 0.5, 0.3],
-                        x: [0, 50, 0],
-                        y: [0, -30, 0],
+                        x: [0, 30, 0],
+                        y: [0, -20, 0],
                     }}
                     transition={{
                         duration: 8,
@@ -216,12 +222,12 @@ export default function Hero() {
             </Parallax>
             <Parallax speed={0.5} direction="down">
                 <motion.div
-                    className="absolute bottom-20 right-10 w-96 h-96 bg-neon-purple/20 rounded-full blur-3xl"
+                    className="absolute bottom-10 sm:bottom-20 right-5 sm:right-10 w-56 sm:w-72 md:w-96 h-56 sm:h-72 md:h-96 bg-neon-purple/20 rounded-full blur-2xl sm:blur-3xl pointer-events-none"
                     animate={{
                         scale: [1, 1.3, 1],
                         opacity: [0.2, 0.6, 0.2],
-                        x: [0, -50, 0],
-                        y: [0, 30, 0],
+                        x: [0, -30, 0],
+                        y: [0, 20, 0],
                     }}
                     transition={{
                         duration: 10,
@@ -232,7 +238,7 @@ export default function Hero() {
             </Parallax>
             <Parallax speed={0.4}>
                 <motion.div
-                    className="absolute top-1/2 left-1/4 w-64 h-64 bg-neon-cyan/15 rounded-full blur-3xl"
+                    className="absolute top-1/3 sm:top-1/2 left-1/4 w-40 sm:w-48 md:w-64 h-40 sm:h-48 md:h-64 bg-neon-cyan/15 rounded-full blur-2xl sm:blur-3xl pointer-events-none"
                     animate={{
                         scale: [1, 1.4, 1],
                         opacity: [0.2, 0.4, 0.2],
