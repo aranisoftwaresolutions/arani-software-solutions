@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* ============================================
+   1. ROOT VARIABLES & THEME
+   ============================================ */
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -19,6 +22,13 @@
   }
 }
 
+/* ============================================
+   2. BASE STYLES
+   ============================================ */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -26,32 +36,189 @@ body {
   @apply overflow-x-hidden;
 }
 
-
-/* Chatbot Shimmer Animation */
-.chatbot-shimmer {
-  animation: shimmer 2s infinite;
+/* ============================================
+   3. LENIS SMOOTH SCROLL
+   ============================================ */
+html.lenis,
+html.lenis body {
+  height: auto;
 }
 
-@keyframes shimmer {
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent-wheel] {
+  overscroll-behavior: none;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* ============================================
+   4. PERFORMANCE OPTIMIZATION
+   ============================================ */
+* {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  transform: translateZ(0);
+}
+
+.gpu-accelerated,
+.smooth-element {
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* ============================================
+   5. HERO SECTION EFFECTS
+   ============================================ */
+
+/* Gradient Animation */
+@keyframes gradient {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 8s ease infinite;
+}
+
+/* Pulse Animation */
+@keyframes pulse-slow {
+
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Glass Effect */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-ultra {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(30px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow:
+    0 8px 32px 0 rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Grid Background */
+.brutal-grid {
+  background-image:
+    linear-gradient(rgba(0, 229, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 229, 255, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Scan Line Effect */
+@keyframes scan {
   0% {
-    transform: translateX(-100%);
+    transform: translateY(0);
   }
 
   100% {
-    transform: translateX(100%);
+    transform: translateY(100vh);
   }
 }
 
-
-
-
-
-
-/* AI Glow Effects */
-.ai-glow {
-  animation: ai-pulse 3s ease-in-out infinite;
+.scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.5), transparent);
+  animation: scan 8s linear infinite;
 }
 
+/* Holographic Text */
+@keyframes holographic-flow {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.holographic {
+  background: linear-gradient(90deg,
+      #00e5ff 0%,
+      #a855f7 25%,
+      #10b981 50%,
+      #ec4899 75%,
+      #00e5ff 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: holographic-flow 8s ease infinite;
+}
+
+/* Radial Gradient Utility */
+.bg-gradient-radial {
+  background: radial-gradient(circle, var(--tw-gradient-stops));
+}
+
+/* ============================================
+   6. 3D TRANSFORM UTILITIES
+   ============================================ */
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+/* ============================================
+   7. AI EFFECTS
+   ============================================ */
+
+/* AI Glow */
 @keyframes ai-pulse {
 
   0%,
@@ -64,16 +231,11 @@ body {
   }
 }
 
-/* Data Stream Effect */
-.data-stream {
-  background: linear-gradient(0deg,
-      transparent 0%,
-      rgba(0, 212, 255, 0.1) 50%,
-      transparent 100%);
-  background-size: 100% 200%;
-  animation: stream 3s linear infinite;
+.ai-glow {
+  animation: ai-pulse 3s ease-in-out infinite;
 }
 
+/* Data Stream */
 @keyframes stream {
   0% {
     background-position: 0% 0%;
@@ -84,15 +246,16 @@ body {
   }
 }
 
-/* Matrix Rain Effect */
-.matrix-bg {
-  background-image:
-    linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
-  background-size: 20px 20px;
-  animation: matrix-scroll 20s linear infinite;
+.data-stream {
+  background: linear-gradient(0deg,
+      transparent 0%,
+      rgba(0, 212, 255, 0.1) 50%,
+      transparent 100%);
+  background-size: 100% 200%;
+  animation: stream 3s linear infinite;
 }
 
+/* Matrix Background */
 @keyframes matrix-scroll {
   0% {
     background-position: 0 0;
@@ -103,7 +266,29 @@ body {
   }
 }
 
+.matrix-bg {
+  background-image:
+    linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  animation: matrix-scroll 20s linear infinite;
+}
+
+/* ============================================
+   8. CARD EFFECTS
+   ============================================ */
+
 /* Holographic Card */
+@keyframes holo-shine {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
 .holo-card {
   position: relative;
   overflow: hidden;
@@ -124,16 +309,6 @@ body {
   animation: holo-shine 3s linear infinite;
 }
 
-@keyframes holo-shine {
-  0% {
-    transform: translateX(-100%) translateY(-100%) rotate(45deg);
-  }
-
-  100% {
-    transform: translateX(100%) translateY(100%) rotate(45deg);
-  }
-}
-
 /* Cyber Border */
 .cyber-border {
   position: relative;
@@ -142,64 +317,17 @@ body {
     linear-gradient(45deg, #00d4ff, #b845ff, #ff006e) border-box;
 }
 
-/* Smooth Scroll */
-html {
-  scroll-behavior: smooth;
+/* Glass Card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
 }
 
-/* Improved Glassmorphism */
-.glass-ultra {
-  background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(30px) saturate(200%);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow:
-    0 8px 32px 0 rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
-}
-
-
-
-
-/* Lenis Smooth Scroll */
-html.lenis {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-
-.lenis.lenis-scrolling iframe {
-  pointer-events: none;
-}
-
-/* Ultra Smooth Transitions */
-* {
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Enhance Image Loading */
-img {
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
-}
-
-/* Smooth Transform */
-.smooth-transform {
-  will-change: transform;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-}
-
-/* Advanced Hover Effects */
+/* ============================================
+   9. HOVER EFFECTS
+   ============================================ */
 .hover-lift {
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -208,77 +336,33 @@ img {
   transform: translateY(-8px);
 }
 
-/* Fluid Typography */
+.magnetic {
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* ============================================
+   10. CHATBOT EFFECTS
+   ============================================ */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.chatbot-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+/* ============================================
+   11. TYPOGRAPHY OPTIMIZATION
+   ============================================ */
 h1,
 h2,
 h3 {
   font-optical-sizing: auto;
   text-rendering: optimizeLegibility;
-}
-
-/* Performance Boost */
-.gpu-accelerated {
-  transform: translateZ(0);
-  will-change: transform;
-}
-
-/* Magnetic Effect */
-.magnetic {
-  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-
-/* Advanced Lenis Smooth Scroll */
-html.lenis,
-html.lenis body {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-
-.lenis.lenis-scrolling iframe {
-  pointer-events: none;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent-wheel] {
-  overscroll-behavior: none;
-}
-
-/* Disable smooth scroll on specific elements */
-.no-smooth-scroll {
-  overscroll-behavior: auto !important;
-}
-
-/* Performance Optimization */
-.smooth-element {
-  will-change: transform;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-}
-
-/* Smooth Image Loading */
-img {
-  image-rendering: -webkit-optimize-contrast;
-  transform: translateZ(0);
-}
-
-/* Prevent Layout Shift */
-* {
-  scroll-behavior: auto;
-}
-
-/* Enhanced GPU Acceleration */
-.gpu-boost {
-  transform: translate3d(0, 0, 0);
-  will-change: transform, opacity;
 }

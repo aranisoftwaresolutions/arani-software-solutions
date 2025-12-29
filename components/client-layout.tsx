@@ -2,8 +2,6 @@
 
 import dynamic from "next/dynamic";
 import NavMenu from "@/components/ui/nav-menu";
-import FloatingParticles from "@/components/ui/floating-particles";
-import NeuralBackground from "@/components/ai/neural-background";
 import SmoothScrollProvider from "@/components/smooth-scroll-provider";
 import { ReactNode } from "react";
 
