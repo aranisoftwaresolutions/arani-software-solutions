@@ -53,7 +53,7 @@ export default function Hero() {
                         >
                             <Sparkles className="w-4 h-4 text-neon-blue" />
                         </motion.div>
-                        <span className="text-sm font-medium bg-gradient-to-r from-neon-blue to-neon-cyan bg-clip-text text-transparent group-hover:from-neon-cyan group-hover:to-neon-blue transition-all">
+                        <span className="text-sm font-medium  from-neon-blue to-neon-cyan bg-clip-text text-transparent group-hover:from-neon-cyan group-hover:to-neon-blue transition-all">
                             Next-Gen Software Architecture
                         </span>
                     </motion.div>

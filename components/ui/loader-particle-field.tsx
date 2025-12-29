@@ -1,19 +1,23 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useMemo } from "react";
 
 interface ParticleFieldProps {
     mousePosition: { x: number; y: number };
 }
 
 export default function ParticleField({ mousePosition }: ParticleFieldProps) {
-    const particles = Array.from({ length: 50 }, (_, i) => ({
-        id: i,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        size: Math.random() * 4 + 1,
-        duration: Math.random() * 10 + 5,
-    }));
+    // Generate particles once on mount to avoid hydration mismatch
+    const particles = useMemo(() => {
+        return Array.from({ length: 50 }, (_, i) => ({
+            id: i,
+            x: (i * 17.3) % 100, // Use deterministic values instead of Math.random()
+            y: (i * 23.7) % 100,
+            size: (i % 4) + 1,
+            duration: 5 + (i % 5),
+        }));
+    }, []);
 
     return (
         <div className="absolute inset-0 overflow-hidden">
