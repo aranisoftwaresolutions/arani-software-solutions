@@ -11,7 +11,7 @@ export default function SmoothScrollProvider({ children }: { children: ReactNode
                 lerp: 0.1,
                 duration: 1.2,
                 smoothWheel: true,
-                smoothTouch: false,
+                syncTouch: false,
                 wheelMultiplier: 1,
                 touchMultiplier: 2,
                 infinite: false,
