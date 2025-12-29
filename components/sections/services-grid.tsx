@@ -393,7 +393,7 @@ export default function ServicesGrid() {
     const sectionRef = useRef<HTMLElement>(null);
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [isScrolling, setIsScrolling] = useState(false);
-    const scrollTimeoutRef = useRef<NodeJS.Timeout>();
+    const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
     const prefersReducedMotion = useReducedMotion();
 
     // Optimized scroll detection - From TechStack

@@ -12,7 +12,8 @@ export default function MagneticLoader({ isLoading, onComplete }: MagneticLoader
     const [progress, setProgress] = useState(0);
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const prefersReducedMotion = useReducedMotion();
-    const rafRef = useRef<number>();
+    const rafRef = useRef<number | undefined>(undefined);
+
     const progressRef = useRef(0);
 
     // Optimized progress update with RAF

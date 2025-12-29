@@ -358,7 +358,7 @@ export default function TechStack() {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [isScrolling, setIsScrolling] = useState(false);
-    const scrollTimeoutRef = useRef<NodeJS.Timeout>();
+    const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     // Optimized scroll detection
     useEffect(() => {
