@@ -37,14 +37,12 @@ export default function NavMenu() {
                         whileHover={{ borderColor: "rgba(255,255,255,0.3)" }}
                         transition={{ duration: 0.3 }}
                     >
-                        {/* Enhanced Logo with Image Support - FIXED */}
+                        {/* Enhanced Logo with 180° Rotation on Hover */}
                         <Link href="/" className="flex items-center space-x-3 group relative z-10">
                             <motion.div
                                 whileHover={{
                                     scale: 1.1,
-                                }}
-                                animate={{
-                                    rotate: [0, -5, 5, -5, 0], // ✅ Changed to duration-based
+                                    rotate: 180, // ✅ 180 degree rotation on hover
                                 }}
                                 transition={{
                                     scale: {
@@ -53,8 +51,9 @@ export default function NavMenu() {
                                         damping: 20,
                                     },
                                     rotate: {
-                                        duration: 0.6,
-                                        ease: "easeInOut",
+                                        type: "spring",
+                                        stiffness: 200,
+                                        damping: 15,
                                     }
                                 }}
                                 className="relative w-11 h-11 rounded-xl overflow-hidden shadow-xl shadow-neon-blue/40"
@@ -62,7 +61,7 @@ export default function NavMenu() {
                             >
                                 {/* Logo Image */}
                                 <Image
-                                    src="/logo/arani.png" // 👈 Replace with your logo path
+                                    src="/logo/arani.png"
                                     alt="Arani Software Logo"
                                     fill
                                     className="object-contain p-1.5"
@@ -235,8 +234,8 @@ export default function NavMenu() {
                                                 href={item.href}
                                                 onClick={() => setIsOpen(false)}
                                                 className={`px-5 py-3.5 rounded-xl hover:bg-white/10 transition-all duration-300 block group relative overflow-hidden ${pathname === item.href
-                                                    ? "text-white bg-gradient-to-r from-neon-blue/20 to-neon-purple/20 border border-neon-blue/30"
-                                                    : "text-gray-300 hover:text-white"
+                                                        ? "text-white bg-gradient-to-r from-neon-blue/20 to-neon-purple/20 border border-neon-blue/30"
+                                                        : "text-gray-300 hover:text-white"
                                                     }`}
                                             >
                                                 <span className="relative z-10">{item.name}</span>
