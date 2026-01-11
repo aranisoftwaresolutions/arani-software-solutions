@@ -28,12 +28,17 @@ const allTechnologies = [
 
     // Cloud
     { name: "AWS", category: "Cloud", color: "#FF9900", gradient: "from-orange-500 to-amber-400" },
+    { name: "Vercel", category: "Cloud", color: "#000000", gradient: "from-gray-800 to-gray-600" },
+    { name: "render", category: "Cloud", color: "#000000", gradient: "from-gray-800 to-gray-600" },
+
+    // Virtual Private Server
+    { name: "VPS", category: "VPS", color: "#000000", gradient: "from-gray-800 to-gray-600" },
 
     // Database
     { name: "MongoDB", category: "Database", color: "#47A248", gradient: "from-green-600 to-emerald-500" },
-    { name: "PostgreSQL", category: "Database", color: "#336791", gradient: "from-blue-700 to-blue-500" },
     { name: "Redis", category: "Database", color: "#DC382D", gradient: "from-red-600 to-red-400" },
     { name: "Firebase", category: "Database", color: "#FFCA28", gradient: "from-yellow-500 to-orange-400" },
+    { name: "MySQL", category: "Database", color: "#00758F", gradient: "from-blue-600 to-cyan-500" },
 ];
 
 // Neural Network Connections - Optimized

@@ -70,12 +70,11 @@ export default function ClientLayout({ children }: { children: ReactNode }) {
             {/* Existing Layout with Smooth Scroll */}
             <SmoothScrollProvider>
                 <NavMenu />
-                <main 
-                    className={`relative z-10 transition-opacity duration-500 ${
+                <main className={`relative z-10 transition-opacity duration-500 ${
                         isLoading ? "opacity-0" : "opacity-100"
                     }`}
                 >
-                    {children}
+                   {children}
                 </main>
                 <AIChatbot />
             </SmoothScrollProvider>
