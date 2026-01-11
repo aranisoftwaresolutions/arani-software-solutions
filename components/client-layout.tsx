@@ -60,12 +60,12 @@ export default function ClientLayout({ children }: { children: ReactNode }) {
     return (
         <>
             {/* Magnetic Loader */}
-            <MagneticLoader 
+            {/* <MagneticLoader 
                 isLoading={isLoading} 
                 onComplete={() => {
                     console.log("🚀 Arani Software Solutions loaded!");
                 }} 
-            />
+            /> */}
             
             {/* Existing Layout with Smooth Scroll */}
             <SmoothScrollProvider>
