@@ -484,7 +484,7 @@ export default function TechStack() {
                         className="inline-flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-neon-blue/10 to-neon-purple/10 border border-neon-blue/30 rounded-full mb-4"
                     >
                         <Brain className="w-4 h-4 text-neon-blue" />
-                        <span className="text-sm text-neon-blue font-medium">AI-Powered Skills</span>
+                        <span className="text-sm text-neon-blue font-medium">Our Technologies</span>
                         <Sparkles className="w-4 h-4 text-neon-purple" />
                     </motion.div>
 

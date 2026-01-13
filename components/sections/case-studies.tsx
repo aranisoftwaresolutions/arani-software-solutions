@@ -491,7 +491,7 @@ export default function CaseStudies() {
                         className="inline-flex items-center space-x-2 px-4 py-2 bg-neon-purple/10 border border-neon-purple/30 rounded-full mb-4"
                     >
                         <Sparkles className="w-4 h-4 text-neon-purple" />
-                        <span className="text-sm text-neon-purple font-medium">AI-Powered Portfolio</span>
+                        <span className="text-sm text-neon-purple font-medium">Our Projects</span>
                     </motion.div>
 
                     <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
