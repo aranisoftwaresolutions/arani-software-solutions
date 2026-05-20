@@ -32,9 +32,9 @@ const socialLinks = [
 ];
 
 const contactItems = [
-    { icon: Mail, text: "aranisoftwaresolutions@gmail.com", href: "mailto:aranisoftwaresolutions@gmail.com" },
-    { icon: Phone, text: "+1 (555) 123-4567", href: "tel:+15551234567" },
-    { icon: MapPin, text: "Bihar, India", href: "https://maps.google.com" },
+    { icon: Mail, text: "contact@arani.soft.solutions", href: "mailto:contact@arani.soft.solutions" },
+    { icon: Phone, text: "+91 7908181575", href: "tel:+917908181575" },
+    { icon: MapPin, text: "Nawada Bihar, India", href: "https://maps.google.com" },
 ];
 
 export default function Footer() {
@@ -42,31 +42,6 @@ export default function Footer() {
         <footer className="bg-slate-900 border-t border-slate-800">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 py-14 sm:py-16">
 
-                {/* ── Newsletter ── */}
-                <div className="rounded-xl border border-slate-700 bg-slate-800 p-6 sm:p-8 mb-14">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                        <div>
-                            <h3 className="text-lg sm:text-xl font-bold text-white mb-1">
-                                Stay Updated
-                            </h3>
-                            <p className="text-sm text-slate-400">
-                                Get the latest insights on software development, AI, and cloud
-                                technology.
-                            </p>
-                        </div>
-                        <div className="flex flex-col sm:flex-row gap-3">
-                            <input
-                                type="email"
-                                placeholder="Enter your email"
-                                className="flex-1 rounded-md border border-slate-600 bg-slate-900 px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:border-sky-500 focus:outline-none transition-colors"
-                            />
-                            <button className="inline-flex items-center justify-center gap-2 rounded-md bg-sky-500 px-5 py-2.5 text-sm font-semibold text-slate-950 hover:bg-sky-400 transition-colors">
-                                Subscribe
-                                <ArrowRight className="w-4 h-4" />
-                            </button>
-                        </div>
-                    </div>
-                </div>
 
                 {/* ── Main grid ── */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-10 mb-12">

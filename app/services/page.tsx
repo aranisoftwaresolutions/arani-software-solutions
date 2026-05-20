@@ -194,10 +194,10 @@ export default function ServicesPage() {
 
                     <div className="text-right">
                       <p className="text-[11px] uppercase tracking-widest text-slate-500 mb-1">
-                        {service.stats.label}
+                        {/* {service.stats.label} */}
                       </p>
                       <p className="text-lg font-semibold text-white">
-                        {service.stats.value}
+                        {/* {service.stats.value} */}
                       </p>
                     </div>
                   </div>

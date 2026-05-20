@@ -11,7 +11,7 @@ const navItems = [
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
     { name: "Projects", href: "/projects" },
-    { name: "Solutions", href: "/solutions" },
+    // { name: "Solutions", href: "/solutions" },
 ];
 
 export default function NavMenu() {
@@ -50,8 +50,8 @@ export default function NavMenu() {
                                     <Link
                                         href={item.href}
                                         className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-150 ${isActive
-                                                ? "text-white bg-slate-800 border border-slate-700"
-                                                : "text-slate-400 hover:text-white hover:bg-slate-800/60"
+                                            ? "text-white bg-slate-800 border border-slate-700"
+                                            : "text-slate-400 hover:text-white hover:bg-slate-800/60"
                                             }`}
                                     >
                                         {isActive && (
@@ -96,8 +96,8 @@ export default function NavMenu() {
                                         href={item.href}
                                         onClick={() => setIsOpen(false)}
                                         className={`px-4 py-3 rounded-lg text-sm font-medium transition-colors duration-150 ${isActive
-                                                ? "text-white bg-slate-800 border border-slate-700"
-                                                : "text-slate-400 hover:text-white hover:bg-slate-800/60"
+                                            ? "text-white bg-slate-800 border border-slate-700"
+                                            : "text-slate-400 hover:text-white hover:bg-slate-800/60"
                                             }`}
                                     >
                                         {item.name}

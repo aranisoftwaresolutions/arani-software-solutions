@@ -8,19 +8,19 @@ export default function ContactPage() {
         {
             icon: Mail,
             title: "Email",
-            content: "contact@arani.software",
-            link: "mailto:contact@arani.software",
+            content: "contact@arani.soft.solutions",
+            link: "mailto:contact@arani.soft.solutions",
         },
         {
             icon: Phone,
             title: "Phone",
-            content: "+1 (555) 123-4567",
-            link: "tel:+15551234567",
+            content: "+91 7908181575",
+            link: "tel:+917908181575",
         },
         {
             icon: MapPin,
             title: "Office",
-            content: "Silicon Valley, California, USA",
+            content: "Nawada Bihar, India",
             link: "#",
         },
     ];

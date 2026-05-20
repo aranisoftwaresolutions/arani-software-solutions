@@ -1,12 +1,13 @@
 "use client";
 
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 const stats = [
-    { label: "Projects Delivered", value: "500+" },
-    { label: "Enterprise Clients", value: "120+" },
-    { label: "Countries Served", value: "25+" },
-    { label: "Success Rate", value: "99.8%" },
+    { label: "Projects Delivered" },
+    { label: "Enterprise Clients" },
+    { label: "Countries Served" },
+    { label: "Success Rate" },
 ];
 
 export default function Hero() {
@@ -35,13 +36,15 @@ export default function Hero() {
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                        <button className="inline-flex items-center justify-center gap-2 rounded-md bg-sky-500 px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-sky-400 transition-colors duration-150">
-                            Explore Solutions
-                            <ArrowRight className="w-4 h-4" />
-                        </button>
-                        <button className="inline-flex items-center justify-center rounded-md border border-slate-700 px-5 py-3 text-sm font-semibold text-white hover:bg-slate-800 transition-colors duration-150">
-                            View Case Studies
-                        </button>
+                        <Link href="/about">
+                            <button className="inline-flex items-center justify-center gap-2 rounded-md bg-sky-500 px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-sky-400 transition-colors duration-150">
+                                Explore Our Services
+                                <ArrowRight className="w-4 h-4" />
+                            </button>
+                        </Link>
+                        {/* <button className="inline-flex items-center justify-center rounded-md border border-slate-700 px-5 py-3 text-sm font-semibold text-white hover:bg-slate-800 transition-colors duration-150">
+                            More
+                        </button> */}
                     </div>
                 </div>
 

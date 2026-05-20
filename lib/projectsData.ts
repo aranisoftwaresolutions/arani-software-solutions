@@ -15,9 +15,6 @@ export interface Project {
     images: string[];
     liveUrl: string;
     githubUrl?: string;
-    duration: string;
-    teamSize: string;
-    role: string;
 }
 
 export const allProjects: Project[] = [
@@ -45,9 +42,6 @@ export const allProjects: Project[] = [
             "/projects/project2.png",
         ],
         liveUrl: "https://www.dheodhavikassamiti.org/",
-        duration: "3 months",
-        teamSize: "4 developers",
-        role: "Full-stack Development",
     },
     {
         id: "agrospace-solution",
@@ -69,9 +63,6 @@ export const allProjects: Project[] = [
         image: "/projects/project1.png",
         images: ["/projects/project1.png", "/projects/project2.png", "/projects/project3.png"],
         liveUrl: "https://my.agrospace.io/",
-        duration: "6 months",
-        teamSize: "8 developers",
-        role: "AI/ML Development",
     },
     {
         id: "empowering-marine",
@@ -93,9 +84,6 @@ export const allProjects: Project[] = [
         image: "/projects/project2.png",
         images: ["/projects/project2.png", "/projects/project3.png", "/projects/project1.png"],
         liveUrl: "https://oceanq.eu/",
-        duration: "8 months",
-        teamSize: "6 developers",
-        role: "Backend Development",
     },
     {
         id: "ecommerce-platform",
@@ -117,9 +105,6 @@ export const allProjects: Project[] = [
         image: "/projects/project3.png",
         images: ["/projects/project3.png", "/projects/project1.png", "/projects/project2.png"],
         liveUrl: "https://quantumasync.onrender.com/",
-        duration: "5 months",
-        teamSize: "10 developers",
-        role: "Frontend Lead",
     },
     {
         id: "fem-cartel-ecommerce",
@@ -141,9 +126,6 @@ export const allProjects: Project[] = [
         image: "/projects/project7.png",
         images: ["/projects/project7.png", "/projects/project8.png", "/projects/project9.png"],
         liveUrl: "https://fem-cartel.vercel.app/",
-        duration: "7 months",
-        teamSize: "12 developers",
-        role: "Full-stack Development",
     },
     {
         id: "crm-dashboard",
@@ -165,9 +147,6 @@ export const allProjects: Project[] = [
         image: "/projects/project8.png",
         images: ["/projects/project8.png", "/projects/project9.png", "/projects/project1.png"],
         liveUrl: "https://cloud.idurarapp.com/",
-        duration: "9 months",
-        teamSize: "15 developers",
-        role: "System Architecture",
     },
     {
         id: "admin-panel",
@@ -189,8 +168,5 @@ export const allProjects: Project[] = [
         image: "/projects/project9.png",
         images: ["/projects/project9.png", "/projects/project1.png", "/projects/project2.png"],
         liveUrl: "https://fem-cartel.vercel.app/admin/dashboard",
-        duration: "4 months",
-        teamSize: "5 developers",
-        role: "UI/UX & Frontend",
     },
 ];

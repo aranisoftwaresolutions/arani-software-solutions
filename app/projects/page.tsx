@@ -81,10 +81,10 @@ export default function ProjectsPage() {
                                 >
                                     <stat.icon className="w-5 h-5 text-sky-400 mb-3" />
                                     <div className="text-2xl sm:text-3xl font-bold text-white mb-1">
-                                        {stat.value}
+                                        {/* {stat.value} */}
                                     </div>
                                     <div className="text-xs sm:text-sm text-slate-400">
-                                        {stat.label}
+                                        {/* {stat.label} */}
                                     </div>
                                 </div>
                             ))}
@@ -249,26 +249,6 @@ function ProjectCard({ project }: { project: any }) {
                         {project.description}
                     </p>
 
-                    <div className="flex items-center justify-between flex-wrap gap-3 mb-4 text-xs text-slate-500">
-                        <div className="flex items-center gap-4">
-                            <div className="inline-flex items-center gap-1.5">
-                                <Clock className="w-4 h-4" />
-                                <span>{project.duration}</span>
-                            </div>
-                            <div className="inline-flex items-center gap-1.5">
-                                <Users className="w-4 h-4" />
-                                <span>{project.teamSize}</span>
-                            </div>
-                        </div>
-
-                        {project.liveUrl && (
-                            <span className="inline-flex items-center gap-1 text-sky-400 font-medium">
-                                Live
-                                <ExternalLink className="w-3.5 h-3.5" />
-                            </span>
-                        )}
-                    </div>
-
                     <div className="flex flex-wrap gap-2 mb-5">
                         {project.tech.slice(0, 3).map((tech: string) => (
                             <span
@@ -330,20 +310,6 @@ function ProjectListItem({ project }: { project: any }) {
                         {project.description}
                     </p>
 
-                    <div className="flex items-center flex-wrap gap-4 text-sm text-slate-500 mb-4">
-                        <div className="inline-flex items-center gap-1.5">
-                            <Clock className="w-4 h-4" />
-                            <span>{project.duration}</span>
-                        </div>
-                        <div className="inline-flex items-center gap-1.5">
-                            <Users className="w-4 h-4" />
-                            <span>{project.teamSize}</span>
-                        </div>
-                        <div className="inline-flex items-center gap-1.5">
-                            <Calendar className="w-4 h-4" />
-                            <span>{project.role}</span>
-                        </div>
-                    </div>
 
                     <div className="flex flex-wrap gap-2 mb-5">
                         {project.tech.slice(0, 5).map((tech: string) => (
@@ -384,6 +350,7 @@ function ProjectListItem({ project }: { project: any }) {
                     </div>
                 </div>
             </div>
+            <Footer/>
         </article>
     );
 }

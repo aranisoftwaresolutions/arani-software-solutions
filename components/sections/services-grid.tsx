@@ -23,7 +23,6 @@ const services = [
             "Wireframes, prototypes, and interactive mockups",
             "Responsive designs that work on all devices",
         ],
-        stat: { label: "Client Satisfaction", value: "99%" },
         accent: "text-pink-400",
         border: "hover:border-pink-500/40",
     },
@@ -38,7 +37,7 @@ const services = [
             "Cost-effective solutions for startups",
             "Easy updates and maintenance",
         ],
-        stat: { label: "Apps Launched", value: "120+" },
+
         accent: "text-amber-400",
         border: "hover:border-amber-500/40",
     },
@@ -53,7 +52,7 @@ const services = [
             "Scalable architecture for growing businesses",
             "API integration and database optimization",
         ],
-        stat: { label: "Projects Delivered", value: "150+" },
+
         accent: "text-sky-400",
         border: "hover:border-sky-500/40",
     },
@@ -68,7 +67,7 @@ const services = [
             "Process automation and workflow optimization",
             "Seamless integration with existing systems",
         ],
-        stat: { label: "Efficiency Boost", value: "45%" },
+
         accent: "text-violet-400",
         border: "hover:border-violet-500/40",
     },
@@ -83,7 +82,6 @@ const services = [
             "Conversion optimization strategies",
             "Payment gateway and inventory management",
         ],
-        stat: { label: "Avg. Revenue Increase", value: "78%" },
         accent: "text-emerald-400",
         border: "hover:border-emerald-500/40",
     },
@@ -98,7 +96,6 @@ const services = [
             "Custom admin dashboards",
             "SEO-optimized content architecture",
         ],
-        stat: { label: "CMS Projects", value: "95+" },
         accent: "text-purple-400",
         border: "hover:border-purple-500/40",
     },
@@ -163,14 +160,6 @@ export default function ServicesGrid() {
 
                             {/* Footer: stat + CTA */}
                             <div className="flex items-end justify-between border-t border-slate-800 pt-4 mt-auto">
-                                <div>
-                                    <p className="text-xs text-slate-500 mb-0.5 uppercase tracking-wide">
-                                        {service.stat.label}
-                                    </p>
-                                    <p className={`text-xl font-bold ${service.accent}`}>
-                                        {service.stat.value}
-                                    </p>
-                                </div>
                                 <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-300 group-hover:text-white transition-colors">
                                     View Details
                                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />

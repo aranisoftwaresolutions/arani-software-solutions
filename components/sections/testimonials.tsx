@@ -60,8 +60,8 @@ export default function Testimonials() {
                                 </div>
                                 <div>
                                     <p className="text-sm font-semibold text-white">{t.name}</p>
-                                    <p className="text-xs text-slate-400">{t.role}</p>
-                                    <p className="text-xs text-sky-400">{t.company}</p>
+                                    {/* <p className="text-xs text-slate-400">{t.role}</p> */}
+                                    {/* <p className="text-xs text-sky-400">{t.company}</p> */}
                                 </div>
                             </div>
 

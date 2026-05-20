@@ -16,7 +16,6 @@ import {
 
 const journeyMilestones = [
     {
-        year: "2020",
         icon: Code,
         title: "The Beginning",
         description:
@@ -26,7 +25,6 @@ const journeyMilestones = [
         border: "border-sky-500/30",
     },
     {
-        year: "2021",
         icon: Smartphone,
         title: "Mobile Revolution",
         description:
@@ -36,7 +34,7 @@ const journeyMilestones = [
         border: "border-violet-500/30",
     },
     {
-        year: "2022",
+
         icon: Database,
         title: "Full-Stack Mastery",
         description:
@@ -46,7 +44,7 @@ const journeyMilestones = [
         border: "border-emerald-500/30",
     },
     {
-        year: "2023",
+
         icon: TrendingUp,
         title: "Digital Marketing",
         description:
@@ -56,7 +54,7 @@ const journeyMilestones = [
         border: "border-amber-500/30",
     },
     {
-        year: "2024",
+
         icon: Palette,
         title: "Design Excellence",
         description:
@@ -66,7 +64,7 @@ const journeyMilestones = [
         border: "border-rose-500/30",
     },
     {
-        year: "2026",
+
         icon: Settings,
         title: "Present Day",
         description:
@@ -78,10 +76,10 @@ const journeyMilestones = [
 ];
 
 const stats = [
-    { icon: Award, value: "6+", label: "Years Experience" },
-    { icon: Users, value: "50+", label: "Expert Engineers" },
-    { icon: Globe, value: "15+", label: "Countries Served" },
-    { icon: Zap, value: "300+", label: "Projects Delivered" },
+    { icon: Award, value: "", label: "Years Experience" },
+    { icon: Users, value: "", label: "Expert Engineers" },
+    { icon: Globe, value: "", label: "Countries Served" },
+    { icon: Zap, value: "", label: "Projects Delivered" },
 ];
 
 const values = [
@@ -156,48 +154,7 @@ export default function AboutPage() {
                         {/* Vertical line */}
                         <div className="absolute left-5 top-0 bottom-0 w-px bg-slate-800 hidden sm:block" />
 
-                        <div className="flex flex-col gap-8 sm:gap-10">
-                            {journeyMilestones.map((milestone) => (
-                                <div
-                                    key={milestone.year}
-                                    className={`sm:pl-16 relative rounded-xl border ${milestone.border} bg-slate-900 p-5 sm:p-6`}
-                                >
-                                    {/* Timeline dot */}
-                                    <div
-                                        className={`hidden sm:flex absolute left-3.5 top-6 w-3 h-3 rounded-full border-2 border-slate-800 bg-slate-950 items-center justify-center`}
-                                    >
-                                        <div className={`w-1.5 h-1.5 rounded-full bg-current ${milestone.accent}`} />
-                                    </div>
-
-                                    {/* Year + icon row */}
-                                    <div className="flex items-center gap-3 mb-3">
-                                        <span className={`text-xs font-bold uppercase tracking-widest ${milestone.accent}`}>
-                                            {milestone.year}
-                                        </span>
-                                        <milestone.icon className={`w-4 h-4 ${milestone.accent}`} />
-                                    </div>
-
-                                    <h3 className="text-base sm:text-lg font-semibold text-white mb-2">
-                                        {milestone.title}
-                                    </h3>
-                                    <p className="text-sm text-slate-400 leading-relaxed mb-4">
-                                        {milestone.description}
-                                    </p>
-
-                                    {/* Tech tags */}
-                                    <div className="flex flex-wrap gap-1.5">
-                                        {milestone.tech.map((tech) => (
-                                            <span
-                                                key={tech}
-                                                className="rounded-md bg-slate-800 px-2.5 py-1 text-xs font-medium text-slate-200"
-                                            >
-                                                {tech}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
+                       
                     </div>
                 </section>
 
