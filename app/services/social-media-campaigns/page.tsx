@@ -1,440 +1,455 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Share2, TrendingUp, Users, Target, BarChart3, Megaphone, ArrowRight, Star, CheckCircle } from "lucide-react";
+import {
+    Share2,
+    TrendingUp,
+    Users,
+    Target,
+    BarChart3,
+    Megaphone,
+    ArrowRight,
+    Star,
+    CheckCircle,
+} from "lucide-react";
 import Footer from "@/components/sections/footer";
 import Link from "next/link";
-import MagneticButton from "@/components/services/MagneticButton";
-import FloatingOrbs from "@/components/services/FloatingOrbs";
+
+const solutions = [
+    {
+        title: "Multi-platform strategy",
+        desc: "Integrated campaigns across Facebook, Instagram, LinkedIn, Twitter, TikTok, and more.",
+        icon: Share2,
+    },
+    {
+        title: "Content creation",
+        desc: "Visuals, videos, and copy tailored to each platform’s best practices.",
+        icon: Megaphone,
+    },
+    {
+        title: "Audience targeting",
+        desc: "Targeting based on demographics, interests, behavior, and lookalikes.",
+        icon: Target,
+    },
+    {
+        title: "Influencer partnerships",
+        desc: "Work with relevant creators to amplify your brand message.",
+        icon: Users,
+    },
+    {
+        title: "Analytics & reporting",
+        desc: "Dashboards tracking engagement, reach, conversions, and ROI.",
+        icon: BarChart3,
+    },
+    {
+        title: "Ad campaign management",
+        desc: "Ads and retargeting campaigns tuned for conversions, not just clicks.",
+        icon: TrendingUp,
+    },
+];
+
+const process = [
+    {
+        step: "Research & audience analysis",
+        desc: "Market trends, competitor activity, audience behavior, and platform insights.",
+    },
+    {
+        step: "Strategy & content planning",
+        desc: "Campaign goals, content calendar, and platform-specific plan.",
+    },
+    {
+        step: "Execution & monitoring",
+        desc: "Launch campaigns, monitor performance, and adjust based on live data.",
+    },
+    {
+        step: "Review & optimization",
+        desc: "Review KPIs, learn from results, and refine the next cycle.",
+    },
+];
+
+const platforms = [
+    { name: "Facebook", icon: "📘", users: "3B+", strength: "Broad reach & targeting" },
+    { name: "Instagram", icon: "📸", users: "2B+", strength: "Visual storytelling" },
+    { name: "LinkedIn", icon: "💼", users: "900M+", strength: "B2B & professionals" },
+    { name: "Twitter", icon: "🐦", users: "500M+", strength: "Real-time engagement" },
+    { name: "TikTok", icon: "🎵", users: "1.5B+", strength: "Short-form video" },
+    { name: "YouTube", icon: "▶️", users: "2.5B+", strength: "Long-form video & ads" },
+];
+
+const services = [
+    {
+        title: "Social media audit",
+        desc: "Analysis of your existing presence, gaps, and competitor benchmark.",
+    },
+    {
+        title: "Content production",
+        desc: "Photography, video, graphics, and copy tailored to each channel.",
+    },
+    {
+        title: "Community management",
+        desc: "Inbox, comments, and conversations handled professionally.",
+    },
+    {
+        title: "Paid advertising",
+        desc: "ROI-focused campaigns with clear KPIs and budget control.",
+    },
+    {
+        title: "Influencer outreach",
+        desc: "Identify, negotiate, and manage creator partnerships.",
+    },
+    {
+        title: "Crisis management",
+        desc: "Monitor sentiment and respond to issues quickly and clearly.",
+    },
+];
+
+const caseStudies = [
+    {
+        title: "Fashion brand launch",
+        challenge: "New brand entering a crowded market with no social presence.",
+        solution: "Multi-platform launch with influencers and user-generated content.",
+        result: "50k followers in 3 months, 200% ROAS, multiple viral posts.",
+    },
+    {
+        title: "B2B SaaS lead generation",
+        challenge: "Low LinkedIn engagement, high lead cost, weak brand awareness.",
+        solution: "Thought-leadership content, LinkedIn ads, and webinar campaigns.",
+        result: "400% engagement increase, 60% CPL reduction, 150 qualified leads.",
+    },
+];
+
+const projects = [
+    {
+        title: "Product launch campaign",
+        desc: "TikTok and Reels campaign generating millions of views and UGC.",
+        impact: "5M+ views",
+    },
+    {
+        title: "Brand awareness drive",
+        desc: "Multi-channel push increasing recognition in a specific segment.",
+        impact: "80% awareness uplift",
+    },
+    {
+        title: "Holiday season promo",
+        desc: "Seasonal campaigns driving a large lift in sales during key dates.",
+        impact: "300% sales uplift",
+    },
+];
+
+const metrics = [
+    { metric: "Engagement rate", target: "3–6%", icon: "💬" },
+    { metric: "Follower growth", target: "10–20%/month", icon: "📈" },
+    { metric: "Reach", target: "50k+/post", icon: "👁️" },
+    { metric: "CTR", target: "2–4%", icon: "🎯" },
+    { metric: "ROAS", target: "4:1+", icon: "💰" },
+    { metric: "Share rate", target: "1–2%", icon: "🔄" },
+];
+
+const faq = [
+    {
+        q: "Which platforms should my business focus on?",
+        a: "It depends on your audience: B2B often performs best on LinkedIn, visual and consumer brands on Instagram and TikTok, and broad reach on Facebook. The mix is chosen based on your goals and audience.",
+    },
+    {
+        q: "How long before we see results?",
+        a: "Paid campaigns can show results in 2–4 weeks. Organic growth typically takes 3–6 months to build momentum. Reporting is shared monthly with key metrics.",
+    },
+    {
+        q: "Do you create all the content?",
+        a: "Yes. We can handle full content production or collaborate with your in-house team if you already have assets.",
+    },
+    {
+        q: "What is a typical campaign budget?",
+        a: "Budgets vary by goals and platforms. A common range is $2k–$10k per month for ads and management, adjusted to fit your targets.",
+    },
+];
 
 export default function SocialMediaCampaignsPage() {
-    const solutions = [
-        { title: "Multi-Platform Strategy", desc: "Integrated campaigns across Facebook, Instagram, LinkedIn, Twitter, and TikTok for maximum reach", icon: Share2 },
-        { title: "Content Creation", desc: "High-quality visuals, videos, copy, and stories tailored to each platform's best practices", icon: Megaphone },
-        { title: "Audience Targeting", desc: "Data-driven targeting based on demographics, interests, behaviors, and lookalike audiences", icon: Target },
-        { title: "Influencer Partnerships", desc: "Collaborate with micro and macro influencers to amplify your brand message authentically", icon: Users },
-        { title: "Analytics & Reporting", desc: "Real-time dashboards tracking engagement, reach, conversions, and ROI across all channels", icon: BarChart3 },
-        { title: "Ad Campaign Management", desc: "PPC, sponsored posts, story ads, and retargeting campaigns optimized for conversions", icon: TrendingUp },
-    ];
-
-    const process = [
-        { step: "Research & Audience Analysis", desc: "Deep dive into market trends, competitor strategies, audience behaviors, and platform insights" },
-        { step: "Strategy & Content Planning", desc: "Develop creative content calendar and platform-specific strategies aligned with brand goals" },
-        { step: "Execution & Monitoring", desc: "Launch campaigns with real-time monitoring, A/B testing, and adjustments for optimal delivery" },
-        { step: "Review & Optimization", desc: "Analyze performance metrics, gather insights, and continuously refine campaigns for superior results" },
-    ];
-
-    const platforms = [
-        { name: "Facebook", icon: "📘", users: "3B+", strength: "Broad reach & targeting" },
-        { name: "Instagram", icon: "📸", users: "2B+", strength: "Visual storytelling" },
-        { name: "LinkedIn", icon: "💼", users: "900M+", strength: "B2B & professionals" },
-        { name: "Twitter", icon: "🐦", users: "500M+", strength: "Real-time engagement" },
-        { name: "TikTok", icon: "🎵", users: "1.5B+", strength: "Viral short videos" },
-        { name: "YouTube", icon: "▶️", users: "2.5B+", strength: "Video content & ads" },
-    ];
-
-    const services = [
-        { title: "Social Media Audit", desc: "Comprehensive analysis of current social presence and competitor benchmarking" },
-        { title: "Content Production", desc: "Professional photography, videography, graphics, and copywriting services" },
-        { title: "Community Management", desc: "Engage with followers, respond to comments, and build brand loyalty" },
-        { title: "Paid Advertising", desc: "ROI-focused ad campaigns with precise targeting and budget optimization" },
-        { title: "Influencer Outreach", desc: "Identify, negotiate, and manage influencer partnerships for brand amplification" },
-        { title: "Crisis Management", desc: "Monitor sentiment and respond to negative feedback professionally and promptly" },
-    ];
-
-    const caseStudies = [
-        {
-            title: "Fashion Brand Launch",
-            challenge: "New brand entering saturated market with zero social presence",
-            solution: "Multi-platform campaign with influencer partnerships and UGC strategy",
-            result: "50k followers in 3 months, 200% ROAS on ad spend, viral UGC"
-        },
-        {
-            title: "B2B SaaS Lead Generation",
-            challenge: "Low LinkedIn engagement, high CPL, limited brand awareness",
-            solution: "Thought leadership content, LinkedIn ads, webinar promotion strategy",
-            result: "400% engagement increase, 60% CPL reduction, 150 qualified leads"
-        },
-    ];
-
-    const projects = [
-        { title: "Product Launch Campaign", desc: "Viral TikTok campaign generating 5M+ views and 25k user-generated videos", impact: "5M+ views" },
-        { title: "Brand Awareness Drive", desc: "Multi-channel campaign increasing brand recognition by 80% in target demographic", impact: "80% awareness ↑" },
-        { title: "Holiday Season Promo", desc: "Instagram & Facebook ads driving 300% sales increase during Black Friday", impact: "300% sales ↑" },
-    ];
-
-    const metrics = [
-        { metric: "Engagement Rate", target: "3-6%", icon: "💬" },
-        { metric: "Follower Growth", target: "10-20%/mo", icon: "📈" },
-        { metric: "Reach", target: "50k+/post", icon: "👁️" },
-        { metric: "CTR", target: "2-4%", icon: "🎯" },
-        { metric: "ROAS", target: "4:1+", icon: "💰" },
-        { metric: "Share Rate", target: "1-2%", icon: "🔄" },
-    ];
-
-    const faq = [
-        { q: "Which social platforms should my business focus on?", a: "Depends on your audience: B2B thrives on LinkedIn, visual brands on Instagram/TikTok, broad consumer reach on Facebook. We analyze your audience to recommend the best mix." },
-        { q: "How long before we see results?", a: "Organic growth takes 3-6 months for momentum. Paid campaigns show results within 2-4 weeks. We provide monthly reports tracking all KPIs and progress." },
-        { q: "Do you create all the content?", a: "Yes—our creative team produces professional photos, videos, graphics, and copy. We can also work with your existing content or collaborate with your in-house team." },
-        { q: "What's the typical campaign budget?", a: "Budgets vary by goals and platforms. Typical range: $2k-$10k/month for ads + management. We optimize spend to maximize ROI and scale what works." },
-    ];
-
     return (
         <>
-            <section className="relative min-h-screen pt-32 pb-20 px-6 overflow-hidden bg-black">
-                <div className="absolute inset-0 bg-gradient-to-b from-black via-cyan-950/20 to-black" />
-                <div className="brutal-grid opacity-10 absolute inset-0" />
+            <main className="bg-slate-950 text-white min-h-screen">
+                {/* Hero */}
+                <section className="pt-28 sm:pt-36 pb-14 sm:pb-16 px-4 sm:px-6">
+                    <div className="max-w-5xl mx-auto text-center">
+                        <span className="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-900 px-4 py-1.5 text-xs font-medium tracking-wide text-slate-300 uppercase mb-6">
+                            <Share2 className="w-4 h-4" />
+                            Social media campaigns
+                        </span>
 
-                <FloatingOrbs colors={["rgba(6, 182, 212, 0.15)", "rgba(59, 130, 246, 0.12)", "rgba(99, 102, 241, 0.1)"]} />
-
-                <div className="relative z-10 max-w-7xl mx-auto">
-                    {/* Hero */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        className="text-center mb-20"
-                    >
-                        <motion.div
-                            initial={{ scale: 0, rotate: -180 }}
-                            animate={{ scale: 1, rotate: 0 }}
-                            transition={{ type: "spring", duration: 0.8 }}
-                            className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-cyan-500/15 to-blue-500/15 border border-cyan-500/40 rounded-full text-sm font-bold text-cyan-300 mb-8"
-                        >
-                            <Share2 className="w-5 h-5" />
-                            Social Media Campaigns
-                        </motion.div>
-
-                        <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold mb-6">
-                            <span className="holographic">Amplify Your Brand</span> Everywhere
+                        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-5">
+                            Amplify your brand{" "}
+                            <span className="text-sky-400">across channels</span>
                         </h1>
-                        <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed mb-10">
-                            Creative, data-driven campaigns across all major platforms to boost brand awareness, engagement, and ROI—from strategy to execution.
+
+                        <p className="text-base sm:text-lg text-slate-400 leading-relaxed max-w-2xl mx-auto mb-8">
+                            Creative, data-driven campaigns across major platforms to grow
+                            awareness, engagement, and revenue.
                         </p>
 
-                        <div className="flex flex-wrap gap-4 justify-center">
-                            <MagneticButton>
-                                <Link href="/contact">
-                                    <motion.button
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
-                                        className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl font-bold text-lg flex items-center gap-2 hover:shadow-2xl hover:shadow-cyan-500/50 transition-all"
-                                    >
-                                        Launch Campaign <ArrowRight className="w-5 h-5" />
-                                    </motion.button>
-                                </Link>
-                            </MagneticButton>
+                        <div className="flex flex-wrap justify-center gap-4">
+                            <Link href="/contact">
+                                <button className="inline-flex items-center gap-2 rounded-lg bg-sky-500 px-6 py-3 text-sm sm:text-base font-semibold text-slate-950 hover:bg-sky-400 transition-colors">
+                                    Launch a campaign
+                                    <ArrowRight className="w-4 h-4" />
+                                </button>
+                            </Link>
                         </div>
-                    </motion.div>
+                    </div>
+                </section>
 
-                    {/* Solutions Grid */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        className="mb-32"
-                    >
-                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-                            Our <span className="holographic">Campaign Solutions</span>
+                {/* Solutions */}
+                <section className="px-4 sm:px-6 pb-16 sm:pb-20">
+                    <div className="max-w-6xl mx-auto">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 sm:mb-12">
+                            Campaign solutions
                         </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {solutions.map((solution, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 30 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, margin: "-50px" }}
-                                    transition={{ delay: index * 0.1 }}
-                                    whileHover={{ scale: 1.03, y: -5 }}
-                                    className="glass-card p-8 relative overflow-hidden group cursor-pointer"
-                                >
-                                    <motion.div
-                                        className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-transparent opacity-0 group-hover:opacity-100"
-                                        transition={{ duration: 0.5 }}
-                                    />
-                                    <motion.div
-                                        className="w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center mb-6 relative z-10"
-                                        whileHover={{ rotate: 360 }}
-                                        transition={{ duration: 0.6 }}
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {solutions.map((solution) => {
+                                const Icon = solution.icon;
+                                return (
+                                    <article
+                                        key={solution.title}
+                                        className="rounded-xl border border-slate-800 bg-slate-900 p-6"
                                     >
-                                        <solution.icon className="w-7 h-7 text-white" />
-                                    </motion.div>
-                                    <h3 className="text-xl font-bold mb-3 relative z-10">{solution.title}</h3>
-                                    <p className="text-gray-400 relative z-10">{solution.desc}</p>
-                                </motion.div>
+                                        <div className="w-11 h-11 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center mb-4">
+                                            <Icon className="w-6 h-6 text-sky-400" />
+                                        </div>
+                                        <h3 className="text-lg font-semibold text-white mb-2">
+                                            {solution.title}
+                                        </h3>
+                                        <p className="text-sm text-slate-400 leading-relaxed">
+                                            {solution.desc}
+                                        </p>
+                                    </article>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </section>
+
+                {/* Platforms */}
+                <section className="border-t border-slate-800 bg-slate-900 px-4 sm:px-6 py-16 sm:py-20">
+                    <div className="max-w-6xl mx-auto">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 sm:mb-12">
+                            Platforms we work with
+                        </h2>
+
+                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+                            {platforms.map((platform) => (
+                                <div
+                                    key={platform.name}
+                                    className="rounded-xl border border-slate-800 bg-slate-950 p-4 text-center"
+                                >
+                                    <div className="text-3xl mb-2">{platform.icon}</div>
+                                    <h3 className="text-sm font-semibold text-white mb-1">
+                                        {platform.name}
+                                    </h3>
+                                    <p className="text-xs text-sky-400 font-semibold mb-1">
+                                        {platform.users}
+                                    </p>
+                                    <p className="text-xs text-slate-400">{platform.strength}</p>
+                                </div>
                             ))}
                         </div>
-                    </motion.div>
+                    </div>
+                </section>
 
-                    {/* Platforms */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        className="mb-32"
-                    >
-                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-                            <span className="holographic">Platforms We Master</span>
+                {/* Metrics */}
+                <section className="px-4 sm:px-6 py-16 sm:py-20">
+                    <div className="max-w-6xl mx-auto">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 sm:mb-12">
+                            Key campaign metrics
                         </h2>
-                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-                            {platforms.map((platform, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, scale: 0.8 }}
-                                    whileInView={{ opacity: 1, scale: 1 }}
-                                    viewport={{ once: true, margin: "-50px" }}
-                                    transition={{ delay: index * 0.1 }}
-                                    whileHover={{ scale: 1.1, y: -5 }}
-                                    className="glass-card p-6 text-center cursor-pointer"
-                                >
-                                    <div className="text-4xl mb-3">{platform.icon}</div>
-                                    <h3 className="text-lg font-bold mb-1">{platform.name}</h3>
-                                    <p className="text-xs text-cyan-400 font-semibold mb-1">{platform.users}</p>
-                                    <p className="text-xs text-gray-400">{platform.strength}</p>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </motion.div>
 
-                    {/* Key Metrics */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        className="mb-32"
-                    >
-                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-                            <span className="holographic">Campaign Metrics</span>
-                        </h2>
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-                            {metrics.map((item, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, scale: 0.8 }}
-                                    whileInView={{ opacity: 1, scale: 1 }}
-                                    viewport={{ once: true, margin: "-50px" }}
-                                    transition={{ delay: index * 0.1 }}
-                                    whileHover={{ scale: 1.1, y: -5 }}
-                                    className="glass-card p-6 text-center cursor-pointer"
+                            {metrics.map((item) => (
+                                <div
+                                    key={item.metric}
+                                    className="rounded-xl border border-slate-800 bg-slate-900 p-5 text-center"
                                 >
                                     <div className="text-3xl mb-2">{item.icon}</div>
-                                    <h3 className="text-2xl font-bold mb-2 bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent">
+                                    <div className="text-lg font-semibold text-white mb-1">
                                         {item.target}
-                                    </h3>
-                                    <p className="text-sm font-semibold text-gray-300">{item.metric}</p>
-                                </motion.div>
+                                    </div>
+                                    <p className="text-xs text-slate-400">{item.metric}</p>
+                                </div>
                             ))}
                         </div>
-                    </motion.div>
+                    </div>
+                </section>
 
-                    {/* Services */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        className="mb-32"
-                    >
-                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-                            <span className="holographic">What We Offer</span>
+                {/* Services */}
+                <section className="border-t border-slate-800 bg-slate-900 px-4 sm:px-6 py-16 sm:py-20">
+                    <div className="max-w-6xl mx-auto">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 sm:mb-12">
+                            What we offer
                         </h2>
+
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {services.map((service, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, x: -20 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true, margin: "-50px" }}
-                                    transition={{ delay: index * 0.1 }}
-                                    whileHover={{ scale: 1.05, x: 5 }}
-                                    className="glass-card p-6 flex items-start gap-4 cursor-pointer"
+                            {services.map((service) => (
+                                <article
+                                    key={service.title}
+                                    className="rounded-xl border border-slate-800 bg-slate-950 p-6 flex items-start gap-3"
                                 >
-                                    <CheckCircle className="w-6 h-6 text-cyan-400 flex-shrink-0 mt-1" />
+                                    <CheckCircle className="w-5 h-5 text-sky-400 flex-shrink-0 mt-0.5" />
                                     <div>
-                                        <h3 className="text-lg font-bold mb-2">{service.title}</h3>
-                                        <p className="text-gray-400 text-sm">{service.desc}</p>
+                                        <h3 className="text-sm sm:text-base font-semibold text-white mb-1.5">
+                                            {service.title}
+                                        </h3>
+                                        <p className="text-sm text-slate-400 leading-relaxed">
+                                            {service.desc}
+                                        </p>
                                     </div>
-                                </motion.div>
+                                </article>
                             ))}
                         </div>
-                    </motion.div>
+                    </div>
+                </section>
 
-                    {/* Process Timeline */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        className="mb-32"
-                    >
-                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-                            Our <span className="holographic">Campaign Process</span>
+                {/* Process */}
+                <section className="px-4 sm:px-6 py-16 sm:py-20">
+                    <div className="max-w-5xl mx-auto">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 sm:mb-12">
+                            How campaigns run
                         </h2>
-                        <div className="space-y-6 max-w-4xl mx-auto">
+
+                        <div className="space-y-5">
                             {process.map((item, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, x: -50 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true, margin: "-50px" }}
-                                    transition={{ delay: index * 0.1 }}
-                                    whileHover={{ scale: 1.02, x: 10 }}
-                                    className="glass-card p-8 flex items-start gap-6 relative overflow-hidden group cursor-pointer"
+                                <div
+                                    key={item.step}
+                                    className="rounded-xl border border-slate-800 bg-slate-950 px-5 py-4 sm:px-6 sm:py-5 flex gap-4"
                                 >
-                                    <motion.div
-                                        className="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center font-bold text-xl flex-shrink-0 relative z-10"
-                                        whileHover={{ scale: 1.2, rotate: 360 }}
-                                        transition={{ duration: 0.6 }}
-                                    >
+                                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-800 text-xs font-semibold text-slate-200">
                                         {index + 1}
-                                    </motion.div>
-                                    <div className="relative z-10">
-                                        <h3 className="text-xl font-bold mb-2">{item.step}</h3>
-                                        <p className="text-gray-400">{item.desc}</p>
                                     </div>
-                                </motion.div>
+                                    <div>
+                                        <h3 className="text-sm sm:text-base font-semibold text-white mb-1.5">
+                                            {item.step}
+                                        </h3>
+                                        <p className="text-sm text-slate-400 leading-relaxed">
+                                            {item.desc}
+                                        </p>
+                                    </div>
+                                </div>
                             ))}
                         </div>
-                    </motion.div>
+                    </div>
+                </section>
 
-                    {/* Case Studies */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        className="mb-32"
-                    >
-                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-                            <span className="holographic">Success Stories</span>
+                {/* Case studies */}
+                <section className="border-t border-slate-800 bg-slate-900 px-4 sm:px-6 py-16 sm:py-20">
+                    <div className="max-w-6xl mx-auto">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 sm:mb-12">
+                            Success stories
                         </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            {caseStudies.map((study, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 30 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, margin: "-50px" }}
-                                    transition={{ delay: index * 0.15 }}
-                                    whileHover={{ scale: 1.03, y: -5 }}
-                                    className="glass-card p-8 relative overflow-hidden group cursor-pointer"
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {caseStudies.map((study) => (
+                                <article
+                                    key={study.title}
+                                    className="rounded-xl border border-slate-800 bg-slate-950 p-6"
                                 >
-                                    <motion.div
-                                        className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100"
-                                        transition={{ duration: 0.5 }}
-                                    />
-                                    <div className="relative z-10">
-                                        <h3 className="text-2xl font-bold mb-4">{study.title}</h3>
-                                        <div className="space-y-3 mb-4">
-                                            <div>
-                                                <p className="text-sm font-semibold text-cyan-400 mb-1">Challenge</p>
-                                                <p className="text-gray-400 text-sm">{study.challenge}</p>
-                                            </div>
-                                            <div>
-                                                <p className="text-sm font-semibold text-blue-400 mb-1">Solution</p>
-                                                <p className="text-gray-400 text-sm">{study.solution}</p>
-                                            </div>
-                                            <div>
-                                                <p className="text-sm font-semibold text-green-400 mb-1">Result</p>
-                                                <p className="text-gray-300 text-sm font-medium">{study.result}</p>
-                                            </div>
+                                    <h3 className="text-lg font-semibold text-white mb-3">
+                                        {study.title}
+                                    </h3>
+                                    <div className="space-y-3 text-sm">
+                                        <div>
+                                            <p className="font-semibold text-sky-400 mb-1">Challenge</p>
+                                            <p className="text-slate-400">{study.challenge}</p>
+                                        </div>
+                                        <div>
+                                            <p className="font-semibold text-blue-400 mb-1">Solution</p>
+                                            <p className="text-slate-400">{study.solution}</p>
+                                        </div>
+                                        <div>
+                                            <p className="font-semibold text-emerald-400 mb-1">Result</p>
+                                            <p className="text-slate-200 font-medium">{study.result}</p>
                                         </div>
                                     </div>
-                                </motion.div>
+                                </article>
                             ))}
                         </div>
-                    </motion.div>
+                    </div>
+                </section>
 
-                    {/* Featured Projects */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        className="mb-32"
-                    >
-                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-                            <span className="holographic">Featured Campaigns</span>
+                {/* Featured campaigns */}
+                <section className="px-4 sm:px-6 py-16 sm:py-20">
+                    <div className="max-w-6xl mx-auto">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 sm:mb-12">
+                            Featured campaigns
                         </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            {projects.map((project, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 30 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, margin: "-50px" }}
-                                    transition={{ delay: index * 0.15 }}
-                                    whileHover={{ scale: 1.05, y: -10 }}
-                                    className="glass-card p-8 relative overflow-hidden group cursor-pointer"
+
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            {projects.map((project) => (
+                                <article
+                                    key={project.title}
+                                    className="rounded-xl border border-slate-800 bg-slate-900 p-6"
                                 >
-                                    <div className="relative z-10">
-                                        <div className="flex items-center gap-2 mb-4">
-                                            <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
-                                            <span className="text-sm font-semibold bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent">
-                                                {project.impact}
-                                            </span>
-                                        </div>
-                                        <h3 className="text-2xl font-bold mb-3">{project.title}</h3>
-                                        <p className="text-gray-400">{project.desc}</p>
+                                    <div className="flex items-center gap-2 mb-3">
+                                        <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                                        <span className="text-xs font-semibold text-slate-200">
+                                            {project.impact}
+                                        </span>
                                     </div>
-                                </motion.div>
+                                    <h3 className="text-lg font-semibold text-white mb-2">
+                                        {project.title}
+                                    </h3>
+                                    <p className="text-sm text-slate-400 leading-relaxed">
+                                        {project.desc}
+                                    </p>
+                                </article>
                             ))}
                         </div>
-                    </motion.div>
+                    </div>
+                </section>
 
-                    {/* FAQ */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        className="mb-20"
-                    >
-                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-                            <span className="holographic">Frequently Asked Questions</span>
+                {/* FAQ */}
+                <section className="border-t border-slate-800 bg-slate-900 px-4 sm:px-6 py-16 sm:py-20">
+                    <div className="max-w-4xl mx-auto">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 sm:mb-12">
+                            Frequently asked questions
                         </h2>
-                        <div className="space-y-4 max-w-3xl mx-auto">
-                            {faq.map((item, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, margin: "-50px" }}
-                                    transition={{ delay: index * 0.1 }}
-                                    whileHover={{ scale: 1.02 }}
-                                    className="glass-card p-6 cursor-pointer"
+
+                        <div className="space-y-4">
+                            {faq.map((item) => (
+                                <article
+                                    key={item.q}
+                                    className="rounded-xl border border-slate-800 bg-slate-950 px-5 py-4 sm:px-6 sm:py-5"
                                 >
-                                    <h3 className="font-semibold text-lg mb-2">{item.q}</h3>
-                                    <p className="text-gray-400">{item.a}</p>
-                                </motion.div>
+                                    <h3 className="text-sm sm:text-base font-semibold text-white mb-2">
+                                        {item.q}
+                                    </h3>
+                                    <p className="text-sm text-slate-400 leading-relaxed">
+                                        {item.a}
+                                    </p>
+                                </article>
                             ))}
                         </div>
-                    </motion.div>
+                    </div>
+                </section>
 
-                    {/* CTA */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-center"
-                    >
-                        <div className="glass-card p-12 rounded-3xl">
-                            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                                Ready to <span className="holographic">Go Viral</span>?
+                {/* CTA */}
+                <section className="px-4 sm:px-6 py-16 sm:py-20">
+                    <div className="max-w-4xl mx-auto">
+                        <div className="rounded-2xl border border-slate-800 bg-slate-900 p-8 sm:p-10 text-center">
+                            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+                                Ready to start your next campaign?
                             </h2>
-                            <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
-                                Let's create campaigns that capture attention, spark conversations, and drive measurable results.
+                            <p className="text-sm sm:text-base text-slate-400 mb-8 max-w-xl mx-auto">
+                                Share your goals, budget, and timeline, and we’ll plan a campaign
+                                that fits your brand and targets the right audience.
                             </p>
-                            <MagneticButton>
-                                <Link href="/contact">
-                                    <motion.button
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
-                                        className="px-10 py-5 bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-500 rounded-2xl font-bold text-lg flex items-center gap-3 mx-auto hover:shadow-2xl hover:shadow-cyan-500/60 transition-all"
-                                    >
-                                        Start Your Campaign <ArrowRight className="w-6 h-6" />
-                                    </motion.button>
-                                </Link>
-                            </MagneticButton>
+                            <Link href="/contact">
+                                <button className="inline-flex items-center gap-2 rounded-lg bg-sky-500 px-6 py-3 text-sm sm:text-base font-semibold text-slate-950 hover:bg-sky-400 transition-colors">
+                                    Start your campaign
+                                    <ArrowRight className="w-4 h-4" />
+                                </button>
+                            </Link>
                         </div>
-                    </motion.div>
-                </div>
-            </section>
+                    </div>
+                </section>
+            </main>
+
             <Footer />
         </>
     );

@@ -1,368 +1,365 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Layers, Database, Code2, Server, Zap, Shield, ArrowRight, Star, CheckCircle } from "lucide-react";
+import {
+    Layers,
+    Database,
+    Code2,
+    Server,
+    Zap,
+    Shield,
+    ArrowRight,
+    Star,
+} from "lucide-react";
 import Footer from "@/components/sections/footer";
 import Link from "next/link";
-import MagneticButton from "@/components/services/MagneticButton";
-import FloatingOrbs from "@/components/services/FloatingOrbs";
+
+const solutions = [
+    {
+        title: "Custom web applications",
+        desc: "Scalable, maintainable web apps tailored to your needs using MERN and modern patterns.",
+        icon: Code2,
+    },
+    {
+        title: "Responsive UI/UX",
+        desc: "Interfaces that work cleanly across desktop, tablet, and mobile.",
+        icon: Layers,
+    },
+    {
+        title: "APIs & microservices",
+        desc: "Robust APIs and modular services for scale and maintainability.",
+        icon: Server,
+    },
+    {
+        title: "Performance optimization",
+        desc: "Redis caching, optimized queries, and profiling to keep apps fast.",
+        icon: Zap,
+    },
+    {
+        title: "Database architecture",
+        desc: "MongoDB and relational design with indexing and replication where needed.",
+        icon: Database,
+    },
+    {
+        title: "Security & auth",
+        desc: "JWT, OAuth2, and role-based access with solid security practices.",
+        icon: Shield,
+    },
+];
+
+const process = [
+    {
+        step: "Requirement analysis",
+        desc: "Define scope, constraints, and success metrics with clear documentation.",
+    },
+    {
+        step: "Design & architecture",
+        desc: "Wireframes, system design, and technical architecture before coding starts.",
+    },
+    {
+        step: "Development & testing",
+        desc: "Agile delivery, automated tests, and reviews to keep quality high.",
+    },
+    {
+        step: "Deployment & maintenance",
+        desc: "Deploy on cloud infrastructure with monitoring, security, and updates.",
+    },
+];
+
+const technologies = [
+    { name: "React", category: "Frontend" },
+    { name: "Next.js", category: "Frontend framework" },
+    { name: "Node.js", category: "Backend runtime" },
+    { name: "Express", category: "Backend framework" },
+    { name: "TypeScript", category: "Language" },
+    { name: "MongoDB", category: "NoSQL database" },
+    { name: "PostgreSQL", category: "SQL database" },
+    { name: "Redis", category: "Cache" },
+    { name: "Tailwind CSS", category: "Styling" },
+];
+
+const projects = [
+    {
+        title: "E‑commerce platform",
+        desc: "Full MERN e‑commerce with real‑time inventory and payment integration.",
+        impact: "500k+ users",
+    },
+    {
+        title: "Real‑time dashboard",
+        desc: "Analytics dashboard using Redis and TypeScript for fast data views.",
+        impact: "Sub‑second load",
+    },
+    {
+        title: "Social network",
+        desc: "Responsive social platform with WebSocket updates and activity feeds.",
+        impact: "50k daily active users",
+    },
+];
+
+const caseStudies = [
+    {
+        title: "Enterprise SaaS platform",
+        challenge: "Migrating a legacy system with minimal downtime.",
+        solution: "Microservices and phased migration strategy.",
+        result: "99.9% uptime and 40% performance improvement.",
+    },
+    {
+        title: "Real‑time collaboration tool",
+        challenge: "Handling thousands of concurrent users with live updates.",
+        solution: "WebSockets, Redis pub/sub, and horizontal scaling.",
+        result: "Sub‑100ms latency under load.",
+    },
+];
+
+const faq = [
+    {
+        q: "What industries do you work with?",
+        a: "E‑commerce, SaaS, fintech, healthcare, education, social platforms, and more.",
+    },
+    {
+        q: "Do you provide ongoing maintenance?",
+        a: "Yes. Support, monitoring, security patches, and feature updates are part of long‑term engagements.",
+    },
+    {
+        q: "How long does a full stack project take?",
+        a: "Typical timelines are 3–6 months depending on complexity and integrations.",
+    },
+    {
+        q: "Can you work with our existing stack?",
+        a: "Yes. Projects often involve integrating with existing APIs, services, and databases.",
+    },
+];
 
 export default function FullStackDevelopmentPage() {
-    const solutions = [
-        { title: "Custom Web Applications", desc: "Scalable, maintainable web solutions tailored to your needs using MERN and modern best practices", icon: Code2 },
-        { title: "Responsive UI/UX Design", desc: "Intuitive, responsive designs ensuring seamless experiences across desktop, tablet, and mobile", icon: Layers },
-        { title: "API & Microservices", desc: "Robust APIs and modular microservices architecture for scalability and maintainability", icon: Server },
-        { title: "Performance Optimization", desc: "Advanced Redis caching, optimized queries, and code improvements to maximize speed", icon: Zap },
-        { title: "Database Architecture", desc: "MongoDB and PostgreSQL design with indexing, sharding, and replication strategies", icon: Database },
-        { title: "Security & Authentication", desc: "JWT, OAuth2, role-based access control, and industry-standard security practices", icon: Shield },
-    ];
-
-    const process = [
-        { step: "Requirement Analysis", desc: "We collaborate to define scope, requirements, and success metrics with detailed documentation" },
-        { step: "Design & Prototyping", desc: "Interactive wireframes and technical architecture to visualize your vision before development" },
-        { step: "Development & Testing", desc: "Agile development with continuous integration, rigorous testing, and code reviews for quality" },
-        { step: "Deployment & Maintenance", desc: "Deploy on scalable cloud infrastructure with ongoing support, monitoring, and updates" },
-    ];
-
-    const technologies = [
-        { name: "React", category: "Frontend", color: "from-cyan-500 to-blue-500" },
-        { name: "Node.js", category: "Backend", color: "from-green-500 to-emerald-500" },
-        { name: "Express", category: "Framework", color: "from-gray-500 to-slate-500" },
-        { name: "MongoDB", category: "Database", color: "from-green-600 to-green-500" },
-        { name: "TypeScript", category: "Language", color: "from-blue-600 to-blue-500" },
-        { name: "Redis", category: "Cache", color: "from-red-500 to-rose-500" },
-        { name: "Tailwind CSS", category: "Styling", color: "from-cyan-400 to-teal-400" },
-        { name: "Next.js", category: "Framework", color: "from-black to-gray-700" },
-        { name: "GraphQL", category: "API", color: "from-pink-500 to-purple-500" },
-    ];
-
-    const projects = [
-        { title: "E-commerce Platform", desc: "Full-featured MERN e-commerce solution with real-time inventory and payment processing", impact: "500k+ users" },
-        { title: "Real-Time Dashboard", desc: "Analytics dashboard with Redis caching and TypeScript for high-performance data visualization", impact: "Sub-second load" },
-        { title: "Social Network", desc: "Responsive social platform built with React, Node.js, MongoDB, and WebSocket integration", impact: "50k daily active" },
-    ];
-
-    const caseStudies = [
-        {
-            title: "Enterprise SaaS Platform",
-            challenge: "Legacy system migration with zero downtime",
-            solution: "Microservices architecture with gradual migration strategy",
-            result: "99.9% uptime, 40% performance improvement"
-        },
-        {
-            title: "Real-Time Collaboration Tool",
-            challenge: "Handling 10k+ concurrent users with live updates",
-            solution: "WebSocket implementation with Redis pub/sub and horizontal scaling",
-            result: "Sub-100ms latency, infinite scalability"
-        },
-    ];
-
-    const faq = [
-        { q: "What industries do you serve?", a: "We work across e-commerce, fintech, healthcare, education, SaaS, social platforms, and more—delivering custom solutions for diverse business needs." },
-        { q: "Do you offer ongoing maintenance?", a: "Yes—continuous support, performance monitoring, security updates, and feature enhancements to keep your application secure and optimized." },
-        { q: "How long does a project take?", a: "Typically 3-6 months depending on scope and complexity. We use agile methodology with 2-week sprints for iterative delivery." },
-        { q: "Can you work with our existing tech stack?", a: "Absolutely. We integrate seamlessly with existing systems, APIs, and databases, ensuring smooth collaboration with your current infrastructure." },
-    ];
-
     return (
         <>
-            <section className="relative min-h-screen pt-32 pb-20 px-6 overflow-hidden bg-black">
-                <div className="absolute inset-0 bg-gradient-to-b from-black via-blue-950/20 to-black" />
-                <div className="brutal-grid opacity-10 absolute inset-0" />
+            <main className="bg-slate-950 text-white min-h-screen">
+                {/* Hero */}
+                <section className="pt-28 sm:pt-36 pb-14 sm:pb-16 px-4 sm:px-6">
+                    <div className="max-w-5xl mx-auto text-center">
+                        <span className="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-900 px-4 py-1.5 text-xs font-medium tracking-wide text-slate-300 uppercase mb-6">
+                            <Layers className="w-4 h-4" />
+                            Full stack development
+                        </span>
 
-                <FloatingOrbs colors={["rgba(59, 130, 246, 0.15)", "rgba(6, 182, 212, 0.12)", "rgba(16, 185, 129, 0.1)"]} />
-
-                <div className="relative z-10 max-w-7xl mx-auto">
-                    {/* Hero */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        className="text-center mb-20"
-                    >
-                        <motion.div
-                            initial={{ scale: 0, rotate: -180 }}
-                            animate={{ scale: 1, rotate: 0 }}
-                            transition={{ type: "spring", duration: 0.8 }}
-                            className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-500/15 to-cyan-500/15 border border-blue-500/40 rounded-full text-sm font-bold text-blue-300 mb-8"
-                        >
-                            <Layers className="w-5 h-5" />
-                            Full Stack Development
-                        </motion.div>
-
-                        <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold mb-6">
-                            <span className="holographic">End-to-End</span> Development
+                        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-5">
+                            End‑to‑end{" "}
+                            <span className="text-sky-400">web application development</span>
                         </h1>
-                        <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed mb-10">
-                            Cutting-edge MERN solutions with TypeScript, Redis, Tailwind CSS, and SCSS—delivering scalable, high-performance web applications from front-end to back-end.
+
+                        <p className="text-base sm:text-lg text-slate-400 leading-relaxed max-w-2xl mx-auto mb-8">
+                            Full stack MERN solutions with TypeScript, Redis, and modern tooling,
+                            from the frontend UI to the backend infrastructure.
                         </p>
 
-                        <div className="flex flex-wrap gap-4 justify-center">
-                            <MagneticButton>
-                                <Link href="/contact">
-                                    <motion.button
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
-                                        className="px-8 py-4 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl font-bold text-lg flex items-center gap-2 hover:shadow-2xl hover:shadow-blue-500/50 transition-all"
-                                    >
-                                        Get a Quote <ArrowRight className="w-5 h-5" />
-                                    </motion.button>
-                                </Link>
-                            </MagneticButton>
+                        <div className="flex flex-wrap justify-center gap-4">
+                            <Link href="/contact">
+                                <button className="inline-flex items-center gap-2 rounded-lg bg-sky-500 px-6 py-3 text-sm sm:text-base font-semibold text-slate-950 hover:bg-sky-400 transition-colors">
+                                    Get a quote
+                                    <ArrowRight className="w-4 h-4" />
+                                </button>
+                            </Link>
                         </div>
-                    </motion.div>
+                    </div>
+                </section>
 
-                    {/* Solutions Grid */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        className="mb-32"
-                    >
-                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-                            Full Stack <span className="holographic">Solutions</span>
+                {/* Solutions */}
+                <section className="px-4 sm:px-6 pb-16 sm:pb-20">
+                    <div className="max-w-6xl mx-auto">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 sm:mb-12">
+                            Full stack solutions
                         </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {solutions.map((solution, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 30 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, margin: "-50px" }}
-                                    transition={{ delay: index * 0.1 }}
-                                    whileHover={{ scale: 1.03, y: -5 }}
-                                    className="glass-card p-8 relative overflow-hidden group cursor-pointer"
-                                >
-                                    <motion.div
-                                        className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-transparent opacity-0 group-hover:opacity-100"
-                                        transition={{ duration: 0.5 }}
-                                    />
-                                    <motion.div
-                                        className="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center mb-6 relative z-10"
-                                        whileHover={{ rotate: 360 }}
-                                        transition={{ duration: 0.6 }}
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {solutions.map((solution) => {
+                                const Icon = solution.icon;
+                                return (
+                                    <article
+                                        key={solution.title}
+                                        className="rounded-xl border border-slate-800 bg-slate-900 p-6"
                                     >
-                                        <solution.icon className="w-7 h-7 text-white" />
-                                    </motion.div>
-                                    <h3 className="text-xl font-bold mb-3 relative z-10">{solution.title}</h3>
-                                    <p className="text-gray-400 relative z-10">{solution.desc}</p>
-                                </motion.div>
-                            ))}
+                                        <div className="w-11 h-11 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center mb-4">
+                                            <Icon className="w-6 h-6 text-sky-400" />
+                                        </div>
+                                        <h3 className="text-lg font-semibold text-white mb-2">
+                                            {solution.title}
+                                        </h3>
+                                        <p className="text-sm text-slate-400 leading-relaxed">
+                                            {solution.desc}
+                                        </p>
+                                    </article>
+                                );
+                            })}
                         </div>
-                    </motion.div>
+                    </div>
+                </section>
 
-                    {/* Technology Stack */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        className="mb-32"
-                    >
-                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-                            Our <span className="holographic">Technology Stack</span>
+                {/* Technology stack */}
+                <section className="border-t border-slate-800 bg-slate-900 px-4 sm:px-6 py-16 sm:py-20">
+                    <div className="max-w-6xl mx-auto">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 sm:mb-12">
+                            Technology stack
                         </h2>
+
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-                            {technologies.map((tech, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, scale: 0.8 }}
-                                    whileInView={{ opacity: 1, scale: 1 }}
-                                    viewport={{ once: true, margin: "-50px" }}
-                                    transition={{ delay: index * 0.08 }}
-                                    whileHover={{ scale: 1.1, y: -8 }}
-                                    className="glass-card p-6 text-center cursor-pointer group"
+                            {technologies.map((tech) => (
+                                <div
+                                    key={tech.name}
+                                    className="rounded-xl border border-slate-800 bg-slate-950 p-4 text-center"
                                 >
-                                    <motion.div
-                                        className={`w-12 h-12 mx-auto mb-3 rounded-lg bg-gradient-to-br ${tech.color} flex items-center justify-center`}
-                                        whileHover={{ rotate: 360 }}
-                                        transition={{ duration: 0.6 }}
-                                    >
-                                        <span className="text-white font-bold text-xl">{tech.name[0]}</span>
-                                    </motion.div>
-                                    <h3 className="text-lg font-bold mb-1">{tech.name}</h3>
-                                    <p className="text-xs text-gray-400">{tech.category}</p>
-                                </motion.div>
+                                    <h3 className="text-sm font-semibold text-sky-300 mb-1">
+                                        {tech.name}
+                                    </h3>
+                                    <p className="text-xs text-slate-400">{tech.category}</p>
+                                </div>
                             ))}
                         </div>
-                    </motion.div>
+                    </div>
+                </section>
 
-                    {/* Process Timeline */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        className="mb-32"
-                    >
-                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-                            Our <span className="holographic">Development Process</span>
+                {/* Process */}
+                <section className="px-4 sm:px-6 py-16 sm:py-20">
+                    <div className="max-w-5xl mx-auto">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 sm:mb-12">
+                            How projects are delivered
                         </h2>
-                        <div className="space-y-6 max-w-4xl mx-auto">
+
+                        <div className="space-y-5">
                             {process.map((item, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, x: -50 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true, margin: "-50px" }}
-                                    transition={{ delay: index * 0.1 }}
-                                    whileHover={{ scale: 1.02, x: 10 }}
-                                    className="glass-card p-8 flex items-start gap-6 relative overflow-hidden group cursor-pointer"
+                                <div
+                                    key={item.step}
+                                    className="rounded-xl border border-slate-800 bg-slate-950 px-5 py-4 sm:px-6 sm:py-5 flex gap-4"
                                 >
-                                    <motion.div
-                                        className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center font-bold text-xl flex-shrink-0 relative z-10"
-                                        whileHover={{ scale: 1.2, rotate: 360 }}
-                                        transition={{ duration: 0.6 }}
-                                    >
+                                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-800 text-xs font-semibold text-slate-200">
                                         {index + 1}
-                                    </motion.div>
-                                    <div className="relative z-10">
-                                        <h3 className="text-xl font-bold mb-2">{item.step}</h3>
-                                        <p className="text-gray-400">{item.desc}</p>
                                     </div>
-                                </motion.div>
+                                    <div>
+                                        <h3 className="text-sm sm:text-base font-semibold text-white mb-1.5">
+                                            {item.step}
+                                        </h3>
+                                        <p className="text-sm text-slate-400 leading-relaxed">
+                                            {item.desc}
+                                        </p>
+                                    </div>
+                                </div>
                             ))}
                         </div>
-                    </motion.div>
+                    </div>
+                </section>
 
-                    {/* Case Studies */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        className="mb-32"
-                    >
-                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-                            <span className="holographic">Case Studies</span>
+                {/* Case studies */}
+                <section className="border-t border-slate-800 bg-slate-900 px-4 sm:px-6 py-16 sm:py-20">
+                    <div className="max-w-6xl mx-auto">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 sm:mb-12">
+                            Case studies
                         </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            {caseStudies.map((study, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 30 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, margin: "-50px" }}
-                                    transition={{ delay: index * 0.15 }}
-                                    whileHover={{ scale: 1.03, y: -5 }}
-                                    className="glass-card p-8 relative overflow-hidden group cursor-pointer"
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {caseStudies.map((study) => (
+                                <article
+                                    key={study.title}
+                                    className="rounded-xl border border-slate-800 bg-slate-950 p-6"
                                 >
-                                    <motion.div
-                                        className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100"
-                                        transition={{ duration: 0.5 }}
-                                    />
-                                    <div className="relative z-10">
-                                        <h3 className="text-2xl font-bold mb-4">{study.title}</h3>
-                                        <div className="space-y-3 mb-4">
-                                            <div>
-                                                <p className="text-sm font-semibold text-blue-400 mb-1">Challenge</p>
-                                                <p className="text-gray-400 text-sm">{study.challenge}</p>
-                                            </div>
-                                            <div>
-                                                <p className="text-sm font-semibold text-cyan-400 mb-1">Solution</p>
-                                                <p className="text-gray-400 text-sm">{study.solution}</p>
-                                            </div>
-                                            <div>
-                                                <p className="text-sm font-semibold text-green-400 mb-1">Result</p>
-                                                <p className="text-gray-300 text-sm font-medium">{study.result}</p>
-                                            </div>
+                                    <h3 className="text-lg font-semibold text-white mb-3">
+                                        {study.title}
+                                    </h3>
+                                    <div className="space-y-3 text-sm">
+                                        <div>
+                                            <p className="font-semibold text-sky-400 mb-1">Challenge</p>
+                                            <p className="text-slate-400">{study.challenge}</p>
+                                        </div>
+                                        <div>
+                                            <p className="font-semibold text-blue-400 mb-1">Solution</p>
+                                            <p className="text-slate-400">{study.solution}</p>
+                                        </div>
+                                        <div>
+                                            <p className="font-semibold text-emerald-400 mb-1">Result</p>
+                                            <p className="text-slate-200 font-medium">{study.result}</p>
                                         </div>
                                     </div>
-                                </motion.div>
+                                </article>
                             ))}
                         </div>
-                    </motion.div>
+                    </div>
+                </section>
 
-                    {/* Featured Projects */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        className="mb-32"
-                    >
-                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-                            <span className="holographic">Featured Projects</span>
+                {/* Featured projects */}
+                <section className="px-4 sm:px-6 py-16 sm:py-20">
+                    <div className="max-w-6xl mx-auto">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 sm:mb-12">
+                            Featured projects
                         </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            {projects.map((project, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 30 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, margin: "-50px" }}
-                                    transition={{ delay: index * 0.15 }}
-                                    whileHover={{ scale: 1.05, y: -10 }}
-                                    className="glass-card p-8 relative overflow-hidden group cursor-pointer"
+
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            {projects.map((project) => (
+                                <article
+                                    key={project.title}
+                                    className="rounded-xl border border-slate-800 bg-slate-900 p-6"
                                 >
-                                    <div className="relative z-10">
-                                        <div className="flex items-center gap-2 mb-4">
-                                            <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
-                                            <span className="text-sm font-semibold bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">
-                                                {project.impact}
-                                            </span>
-                                        </div>
-                                        <h3 className="text-2xl font-bold mb-3">{project.title}</h3>
-                                        <p className="text-gray-400">{project.desc}</p>
+                                    <div className="flex items-center gap-2 mb-3">
+                                        <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                                        <span className="text-xs font-semibold text-slate-200">
+                                            {project.impact}
+                                        </span>
                                     </div>
-                                </motion.div>
+                                    <h3 className="text-lg font-semibold text-white mb-2">
+                                        {project.title}
+                                    </h3>
+                                    <p className="text-sm text-slate-400 leading-relaxed">
+                                        {project.desc}
+                                    </p>
+                                </article>
                             ))}
                         </div>
-                    </motion.div>
+                    </div>
+                </section>
 
-                    {/* FAQ */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        className="mb-20"
-                    >
-                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-                            <span className="holographic">Frequently Asked Questions</span>
+                {/* FAQ */}
+                <section className="border-t border-slate-800 bg-slate-900 px-4 sm:px-6 py-16 sm:py-20">
+                    <div className="max-w-4xl mx-auto">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 sm:mb-12">
+                            Full stack FAQ
                         </h2>
-                        <div className="space-y-4 max-w-3xl mx-auto">
-                            {faq.map((item, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, margin: "-50px" }}
-                                    transition={{ delay: index * 0.1 }}
-                                    whileHover={{ scale: 1.02 }}
-                                    className="glass-card p-6 cursor-pointer"
+
+                        <div className="space-y-4">
+                            {faq.map((item) => (
+                                <article
+                                    key={item.q}
+                                    className="rounded-xl border border-slate-800 bg-slate-950 px-5 py-4 sm:px-6 sm:py-5"
                                 >
-                                    <h3 className="font-semibold text-lg mb-2">{item.q}</h3>
-                                    <p className="text-gray-400">{item.a}</p>
-                                </motion.div>
+                                    <h3 className="text-sm sm:text-base font-semibold text-white mb-2">
+                                        {item.q}
+                                    </h3>
+                                    <p className="text-sm text-slate-400 leading-relaxed">
+                                        {item.a}
+                                    </p>
+                                </article>
                             ))}
                         </div>
-                    </motion.div>
+                    </div>
+                </section>
 
-                    {/* CTA */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-center"
-                    >
-                        <div className="glass-card p-12 rounded-3xl">
-                            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                                Ready to <span className="holographic">Transform</span> Your Digital Presence?
+                {/* CTA */}
+                <section className="px-4 sm:px-6 py-16 sm:py-20">
+                    <div className="max-w-4xl mx-auto">
+                        <div className="rounded-2xl border border-slate-800 bg-slate-900 p-8 sm:p-10 text-center">
+                            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+                                Ready to start a full stack build?
                             </h2>
-                            <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
-                                Contact us today to kickstart your full stack development project and drive your business forward.
+                            <p className="text-sm sm:text-base text-slate-400 mb-8 max-w-xl mx-auto">
+                                Share your idea, existing system, or roadmap, and we’ll explore how to
+                                design and deliver the application end‑to‑end.
                             </p>
-                            <MagneticButton>
-                                <Link href="/contact">
-                                    <motion.button
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
-                                        className="px-10 py-5 bg-gradient-to-r from-blue-500 via-cyan-500 to-teal-500 rounded-2xl font-bold text-lg flex items-center gap-3 mx-auto hover:shadow-2xl hover:shadow-blue-500/60 transition-all"
-                                    >
-                                        Get in Touch <ArrowRight className="w-6 h-6" />
-                                    </motion.button>
-                                </Link>
-                            </MagneticButton>
+                            <Link href="/contact">
+                                <button className="inline-flex items-center gap-2 rounded-lg bg-sky-500 px-6 py-3 text-sm sm:text-base font-semibold text-slate-950 hover:bg-sky-400 transition-colors">
+                                    Get in touch
+                                    <ArrowRight className="w-4 h-4" />
+                                </button>
+                            </Link>
                         </div>
-                    </motion.div>
-                </div>
-            </section>
+                    </div>
+                </section>
+            </main>
+
             <Footer />
         </>
     );

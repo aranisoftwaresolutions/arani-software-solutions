@@ -1,8 +1,15 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, X, Send, Bot, User, Sparkles, Minimize2 } from "lucide-react";
+import {
+    MessageCircle,
+    X,
+    Send,
+    Bot,
+    User,
+    Sparkles,
+    Minimize2,
+} from "lucide-react";
 
 interface Message {
     id: number;
@@ -36,12 +43,12 @@ export default function AIChatbot() {
     const botResponses = [
         "We specialize in Native Mobile Development for iOS & Android. Would you like to know more about our mobile solutions?",
         "Our AI automation services can transform your business processes. We use cutting-edge ML models and NLP systems.",
-        "We build scalable cloud architectures on AWS, Azure, and GCP. Our solutions include auto-scaling and multi-region deployment.",
-        "MERN Stack with TypeScript is our specialty! We create enterprise-grade full-stack applications.",
-        "Our DevOps team can set up CI/CD pipelines, Docker containers, and Kubernetes orchestration for your project.",
+        "We build scalable cloud architectures on AWS, Azure, and GCP with auto-scaling and multi-region deployment.",
+        "MERN Stack with TypeScript is our specialty. We create enterprise-grade full-stack applications.",
+        "Our DevOps team can set up CI/CD pipelines, Docker containers, and Kubernetes orchestration.",
         "I'd be happy to connect you with our solutions architect. What specific challenge are you looking to solve?",
-        "We've delivered 500+ projects for enterprise clients worldwide. Let me share some case studies with you.",
-        "Our security-first approach ensures your data is protected with industry-leading encryption and compliance standards.",
+        "We've delivered 500+ projects for enterprise clients worldwide. I can share some case studies with you.",
+        "Our security-first approach ensures your data is protected with strong encryption and compliance standards.",
     ];
 
     const handleSend = () => {
@@ -54,230 +61,151 @@ export default function AIChatbot() {
             timestamp: new Date(),
         };
 
-        setMessages([...messages, userMessage]);
+        setMessages((prev) => [...prev, userMessage]);
         setInput("");
         setIsTyping(true);
 
-        // Simulate bot response
         setTimeout(() => {
             const botMessage: Message = {
-                id: messages.length + 2,
+                id: userMessage.id + 1,
                 text: botResponses[Math.floor(Math.random() * botResponses.length)],
                 sender: "bot",
                 timestamp: new Date(),
             };
             setMessages((prev) => [...prev, botMessage]);
             setIsTyping(false);
-        }, 1500);
+        }, 1200);
     };
 
     return (
         <>
-            {/* Chatbot Toggle Button */}
-            <motion.button
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={() => setIsOpen(!isOpen)}
-                className="fixed bottom-6 right-6 z-50 w-16 h-16 bg-gradient-to-br from-neon-blue to-neon-purple rounded-full flex items-center justify-center shadow-2xl hover:shadow-neon-blue/50 transition-all"
-                style={{
-                    boxShadow: "0 10px 40px rgba(0, 212, 255, 0.4), 0 0 20px rgba(184, 69, 255, 0.3)",
-                }}
+            {/* Toggle button */}
+            <button
+                type="button"
+                onClick={() => setIsOpen((prev) => !prev)}
+                className="fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-sky-500 text-slate-950 shadow-lg shadow-sky-500/40 hover:bg-sky-400 transition-colors"
+                aria-label={isOpen ? "Close chat" : "Open chat"}
             >
-                <AnimatePresence mode="wait">
-                    {isOpen ? (
-                        <motion.div
-                            key="close"
-                            initial={{ rotate: -90, opacity: 0 }}
-                            animate={{ rotate: 0, opacity: 1 }}
-                            exit={{ rotate: 90, opacity: 0 }}
-                        >
-                            <X className="w-7 h-7 text-white" />
-                        </motion.div>
-                    ) : (
-                        <motion.div
-                            key="open"
-                            initial={{ rotate: -90, opacity: 0 }}
-                            animate={{ rotate: 0, opacity: 1 }}
-                            exit={{ rotate: 90, opacity: 0 }}
-                            className="relative"
-                        >
-                            <MessageCircle className="w-7 h-7 text-white" />
-                            <span className="absolute -top-1 -right-1 w-3 h-3 bg-neon-green rounded-full animate-pulse" />
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-            </motion.button>
+                {isOpen ? (
+                    <X className="h-6 w-6" />
+                ) : (
+                    <div className="relative">
+                        <MessageCircle className="h-6 w-6" />
+                        <span className="absolute -top-1 -right-1 inline-block h-2.5 w-2.5 rounded-full bg-emerald-400 animate-pulse" />
+                    </div>
+                )}
+            </button>
 
-            {/* Chatbot Window */}
-            <AnimatePresence>
-                {isOpen && (
-                    <motion.div
-                        initial={{ opacity: 0, y: 100, scale: 0.8 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 100, scale: 0.8 }}
-                        transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                        className="fixed bottom-24 right-6 z-50 w-[380px] h-[480px] rounded-3xl overflow-hidden flex flex-col shadow-2xl"
-                        style={{
-                            background: "linear-gradient(135deg, rgba(10, 10, 15, 0.98) 0%, rgba(26, 26, 36, 0.98) 100%)",
-                            backdropFilter: "blur(40px)",
-                            border: "1px solid rgba(0, 212, 255, 0.3)",
-                            boxShadow: "0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 212, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
-                        }}
-                    >
-                        {/* Header */}
-                        <div
-                            className="p-5 flex items-center space-x-3 relative overflow-hidden"
-                            style={{
-                                background: "linear-gradient(135deg, #00d4ff 0%, #b845ff 100%)",
-                            }}
-                        >
-                            {/* Animated Background */}
-                            <div className="absolute inset-0 opacity-20">
-                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent chatbot-shimmer" />
-                            </div>
-
-                            <div className="relative w-12 h-12 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/30">
-                                <Bot className="w-6 h-6 text-white" />
-                            </div>
-                            <div className="flex-1 relative">
-                                <h3 className="font-bold text-white flex items-center space-x-2 text-lg">
-                                    <span>Arani AI</span>
-                                    <Sparkles className="w-4 h-4 animate-pulse" />
-                                </h3>
-                                <p className="text-xs text-white/90 flex items-center space-x-1">
-                                    <span className="w-2 h-2 bg-neon-green rounded-full animate-pulse" />
-                                    <span>Online 24/7</span>
-                                </p>
-                            </div>
-                            <motion.button
-                                whileHover={{ scale: 1.1 }}
-                                whileTap={{ scale: 0.9 }}
-                                onClick={() => setIsOpen(false)}
-                                className="relative w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
-                            >
-                                <Minimize2 className="w-4 h-4 text-white" />
-                            </motion.button>
+            {/* Chat window */}
+            {isOpen && (
+                <div className="fixed bottom-24 right-6 z-40 flex h-[420px] w-[360px] flex-col overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 shadow-2xl">
+                    {/* Header */}
+                    <div className="flex items-center gap-3 border-b border-slate-800 bg-slate-900 px-4 py-3">
+                        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-sky-500/10 text-sky-400">
+                            <Bot className="h-5 w-5" />
                         </div>
-
-                        {/* Messages */}
-                        <div
-                            className="flex-1 overflow-y-auto p-4 space-y-3"
-                            style={{
-                                background: "rgba(10, 10, 15, 0.6)",
-                            }}
-                        >
-                            {messages.map((message) => (
-                                <motion.div
-                                    key={message.id}
-                                    initial={{ opacity: 0, y: 10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    className={`flex items-start space-x-2 ${message.sender === "user" ? "flex-row-reverse space-x-reverse" : ""
-                                        }`}
-                                >
-                                    <div
-                                        className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${message.sender === "bot"
-                                                ? "bg-gradient-to-br from-neon-blue to-neon-purple shadow-lg"
-                                                : "bg-gradient-to-br from-gray-700 to-gray-800 border border-gray-600"
-                                            }`}
-                                    >
-                                        {message.sender === "bot" ? (
-                                            <Bot className="w-4 h-4 text-white" />
-                                        ) : (
-                                            <User className="w-4 h-4 text-white" />
-                                        )}
-                                    </div>
-                                    <div
-                                        className={`max-w-[70%] rounded-2xl p-3 ${message.sender === "bot"
-                                                ? "bg-gradient-to-br from-gray-800/90 to-gray-900/90 border border-neon-blue/30 shadow-lg"
-                                                : "bg-gradient-to-r from-neon-blue to-neon-purple shadow-lg"
-                                            }`}
-                                        style={{
-                                            backdropFilter: "blur(10px)",
-                                        }}
-                                    >
-                                        <p className="text-sm text-white leading-relaxed">{message.text}</p>
-                                        <p className="text-xs text-white/60 mt-1.5">
-                                            {message.timestamp.toLocaleTimeString([], {
-                                                hour: "2-digit",
-                                                minute: "2-digit",
-                                            })}
-                                        </p>
-                                    </div>
-                                </motion.div>
-                            ))}
-
-                            {isTyping && (
-                                <motion.div
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    className="flex items-start space-x-2"
-                                >
-                                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-neon-blue to-neon-purple flex items-center justify-center shadow-lg">
-                                        <Bot className="w-4 h-4 text-white" />
-                                    </div>
-                                    <div
-                                        className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 border border-neon-blue/30 rounded-2xl px-5 py-3"
-                                        style={{ backdropFilter: "blur(10px)" }}
-                                    >
-                                        <div className="flex space-x-1.5">
-                                            <div className="w-2 h-2 bg-neon-blue rounded-full animate-bounce" />
-                                            <div
-                                                className="w-2 h-2 bg-neon-purple rounded-full animate-bounce"
-                                                style={{ animationDelay: "0.2s" }}
-                                            />
-                                            <div
-                                                className="w-2 h-2 bg-neon-pink rounded-full animate-bounce"
-                                                style={{ animationDelay: "0.4s" }}
-                                            />
-                                        </div>
-                                    </div>
-                                </motion.div>
-                            )}
-
-                            <div ref={messagesEndRef} />
-                        </div>
-
-                        {/* Input */}
-                        <div
-                            className="p-4 border-t"
-                            style={{
-                                background: "rgba(15, 15, 20, 0.95)",
-                                borderColor: "rgba(0, 212, 255, 0.2)",
-                                backdropFilter: "blur(20px)",
-                            }}
-                        >
-                            <div className="flex items-center space-x-2">
-                                <input
-                                    type="text"
-                                    value={input}
-                                    onChange={(e) => setInput(e.target.value)}
-                                    onKeyPress={(e) => e.key === "Enter" && handleSend()}
-                                    placeholder="Type your message..."
-                                    className="flex-1 bg-gray-900/80 border border-gray-700/50 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-neon-blue focus:ring-2 focus:ring-neon-blue/30 transition-all"
-                                    style={{
-                                        backdropFilter: "blur(10px)",
-                                    }}
-                                />
-                                <motion.button
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    onClick={handleSend}
-                                    disabled={!input.trim()}
-                                    className="w-11 h-11 bg-gradient-to-r from-neon-blue to-neon-purple rounded-xl flex items-center justify-center hover:shadow-lg hover:shadow-neon-blue/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                                >
-                                    <Send className="w-5 h-5 text-white" />
-                                </motion.button>
+                        <div className="flex-1">
+                            <div className="flex items-center gap-2">
+                                <h3 className="text-sm font-semibold text-white">Arani AI</h3>
+                                <Sparkles className="h-3.5 w-3.5 text-sky-400" />
                             </div>
-                            <p className="text-xs text-gray-500 mt-2 text-center flex items-center justify-center space-x-1">
-                                <Sparkles className="w-3 h-3" />
-                                <span>Powered by Arani AI Engine v2.0</span>
+                            <p className="mt-0.5 flex items-center gap-1 text-xs text-slate-400">
+                                <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                                Online
                             </p>
                         </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+                        <button
+                            type="button"
+                            onClick={() => setIsOpen(false)}
+                            className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-700 bg-slate-900 text-slate-300 hover:bg-slate-800"
+                            aria-label="Minimize chat"
+                        >
+                            <Minimize2 className="h-4 w-4" />
+                        </button>
+                    </div>
+
+                    {/* Messages */}
+                    <div className="flex-1 space-y-3 overflow-y-auto bg-slate-950 px-3 py-3">
+                        {messages.map((message) => (
+                            <div
+                                key={message.id}
+                                className={`flex items-start gap-2 ${message.sender === "user" ? "flex-row-reverse" : ""
+                                    }`}
+                            >
+                                <div
+                                    className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full ${message.sender === "bot"
+                                            ? "bg-sky-500/10 text-sky-400"
+                                            : "bg-slate-800 text-slate-100"
+                                        }`}
+                                >
+                                    {message.sender === "bot" ? (
+                                        <Bot className="h-4 w-4" />
+                                    ) : (
+                                        <User className="h-4 w-4" />
+                                    )}
+                                </div>
+                                <div
+                                    className={`max-w-[70%] rounded-2xl px-3 py-2 text-sm ${message.sender === "bot"
+                                            ? "bg-slate-900 border border-slate-800 text-slate-100"
+                                            : "bg-sky-500 text-slate-950"
+                                        }`}
+                                >
+                                    <p className="leading-relaxed">{message.text}</p>
+                                    <p className="mt-1 text-[10px] text-slate-400">
+                                        {message.timestamp.toLocaleTimeString([], {
+                                            hour: "2-digit",
+                                            minute: "2-digit",
+                                        })}
+                                    </p>
+                                </div>
+                            </div>
+                        ))}
+
+                        {isTyping && (
+                            <div className="flex items-start gap-2">
+                                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-sky-500/10 text-sky-400">
+                                    <Bot className="h-4 w-4" />
+                                </div>
+                                <div className="inline-flex items-center gap-1 rounded-2xl bg-slate-900 px-3 py-2">
+                                    <span className="h-1.5 w-1.5 rounded-full bg-sky-400 animate-bounce" />
+                                    <span className="h-1.5 w-1.5 rounded-full bg-sky-400 animate-bounce [animation-delay:0.15s]" />
+                                    <span className="h-1.5 w-1.5 rounded-full bg-sky-400 animate-bounce [animation-delay:0.3s]" />
+                                </div>
+                            </div>
+                        )}
+
+                        <div ref={messagesEndRef} />
+                    </div>
+
+                    {/* Input */}
+                    <div className="border-t border-slate-800 bg-slate-900 px-3 py-3">
+                        <div className="flex items-center gap-2">
+                            <input
+                                type="text"
+                                value={input}
+                                onChange={(e) => setInput(e.target.value)}
+                                onKeyDown={(e) => {
+                                    if (e.key === "Enter") handleSend();
+                                }}
+                                placeholder="Type your message..."
+                                className="flex-1 rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500"
+                            />
+                            <button
+                                type="button"
+                                onClick={handleSend}
+                                disabled={!input.trim()}
+                                className="flex h-10 w-10 items-center justify-center rounded-xl bg-sky-500 text-slate-950 hover:bg-sky-400 disabled:cursor-not-allowed disabled:opacity-50 transition-colors"
+                            >
+                                <Send className="h-5 w-5" />
+                            </button>
+                        </div>
+                        <p className="mt-2 flex items-center justify-center gap-1 text-[11px] text-slate-500">
+                            <Sparkles className="h-3 w-3" />
+                            <span>Arani AI assistant for quick pre‑sales questions.</span>
+                        </p>
+                    </div>
+                </div>
+            )}
         </>
     );
 }

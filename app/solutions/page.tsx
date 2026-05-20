@@ -1,118 +1,157 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { fadeInUp, staggerContainer } from "@/lib/utils";
 import Footer from "@/components/sections/footer";
-import { Building2, ShoppingCart, Heart, GraduationCap, Truck, Banknote } from "lucide-react";
+import {
+  Building2,
+  ShoppingCart,
+  Heart,
+  GraduationCap,
+  Truck,
+  Banknote,
+} from "lucide-react";
 
 const solutions = [
   {
     icon: Building2,
     title: "Enterprise Solutions",
-    description: "Scalable systems for Fortune 500 companies",
-    features: ["ERP Integration", "Legacy Modernization", "Data Migration", "Process Automation"],
-    gradient: "from-neon-blue to-neon-cyan",
+    description: "Scalable systems for large organizations and complex operations.",
+    features: [
+      "ERP integration",
+      "Legacy modernization",
+      "Data migration",
+      "Process automation",
+    ],
   },
   {
     icon: ShoppingCart,
     title: "E-Commerce Platforms",
-    description: "AI-powered shopping experiences",
-    features: ["Personalization Engine", "Inventory Management", "Payment Gateway", "Analytics Dashboard"],
-    gradient: "from-neon-purple to-neon-pink",
+    description: "Robust, high-conversion shopping experiences for web and mobile.",
+    features: [
+      "Personalization engine",
+      "Inventory management",
+      "Payment gateway",
+      "Analytics dashboard",
+    ],
   },
   {
     icon: Heart,
     title: "Healthcare Systems",
-    description: "HIPAA-compliant medical platforms",
-    features: ["EMR/EHR Systems", "Telemedicine", "AI Diagnostics", "Patient Portals"],
-    gradient: "from-neon-green to-neon-cyan",
+    description: "Secure, compliant platforms for modern healthcare delivery.",
+    features: [
+      "EMR/EHR systems",
+      "Telemedicine",
+      "AI diagnostics",
+      "Patient portals",
+    ],
   },
   {
     icon: Banknote,
     title: "FinTech Applications",
-    description: "Secure financial technology solutions",
-    features: ["Payment Processing", "Blockchain Integration", "Risk Management", "Fraud Detection"],
-    gradient: "from-neon-cyan to-neon-blue",
+    description: "Reliable financial technology solutions with strong security.",
+    features: [
+      "Payment processing",
+      "Risk management",
+      "Fraud detection",
+      "Reporting tools",
+    ],
   },
   {
     icon: GraduationCap,
     title: "EdTech Platforms",
-    description: "Next-gen learning management systems",
-    features: ["Virtual Classrooms", "AI Tutoring", "Progress Tracking", "Content Management"],
-    gradient: "from-neon-pink to-neon-purple",
+    description: "Learning platforms that support students, teachers, and teams.",
+    features: [
+      "Virtual classrooms",
+      "Progress tracking",
+      "Assessments",
+      "Content management",
+    ],
   },
   {
     icon: Truck,
     title: "Logistics & Supply Chain",
-    description: "Smart logistics optimization",
-    features: ["Route Optimization", "Real-time Tracking", "Warehouse Management", "Predictive Analytics"],
-    gradient: "from-neon-purple to-neon-blue",
+    description: "Tools to optimize logistics, inventory, and delivery networks.",
+    features: [
+      "Route optimization",
+      "Real-time tracking",
+      "Warehouse management",
+      "Predictive analytics",
+    ],
   },
 ];
 
 export default function SolutionsPage() {
   return (
     <>
-      <section className="relative min-h-screen pt-32 pb-20 px-6 overflow-hidden">
-        <div className="absolute inset-0 brutal-grid opacity-10" />
-        <div className="scan-line" />
+      <main className="min-h-screen bg-slate-950 text-white">
+        {/* Hero */}
+        <section className="pt-28 sm:pt-36 pb-14 sm:pb-16 px-4 sm:px-6">
+          <div className="max-w-5xl mx-auto">
+            <span className="inline-flex items-center rounded-full border border-slate-700 bg-slate-900 px-3 py-1 text-xs font-medium tracking-wide text-slate-300 uppercase mb-5">
+              Industry Solutions
+            </span>
 
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          animate="show"
-          className="relative z-10 max-w-7xl mx-auto"
-        >
-          <motion.div variants={fadeInUp} className="text-center mb-20">
-            <h1 className="text-6xl md:text-7xl font-bold mb-6">
-              Industry <span className="holographic">Solutions</span>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-5">
+              Solutions for{" "}
+              <span className="text-sky-400">modern businesses</span>
             </h1>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              Tailored solutions for every industry, powered by cutting-edge technology
-              and proven enterprise architecture patterns.
+
+            <p className="text-base sm:text-lg text-slate-400 leading-relaxed max-w-2xl">
+              Tailored solutions for key industries, delivered with solid
+              engineering, clear architecture, and a focus on reliability.
             </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {solutions.map((solution, index) => (
-              <motion.div
-                key={index}
-                variants={fadeInUp}
-                whileHover={{ y: -10, scale: 1.02 }}
-                className="glass-card p-8 group relative overflow-hidden"
-              >
-                <div className={`absolute inset-0 bg-gradient-to-br ${solution.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
-
-                <div className="relative z-10">
-                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${solution.gradient} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                    <solution.icon className="w-8 h-8 text-white" />
-                  </div>
-
-                  <h3 className="text-2xl font-bold mb-3">{solution.title}</h3>
-                  <p className="text-gray-400 mb-6">{solution.description}</p>
-
-                  <ul className="space-y-2">
-                    {solution.features.map((feature, i) => (
-                      <li key={i} className="flex items-center space-x-2 text-sm text-gray-300">
-                        <div className="w-1.5 h-1.5 rounded-full bg-neon-blue" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <motion.button
-                    whileHover={{ x: 5 }}
-                    className="mt-6 text-neon-blue font-medium flex items-center space-x-2"
-                  >
-                    <span>Learn More</span>
-                    <span>→</span>
-                  </motion.button>
-                </div>
-              </motion.div>
-            ))}
           </div>
-        </motion.div>
-      </section>
+        </section>
+
+        {/* Solutions grid */}
+        <section className="px-4 sm:px-6 pb-16 sm:pb-20">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {solutions.map((solution) => {
+                const Icon = solution.icon;
+                return (
+                  <article
+                    key={solution.title}
+                    className="rounded-xl border border-slate-800 bg-slate-900 p-6 flex flex-col"
+                  >
+                    <div className="w-12 h-12 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center mb-4">
+                      <Icon className="w-6 h-6 text-sky-400" />
+                    </div>
+
+                    <h2 className="text-xl font-bold text-white mb-2">
+                      {solution.title}
+                    </h2>
+
+                    <p className="text-sm text-slate-400 leading-relaxed mb-4">
+                      {solution.description}
+                    </p>
+
+                    <ul className="space-y-2 mb-5">
+                      {solution.features.map((feature) => (
+                        <li
+                          key={feature}
+                          className="flex items-start gap-2 text-sm text-slate-300"
+                        >
+                          <span className="mt-1 inline-block h-1.5 w-1.5 rounded-full bg-sky-400" />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <button
+                      type="button"
+                      className="mt-auto inline-flex items-center gap-2 text-sm font-medium text-sky-400 hover:text-sky-300 transition-colors"
+                    >
+                      <span>Learn more</span>
+                      <span>→</span>
+                    </button>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      </main>
+
       <Footer />
     </>
   );

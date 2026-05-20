@@ -1,297 +1,309 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Code, Smartphone, Zap, Layers, Globe, Rocket, ArrowRight, Star, CheckCircle } from "lucide-react";
+import {
+    Code,
+    Smartphone,
+    Zap,
+    Layers,
+    Globe,
+    Rocket,
+    ArrowRight,
+    Star,
+    CheckCircle,
+} from "lucide-react";
 import Footer from "@/components/sections/footer";
 import Link from "next/link";
-import MagneticButton from "@/components/services/MagneticButton";
-import FloatingOrbs from "@/components/services/FloatingOrbs";
+
+const solutions = [
+    {
+        title: "Visual development",
+        desc: "Drag-and-drop interfaces to create apps and sites without traditional code.",
+        icon: Layers,
+    },
+    {
+        title: "Custom logic",
+        desc: "Workflows and automations built visually, tailored to your processes.",
+        icon: Code,
+    },
+    {
+        title: "Cross‑platform",
+        desc: "Web, iOS, and Android from the same no‑code foundations.",
+        icon: Smartphone,
+    },
+    {
+        title: "Rapid prototyping",
+        desc: "Turn ideas into working prototypes quickly for feedback and testing.",
+        icon: Zap,
+    },
+    {
+        title: "Scalability",
+        desc: "Solutions that can grow with your business and user base.",
+        icon: Globe,
+    },
+    {
+        title: "Integrations",
+        desc: "Connect with your existing tools, APIs, and data sources.",
+        icon: Rocket,
+    },
+];
+
+const process = [
+    {
+        step: "Consultation & analysis",
+        desc: "Understand goals, requirements, and constraints to choose the right no‑code approach.",
+    },
+    {
+        step: "Design & prototyping",
+        desc: "Wireframes and interactive prototypes that match your workflows before build.",
+    },
+    {
+        step: "Development & testing",
+        desc: "Implement features in no‑code platforms and test for reliability and UX.",
+    },
+    {
+        step: "Deployment & support",
+        desc: "Launch, monitor, and refine with ongoing support and improvements.",
+    },
+];
+
+const projects = [
+    {
+        title: "Mobile app for startups",
+        desc: "Cross‑platform app launched quickly for a new startup.",
+        impact: "4 weeks to launch",
+    },
+    {
+        title: "Business dashboard",
+        desc: "Custom dashboard for real‑time analytics and reporting with no‑code tools.",
+        impact: "60% cost savings",
+    },
+    {
+        title: "E‑commerce store",
+        desc: "Online store with payments, inventory, and basic automation.",
+        impact: "50+ products live",
+    },
+];
+
+const technologies = [
+    { name: "Bubble", desc: "Visual programming for complex apps." },
+    { name: "Webflow", desc: "Design‑first websites and CMS." },
+    { name: "FlutterFlow", desc: "Mobile app builder for iOS and Android." },
+    { name: "Adalo", desc: "App development without code." },
+    { name: "Zapier", desc: "Automation and integrations between services." },
+    { name: "Airtable", desc: "Database and workflow management." },
+];
+
+const faq = [
+    {
+        q: "Can no‑code apps scale for serious use?",
+        a: "Modern no‑code platforms support custom databases, APIs, and security. For many products, they are suitable for real production use.",
+    },
+    {
+        q: "What is a typical development timeline?",
+        a: "Most no‑code projects launch in 2–6 weeks depending on features, much faster than traditional coding.",
+    },
+    {
+        q: "Can we migrate to custom code later?",
+        a: "Yes. You can later rebuild key parts with code or export from some platforms when your needs grow.",
+    },
+];
 
 export default function NoCodeDevelopmentPage() {
-    const solutions = [
-        { title: "Visual Development", desc: "Drag-and-drop interfaces to create apps and sites without code", icon: Layers },
-        { title: "Custom Logic", desc: "Implement workflows and automations visually without programming", icon: Code },
-        { title: "Cross-Platform", desc: "One solution for web, iOS, and Android using no-code builders", icon: Smartphone },
-        { title: "Rapid Prototyping", desc: "Quickly turn your ideas into functional prototypes for testing", icon: Zap },
-        { title: "Scalability", desc: "Easily scale your applications as your business grows", icon: Globe },
-        { title: "Integration", desc: "Seamlessly connect with existing tools and services", icon: Rocket },
-    ];
-
-    const process = [
-        { step: "Consultation & Analysis", desc: "We start by understanding your business goals and technical requirements to craft a tailored strategy" },
-        { step: "Design & Prototyping", desc: "Our design team creates interactive prototypes and wireframes to visualize the final product" },
-        { step: "Development & Testing", desc: "With no-code platforms, we develop your project and perform rigorous testing for quality assurance" },
-        { step: "Deployment & Support", desc: "After launch, we offer ongoing maintenance and support, ensuring your platform remains optimized" },
-    ];
-
-    const projects = [
-        { title: "Mobile App for Startups", desc: "Launched a cross-platform app in 4 weeks for early-stage startup", impact: "4 weeks to launch" },
-        { title: "Business Dashboard", desc: "Custom no-code dashboard for real-time analytics and reporting", impact: "60% cost savings" },
-        { title: "E-commerce Store", desc: "Full-featured online store with payment integration and inventory", impact: "50+ products live" },
-    ];
-
-    const technologies = [
-        { name: "Bubble", desc: "Visual programming platform" },
-        { name: "Webflow", desc: "Web design & CMS" },
-        { name: "FlutterFlow", desc: "Mobile app builder" },
-        { name: "Adalo", desc: "App development" },
-        { name: "Zapier", desc: "Automation & integration" },
-        { name: "Airtable", desc: "Database & workflows" },
-    ];
-
-    const faq = [
-        { q: "Can no-code apps scale for enterprise use?", a: "Yes! Modern no-code platforms support enterprise-grade features including custom databases, API integrations, and advanced security." },
-        { q: "What's the typical development timeline?", a: "Most projects launch in 2-6 weeks, depending on complexity—significantly faster than traditional coding." },
-        { q: "Can I migrate to custom code later?", a: "Absolutely. Many no-code platforms offer export options, and we can rebuild with custom code as your needs evolve." },
-    ];
-
     return (
         <>
-            <section className="relative min-h-screen pt-32 pb-20 px-6 overflow-hidden bg-black">
-                <div className="absolute inset-0 bg-gradient-to-b from-black via-orange-950/20 to-black" />
-                <div className="brutal-grid opacity-10 absolute inset-0" />
+            <main className="bg-slate-950 text-white min-h-screen">
+                {/* Hero */}
+                <section className="pt-28 sm:pt-36 pb-14 sm:pb-16 px-4 sm:px-6">
+                    <div className="max-w-5xl mx-auto text-center">
+                        <span className="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-900 px-4 py-1.5 text-xs font-medium tracking-wide text-slate-300 uppercase mb-6">
+                            <Code className="w-4 h-4" />
+                            No‑code development
+                        </span>
 
-                <FloatingOrbs colors={["rgba(245, 158, 11, 0.15)", "rgba(251, 146, 60, 0.12)", "rgba(239, 68, 68, 0.1)"]} />
-
-                <div className="relative z-10 max-w-7xl mx-auto">
-                    {/* Hero */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        className="text-center mb-20"
-                    >
-                        <motion.div
-                            initial={{ scale: 0, rotate: -180 }}
-                            animate={{ scale: 1, rotate: 0 }}
-                            transition={{ type: "spring", duration: 0.8 }}
-                            className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-amber-500/15 to-orange-500/15 border border-amber-500/40 rounded-full text-sm font-bold text-amber-300 mb-8"
-                        >
-                            <Code className="w-5 h-5" />
-                            No-Code Development
-                        </motion.div>
-
-                        <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold mb-6">
-                            Launch Apps <span className="holographic">Without Code</span>
+                        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-5">
+                            Launch apps{" "}
+                            <span className="text-amber-400">without writing code</span>
                         </h1>
-                        <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed mb-10">
-                            Build mobile and web apps rapidly without traditional coding—ideal for startups, entrepreneurs, and businesses needing fast time-to-market.
+
+                        <p className="text-base sm:text-lg text-slate-400 leading-relaxed max-w-2xl mx-auto mb-8">
+                            Build and ship web and mobile applications quickly using modern
+                            no‑code platforms—ideal for startups, internal tools, and fast
+                            experiments.
                         </p>
 
-                        <div className="flex flex-wrap gap-4 justify-center">
-                            <MagneticButton>
-                                <Link href="/contact">
-                                    <motion.button
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
-                                        className="px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 rounded-xl font-bold text-lg flex items-center gap-2 hover:shadow-2xl hover:shadow-amber-500/50 transition-all"
-                                    >
-                                        Start Your Project <ArrowRight className="w-5 h-5" />
-                                    </motion.button>
-                                </Link>
-                            </MagneticButton>
+                        <div className="flex flex-wrap justify-center gap-4">
+                            <Link href="/contact">
+                                <button className="inline-flex items-center gap-2 rounded-lg bg-amber-400 px-6 py-3 text-sm sm:text-base font-semibold text-slate-950 hover:bg-amber-300 transition-colors">
+                                    Start your project
+                                    <ArrowRight className="w-4 h-4" />
+                                </button>
+                            </Link>
                         </div>
-                    </motion.div>
+                    </div>
+                </section>
 
-                    {/* Solutions Grid */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        className="mb-32"
-                    >
-                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-                            No-Code <span className="holographic">Solutions</span>
+                {/* Solutions */}
+                <section className="px-4 sm:px-6 pb-16 sm:pb-20">
+                    <div className="max-w-6xl mx-auto">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 sm:mb-12">
+                            No‑code solutions
                         </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {solutions.map((solution, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 30 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, margin: "-50px" }}
-                                    transition={{ delay: index * 0.1 }}
-                                    whileHover={{ scale: 1.03, y: -5 }}
-                                    className="glass-card p-8 relative overflow-hidden group cursor-pointer"
-                                >
-                                    <motion.div
-                                        className="absolute inset-0 bg-gradient-to-br from-amber-500/20 to-transparent opacity-0 group-hover:opacity-100"
-                                        transition={{ duration: 0.5 }}
-                                    />
-                                    <motion.div
-                                        className="w-14 h-14 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center mb-6 relative z-10"
-                                        whileHover={{ rotate: 360 }}
-                                        transition={{ duration: 0.6 }}
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {solutions.map((solution) => {
+                                const Icon = solution.icon;
+                                return (
+                                    <article
+                                        key={solution.title}
+                                        className="rounded-xl border border-slate-800 bg-slate-900 p-6"
                                     >
-                                        <solution.icon className="w-7 h-7 text-white" />
-                                    </motion.div>
-                                    <h3 className="text-xl font-bold mb-3 relative z-10">{solution.title}</h3>
-                                    <p className="text-gray-400 relative z-10">{solution.desc}</p>
-                                </motion.div>
-                            ))}
+                                        <div className="w-11 h-11 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center mb-4">
+                                            <Icon className="w-6 h-6 text-amber-400" />
+                                        </div>
+                                        <h3 className="text-lg font-semibold text-white mb-2">
+                                            {solution.title}
+                                        </h3>
+                                        <p className="text-sm text-slate-400 leading-relaxed">
+                                            {solution.desc}
+                                        </p>
+                                    </article>
+                                );
+                            })}
                         </div>
-                    </motion.div>
+                    </div>
+                </section>
 
-                    {/* Technology Stack */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        className="mb-32"
-                    >
-                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-                            <span className="holographic">Technology</span> Stack
+                {/* Technology stack */}
+                <section className="border-t border-slate-800 bg-slate-900 px-4 sm:px-6 py-16 sm:py-20">
+                    <div className="max-w-6xl mx-auto">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 sm:mb-12">
+                            Technology stack
                         </h2>
+
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-                            {technologies.map((tech, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, scale: 0.8 }}
-                                    whileInView={{ opacity: 1, scale: 1 }}
-                                    viewport={{ once: true, margin: "-50px" }}
-                                    transition={{ delay: index * 0.1 }}
-                                    whileHover={{ scale: 1.1, y: -5 }}
-                                    className="glass-card p-6 text-center cursor-pointer"
+                            {technologies.map((tech) => (
+                                <div
+                                    key={tech.name}
+                                    className="rounded-xl border border-slate-800 bg-slate-950 p-4 text-center"
                                 >
-                                    <h3 className="text-lg font-bold mb-2 bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent">
+                                    <h3 className="text-sm font-semibold text-amber-300 mb-1">
                                         {tech.name}
                                     </h3>
-                                    <p className="text-xs text-gray-400">{tech.desc}</p>
-                                </motion.div>
+                                    <p className="text-xs text-slate-400">{tech.desc}</p>
+                                </div>
                             ))}
                         </div>
-                    </motion.div>
+                    </div>
+                </section>
 
-                    {/* Process Timeline */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        className="mb-32"
-                    >
-                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-                            Our <span className="holographic">Development Process</span>
+                {/* Process */}
+                <section className="px-4 sm:px-6 py-16 sm:py-20">
+                    <div className="max-w-5xl mx-auto">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 sm:mb-12">
+                            How projects run
                         </h2>
-                        <div className="space-y-6 max-w-4xl mx-auto">
+
+                        <div className="space-y-5">
                             {process.map((item, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, x: -50 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true, margin: "-50px" }}
-                                    transition={{ delay: index * 0.1 }}
-                                    whileHover={{ scale: 1.02, x: 10 }}
-                                    className="glass-card p-8 flex items-start gap-6 relative overflow-hidden group cursor-pointer"
+                                <div
+                                    key={item.step}
+                                    className="rounded-xl border border-slate-800 bg-slate-950 px-5 py-4 sm:px-6 sm:py-5 flex gap-4"
                                 >
-                                    <motion.div
-                                        className="w-12 h-12 rounded-full bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center font-bold text-xl flex-shrink-0 relative z-10"
-                                        whileHover={{ scale: 1.2, rotate: 360 }}
-                                        transition={{ duration: 0.6 }}
-                                    >
+                                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-800 text-xs font-semibold text-slate-200">
                                         {index + 1}
-                                    </motion.div>
-                                    <div className="relative z-10">
-                                        <h3 className="text-xl font-bold mb-2">{item.step}</h3>
-                                        <p className="text-gray-400">{item.desc}</p>
                                     </div>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </motion.div>
-
-                    {/* Featured Projects */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        className="mb-32"
-                    >
-                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-                            <span className="holographic">Success Stories</span>
-                        </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            {projects.map((project, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 30 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, margin: "-50px" }}
-                                    transition={{ delay: index * 0.15 }}
-                                    whileHover={{ scale: 1.05, y: -10 }}
-                                    className="glass-card p-8 relative overflow-hidden group cursor-pointer"
-                                >
-                                    <div className="relative z-10">
-                                        <div className="flex items-center gap-2 mb-4">
-                                            <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
-                                            <span className="text-sm font-semibold bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent">
-                                                {project.impact}
-                                            </span>
-                                        </div>
-                                        <h3 className="text-2xl font-bold mb-3">{project.title}</h3>
-                                        <p className="text-gray-400">{project.desc}</p>
+                                    <div>
+                                        <h3 className="text-sm sm:text-base font-semibold text-white mb-1.5">
+                                            {item.step}
+                                        </h3>
+                                        <p className="text-sm text-slate-400 leading-relaxed">
+                                            {item.desc}
+                                        </p>
                                     </div>
-                                </motion.div>
+                                </div>
                             ))}
                         </div>
-                    </motion.div>
+                    </div>
+                </section>
 
-                    {/* FAQ */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        className="mb-20"
-                    >
-                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-                            <span className="holographic">Frequently Asked Questions</span>
+                {/* Projects */}
+                <section className="border-t border-slate-800 bg-slate-900 px-4 sm:px-6 py-16 sm:py-20">
+                    <div className="max-w-6xl mx-auto">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 sm:mb-12">
+                            Recent no‑code projects
                         </h2>
-                        <div className="space-y-4 max-w-3xl mx-auto">
-                            {faq.map((item, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, margin: "-50px" }}
-                                    transition={{ delay: index * 0.1 }}
-                                    whileHover={{ scale: 1.02 }}
-                                    className="glass-card p-6 cursor-pointer"
+
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            {projects.map((project) => (
+                                <article
+                                    key={project.title}
+                                    className="rounded-xl border border-slate-800 bg-slate-950 p-6"
                                 >
-                                    <h3 className="font-semibold text-lg mb-2">{item.q}</h3>
-                                    <p className="text-gray-400">{item.a}</p>
-                                </motion.div>
+                                    <div className="flex items-center gap-2 mb-3">
+                                        <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                                        <span className="text-xs font-semibold text-slate-200">
+                                            {project.impact}
+                                        </span>
+                                    </div>
+                                    <h3 className="text-lg font-semibold text-white mb-2">
+                                        {project.title}
+                                    </h3>
+                                    <p className="text-sm text-slate-400 leading-relaxed">
+                                        {project.desc}
+                                    </p>
+                                </article>
                             ))}
                         </div>
-                    </motion.div>
+                    </div>
+                </section>
 
-                    {/* CTA */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-center"
-                    >
-                        <div className="glass-card p-12 rounded-3xl">
-                            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                                Let's Build <span className="holographic">Something Amazing</span>
+                {/* FAQ */}
+                <section className="px-4 sm:px-6 py-16 sm:py-20">
+                    <div className="max-w-4xl mx-auto">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 sm:mb-12">
+                            No‑code FAQ
+                        </h2>
+
+                        <div className="space-y-4">
+                            {faq.map((item) => (
+                                <article
+                                    key={item.q}
+                                    className="rounded-xl border border-slate-800 bg-slate-950 px-5 py-4 sm:px-6 sm:py-5"
+                                >
+                                    <h3 className="text-sm sm:text-base font-semibold text-white mb-2">
+                                        {item.q}
+                                    </h3>
+                                    <p className="text-sm text-slate-400 leading-relaxed">
+                                        {item.a}
+                                    </p>
+                                </article>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* CTA */}
+                <section className="border-t border-slate-800 bg-slate-900 px-4 sm:px-6 py-16 sm:py-20">
+                    <div className="max-w-4xl mx-auto">
+                        <div className="rounded-2xl border border-slate-800 bg-slate-950 p-8 sm:p-10 text-center">
+                            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+                                Ready to build your next app with no‑code?
                             </h2>
-                            <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
-                                Contact us today to discuss your project, and see how we can turn your vision into reality—fast.
+                            <p className="text-sm sm:text-base text-slate-400 mb-8 max-w-xl mx-auto">
+                                Share what you want to launch, and we’ll help you choose the right
+                                platform and move from idea to working product quickly.
                             </p>
-                            <MagneticButton>
-                                <Link href="/contact">
-                                    <motion.button
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
-                                        className="px-10 py-5 bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 rounded-2xl font-bold text-lg flex items-center gap-3 mx-auto hover:shadow-2xl hover:shadow-amber-500/60 transition-all"
-                                    >
-                                        Get Started Now <ArrowRight className="w-6 h-6" />
-                                    </motion.button>
-                                </Link>
-                            </MagneticButton>
+                            <Link href="/contact">
+                                <button className="inline-flex items-center gap-2 rounded-lg bg-amber-400 px-6 py-3 text-sm sm:text-base font-semibold text-slate-950 hover:bg-amber-300 transition-colors">
+                                    Get started now
+                                    <ArrowRight className="w-4 h-4" />
+                                </button>
+                            </Link>
                         </div>
-                    </motion.div>
-                </div>
-            </section>
+                    </div>
+                </section>
+            </main>
+
             <Footer />
         </>
     );

@@ -1,11 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, ReactNode } from "react";
 import dynamic from "next/dynamic";
 import NavMenu from "@/components/ui/nav-menu";
 import SmoothScrollProvider from "@/components/smooth-scroll-provider";
-import MagneticLoader from "@/components/ui/magnetic-loader";
-import { ReactNode } from "react";
+import AppLoader from "@/components/ui/app-loader";
 
 const AIChatbot = dynamic(() => import("@/components/ai/chatbot"), {
     ssr: false,
@@ -15,66 +14,47 @@ export default function ClientLayout({ children }: { children: ReactNode }) {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        console.log("🔍 ClientLayout mounted, isLoading:", isLoading);
-        
-        // TEMPORARILY COMMENT OUT sessionStorage to test loader
-        // const hasVisited = sessionStorage.getItem("hasVisited");
-        // console.log("🔍 hasVisited:", hasVisited);
-        
-        // if (hasVisited) {
-        //     console.log("✅ Already visited, skipping loader");
-        //     setIsLoading(false);
-        //     return;
-        // }
+        // Only run in browser
+        const hasVisited =
+            typeof window !== "undefined"
+                ? sessionStorage.getItem("hasVisited")
+                : null;
 
-        console.log("⏳ Starting loader timer...");
+        if (hasVisited) {
+            setIsLoading(false);
+            return;
+        }
+
         const timer = setTimeout(() => {
-            console.log("✅ Loader complete!");
             setIsLoading(false);
             sessionStorage.setItem("hasVisited", "true");
-        }, 3000);
+        }, 3000); // 3s first-visit loader
 
-        return () => {
-            console.log("🧹 Cleanup timer");
-            clearTimeout(timer);
-        };
+        return () => clearTimeout(timer);
     }, []);
 
     useEffect(() => {
-        console.log("🔄 isLoading changed to:", isLoading);
         if (isLoading) {
             document.body.style.overflow = "hidden";
-            console.log("🚫 Body scroll disabled");
         } else {
-            document.body.style.overflow = "unset";
-            console.log("✅ Body scroll enabled");
+            document.body.style.overflow = "";
         }
-
         return () => {
-            document.body.style.overflow = "unset";
+            document.body.style.overflow = "";
         };
     }, [isLoading]);
 
-    console.log("🎨 Rendering ClientLayout, isLoading:", isLoading);
-
     return (
         <>
-            {/* Magnetic Loader */}
-            {/* <MagneticLoader 
-                isLoading={isLoading} 
-                onComplete={() => {
-                    console.log("🚀 Arani Software Solutions loaded!");
-                }} 
-            /> */}
-            
-            {/* Existing Layout with Smooth Scroll */}
+            <AppLoader isLoading={isLoading} />
+
             <SmoothScrollProvider>
                 <NavMenu />
-                <main className={`relative z-10 transition-opacity duration-500 ${
-                        isLoading ? "opacity-0" : "opacity-100"
-                    }`}
+                <main
+                    className={`relative z-10 transition-opacity duration-500 ${isLoading ? "opacity-0" : "opacity-100"
+                        }`}
                 >
-                   {children}
+                    {children}
                 </main>
                 <AIChatbot />
             </SmoothScrollProvider>

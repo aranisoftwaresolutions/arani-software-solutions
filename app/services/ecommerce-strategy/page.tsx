@@ -1,405 +1,398 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ShoppingCart, TrendingUp, CreditCard, Users, BarChart3, Smartphone, ArrowRight, Star, CheckCircle } from "lucide-react";
+import {
+    ShoppingCart,
+    TrendingUp,
+    CreditCard,
+    Users,
+    BarChart3,
+    Smartphone,
+    ArrowRight,
+    Star,
+    CheckCircle,
+} from "lucide-react";
 import Footer from "@/components/sections/footer";
 import Link from "next/link";
-import MagneticButton from "@/components/services/MagneticButton";
-import FloatingOrbs from "@/components/services/FloatingOrbs";
+
+const solutions = [
+    {
+        title: "Market analysis",
+        desc: "Research competitors, audience, and trends to position your store clearly.",
+        icon: BarChart3,
+    },
+    {
+        title: "Conversion optimization",
+        desc: "Reduce friction in the funnel to lower abandonment and increase conversions.",
+        icon: TrendingUp,
+    },
+    {
+        title: "Mobile commerce",
+        desc: "Mobile‑first UX so buying is easy on phones and tablets.",
+        icon: Smartphone,
+    },
+    {
+        title: "Payment integration",
+        desc: "Secure, multi‑currency payment gateways with fraud checks and compliance.",
+        icon: CreditCard,
+    },
+    {
+        title: "Customer retention",
+        desc: "Loyalty, email, and personalized recommendations to keep customers returning.",
+        icon: Users,
+    },
+    {
+        title: "Platform selection",
+        desc: "Help choosing between Shopify, WooCommerce, Magento, and others.",
+        icon: ShoppingCart,
+    },
+];
+
+const process = [
+    {
+        step: "Discovery & research",
+        desc: "Analyze market, competitors, and customer segments to spot opportunities and risks.",
+    },
+    {
+        step: "Strategy development",
+        desc: "Create an e‑commerce strategy aligned with your brand and targets.",
+    },
+    {
+        step: "Implementation",
+        desc: "Set up the store, flows, and tools with current best practices.",
+    },
+    {
+        step: "Optimization & growth",
+        desc: "Ongoing measurement, testing, and adjustments to keep improving results.",
+    },
+];
+
+const platforms = [
+    { name: "Shopify", desc: "All‑in‑one platform" },
+    { name: "WooCommerce", desc: "WordPress‑based stores" },
+    { name: "Magento", desc: "Enterprise‑grade solution" },
+    { name: "BigCommerce", desc: "Hosted, scalable stores" },
+    { name: "Stripe", desc: "Payment processing" },
+    { name: "PayPal", desc: "Global payment method" },
+];
+
+const caseStudies = [
+    {
+        title: "Fashion retailer transformation",
+        challenge: "Outdated platform with high abandonment and slow checkout.",
+        solution: "Migration to Shopify Plus with simplified UX and faster checkout.",
+        result: "40% conversion lift, 60% faster checkout, and 2x mobile sales.",
+    },
+    {
+        title: "B2B manufacturing portal",
+        challenge: "Complex bulk orders, custom pricing, and manual processes.",
+        solution: "Custom WooCommerce build with integrations and automation.",
+        result: "70% efficiency gain and 50% fewer support tickets.",
+    },
+];
+
+const projects = [
+    {
+        title: "Multi‑vendor marketplace",
+        desc: "Marketplace connecting hundreds of sellers with smart product matching.",
+        impact: "200+ vendors",
+    },
+    {
+        title: "Subscription box service",
+        desc: "Recurring billing and automated fulfillment for curated boxes.",
+        impact: "5k subscribers",
+    },
+    {
+        title: "International expansion",
+        desc: "Multi‑currency, multi‑language store for multiple regions.",
+        impact: "12 countries",
+    },
+];
+
+const keyMetrics = [
+    { metric: "Conversion rate", target: "3–5%", desc: "Healthy store benchmark." },
+    { metric: "Cart abandonment", target: "<70%", desc: "Improved checkout flow." },
+    { metric: "Page load time", target: "<3s", desc: "Performance and speed." },
+    { metric: "Mobile traffic", target: "60%+", desc: "Mobile‑first audience." },
+    { metric: "Customer LTV", target: "3× AOV", desc: "Retention and upsell." },
+    { metric: "Return rate", target: "<5%", desc: "Product and expectations aligned." },
+];
+
+const faq = [
+    {
+        q: "Which e‑commerce platform is right for us?",
+        a: "Shopify is usually best for quick setup, WooCommerce works well if you are on WordPress, and Magento fits large, heavily customized stores.",
+    },
+    {
+        q: "How long does it take to launch a store?",
+        a: "A full‑featured store typically takes 4–8 weeks including design, setup, and payment integration.",
+    },
+    {
+        q: "Do you provide support after launch?",
+        a: "Yes. Maintenance, monitoring, updates, and optimization are available as ongoing work.",
+    },
+    {
+        q: "Can you help with digital marketing?",
+        a: "Yes. SEO, paid ads, email, and conversion optimization can be planned alongside the store.",
+    },
+];
 
 export default function EcommerceStrategyPage() {
-    const solutions = [
-        { title: "Market Analysis", desc: "In-depth research on competitors, target audience, and market trends to position your brand", icon: BarChart3 },
-        { title: "Conversion Optimization", desc: "Data-driven strategies to reduce cart abandonment and boost conversion rates", icon: TrendingUp },
-        { title: "Mobile Commerce", desc: "Responsive design and mobile-first approach for seamless shopping experiences", icon: Smartphone },
-        { title: "Payment Integration", desc: "Secure, multi-currency payment gateways with fraud protection and compliance", icon: CreditCard },
-        { title: "Customer Retention", desc: "Loyalty programs, email marketing, and personalized recommendations to retain customers", icon: Users },
-        { title: "Platform Selection", desc: "Choose the right e-commerce platform (Shopify, WooCommerce, Magento) for your needs", icon: ShoppingCart },
-    ];
-
-    const process = [
-        { step: "Discovery & Research", desc: "Analyze market, competitors, and customer segments to understand opportunities and challenges" },
-        { step: "Strategy Development", desc: "Create an integrated e-commerce strategy aligned with your brand identity and business goals" },
-        { step: "Implementation", desc: "Seamless implementation with the latest technology, tools, and best practices for online stores" },
-        { step: "Optimization & Growth", desc: "Continuous analysis, A/B testing, and optimization to maximize performance and ROI" },
-    ];
-
-    const platforms = [
-        { name: "Shopify", desc: "All-in-one platform", color: "from-green-500 to-emerald-500" },
-        { name: "WooCommerce", desc: "WordPress solution", color: "from-purple-500 to-pink-500" },
-        { name: "Magento", desc: "Enterprise-grade", color: "from-orange-500 to-red-500" },
-        { name: "BigCommerce", desc: "Scalable solution", color: "from-blue-500 to-cyan-500" },
-        { name: "Stripe", desc: "Payment processing", color: "from-indigo-500 to-purple-500" },
-        { name: "PayPal", desc: "Global payments", color: "from-blue-600 to-blue-400" },
-    ];
-
-    const caseStudies = [
-        {
-            title: "Fashion Retailer Transformation",
-            challenge: "Outdated platform with 15% cart abandonment, slow checkout",
-            solution: "Migrated to Shopify Plus with streamlined UX, one-click checkout",
-            result: "40% conversion increase, 60% faster checkout, 2x mobile sales"
-        },
-        {
-            title: "B2B Manufacturing Portal",
-            challenge: "Complex bulk ordering, custom pricing, limited automation",
-            solution: "Custom WooCommerce with API integrations, automated workflows",
-            result: "70% order processing efficiency, 50% support reduction"
-        },
-    ];
-
-    const projects = [
-        { title: "Multi-Vendor Marketplace", desc: "Built scalable marketplace connecting 200+ sellers with intelligent product matching", impact: "200+ vendors" },
-        { title: "Subscription Box Service", desc: "Recurring billing, personalized curation, and automated fulfillment workflows", impact: "5k subscribers" },
-        { title: "International Expansion", desc: "Multi-currency, multi-language store with localized payment methods", impact: "12 countries" },
-    ];
-
-    const keyMetrics = [
-        { metric: "Conversion Rate", target: "3-5%", desc: "Industry benchmark" },
-        { metric: "Cart Abandonment", target: "<70%", desc: "Optimized checkout" },
-        { metric: "Page Load Time", target: "<3s", desc: "Speed optimization" },
-        { metric: "Mobile Traffic", target: "60%+", desc: "Mobile-first design" },
-        { metric: "Customer LTV", target: "3x AOV", desc: "Retention strategy" },
-        { metric: "Return Rate", target: "<5%", desc: "Product quality" },
-    ];
-
-    const faq = [
-        { q: "Which e-commerce platform is best for my business?", a: "It depends on your needs: Shopify for quick setup and ease, WooCommerce for WordPress integration, Magento for enterprise-scale customization." },
-        { q: "How long does it take to launch an online store?", a: "Typically 4-8 weeks for a full-featured store, including design, development, product setup, and payment integration." },
-        { q: "Do you provide post-launch support?", a: "Yes—ongoing maintenance, performance monitoring, security updates, marketing strategy, and continuous optimization to maximize ROI." },
-        { q: "Can you help with digital marketing?", a: "Absolutely. We offer SEO, PPC campaigns, social media marketing, email automation, and conversion rate optimization services." },
-    ];
-
     return (
         <>
-            <section className="relative min-h-screen pt-32 pb-20 px-6 overflow-hidden bg-black">
-                <div className="absolute inset-0 bg-gradient-to-b from-black via-rose-950/20 to-black" />
-                <div className="brutal-grid opacity-10 absolute inset-0" />
+            <main className="bg-slate-950 text-white min-h-screen">
+                {/* Hero */}
+                <section className="pt-28 sm:pt-36 pb-14 sm:pb-16 px-4 sm:px-6">
+                    <div className="max-w-5xl mx-auto text-center">
+                        <span className="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-900 px-4 py-1.5 text-xs font-medium tracking-wide text-slate-300 uppercase mb-6">
+                            <ShoppingCart className="w-4 h-4" />
+                            E‑commerce strategy
+                        </span>
 
-                <FloatingOrbs colors={["rgba(244, 63, 94, 0.15)", "rgba(236, 72, 153, 0.12)", "rgba(219, 39, 119, 0.1)"]} />
-
-                <div className="relative z-10 max-w-7xl mx-auto">
-                    {/* Hero */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        className="text-center mb-20"
-                    >
-                        <motion.div
-                            initial={{ scale: 0, rotate: -180 }}
-                            animate={{ scale: 1, rotate: 0 }}
-                            transition={{ type: "spring", duration: 0.8 }}
-                            className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-rose-500/15 to-pink-500/15 border border-rose-500/40 rounded-full text-sm font-bold text-rose-300 mb-8"
-                        >
-                            <ShoppingCart className="w-5 h-5" />
-                            E-commerce Strategy
-                        </motion.div>
-
-                        <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold mb-6">
-                            <span className="holographic">Scale Your Store</span> With Strategy
+                        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-5">
+                            Scale your store{" "}
+                            <span className="text-rose-400">with a clear strategy</span>
                         </h1>
-                        <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed mb-10">
-                            Strategic planning and execution for online stores that convert and scale—from platform selection to conversion optimization and growth marketing.
+
+                        <p className="text-base sm:text-lg text-slate-400 leading-relaxed max-w-2xl mx-auto mb-8">
+                            Strategy, setup, and optimization for online stores that convert
+                            better and grow steadily across web and mobile.
                         </p>
 
-                        <div className="flex flex-wrap gap-4 justify-center">
-                            <MagneticButton>
-                                <Link href="/contact">
-                                    <motion.button
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
-                                        className="px-8 py-4 bg-gradient-to-r from-rose-500 to-pink-500 rounded-xl font-bold text-lg flex items-center gap-2 hover:shadow-2xl hover:shadow-rose-500/50 transition-all"
-                                    >
-                                        Grow Your Store <ArrowRight className="w-5 h-5" />
-                                    </motion.button>
-                                </Link>
-                            </MagneticButton>
+                        <div className="flex flex-wrap justify-center gap-4">
+                            <Link href="/contact">
+                                <button className="inline-flex items-center gap-2 rounded-lg bg-rose-400 px-6 py-3 text-sm sm:text-base font-semibold text-slate-950 hover:bg-rose-300 transition-colors">
+                                    Talk about your store
+                                    <ArrowRight className="w-4 h-4" />
+                                </button>
+                            </Link>
                         </div>
-                    </motion.div>
+                    </div>
+                </section>
 
-                    {/* Solutions Grid */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        className="mb-32"
-                    >
-                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-                            E-commerce <span className="holographic">Solutions</span>
+                {/* Solutions */}
+                <section className="px-4 sm:px-6 pb-16 sm:pb-20">
+                    <div className="max-w-6xl mx-auto">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 sm:mb-12">
+                            E‑commerce solutions
                         </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {solutions.map((solution, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 30 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, margin: "-50px" }}
-                                    transition={{ delay: index * 0.1 }}
-                                    whileHover={{ scale: 1.03, y: -5 }}
-                                    className="glass-card p-8 relative overflow-hidden group cursor-pointer"
-                                >
-                                    <motion.div
-                                        className="absolute inset-0 bg-gradient-to-br from-rose-500/20 to-transparent opacity-0 group-hover:opacity-100"
-                                        transition={{ duration: 0.5 }}
-                                    />
-                                    <motion.div
-                                        className="w-14 h-14 rounded-xl bg-gradient-to-br from-rose-500 to-pink-500 flex items-center justify-center mb-6 relative z-10"
-                                        whileHover={{ rotate: 360 }}
-                                        transition={{ duration: 0.6 }}
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {solutions.map((solution) => {
+                                const Icon = solution.icon;
+                                return (
+                                    <article
+                                        key={solution.title}
+                                        className="rounded-xl border border-slate-800 bg-slate-900 p-6"
                                     >
-                                        <solution.icon className="w-7 h-7 text-white" />
-                                    </motion.div>
-                                    <h3 className="text-xl font-bold mb-3 relative z-10">{solution.title}</h3>
-                                    <p className="text-gray-400 relative z-10">{solution.desc}</p>
-                                </motion.div>
-                            ))}
+                                        <div className="w-11 h-11 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center mb-4">
+                                            <Icon className="w-6 h-6 text-rose-400" />
+                                        </div>
+                                        <h3 className="text-lg font-semibold text-white mb-2">
+                                            {solution.title}
+                                        </h3>
+                                        <p className="text-sm text-slate-400 leading-relaxed">
+                                            {solution.desc}
+                                        </p>
+                                    </article>
+                                );
+                            })}
                         </div>
-                    </motion.div>
+                    </div>
+                </section>
 
-                    {/* Key Metrics */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        className="mb-32"
-                    >
-                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-                            <span className="holographic">Performance Metrics</span>
+                {/* Key metrics */}
+                <section className="border-t border-slate-800 bg-slate-900 px-4 sm:px-6 py-16 sm:py-20">
+                    <div className="max-w-6xl mx-auto">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 sm:mb-12">
+                            Performance metrics
                         </h2>
+
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-                            {keyMetrics.map((item, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, scale: 0.8 }}
-                                    whileInView={{ opacity: 1, scale: 1 }}
-                                    viewport={{ once: true, margin: "-50px" }}
-                                    transition={{ delay: index * 0.1 }}
-                                    whileHover={{ scale: 1.1, y: -5 }}
-                                    className="glass-card p-6 text-center cursor-pointer"
+                            {keyMetrics.map((item) => (
+                                <div
+                                    key={item.metric}
+                                    className="rounded-xl border border-slate-800 bg-slate-950 p-5 text-center"
                                 >
-                                    <h3 className="text-2xl font-bold mb-2 bg-gradient-to-r from-rose-500 to-pink-500 bg-clip-text text-transparent">
+                                    <div className="text-lg font-semibold text-rose-300 mb-1">
                                         {item.target}
-                                    </h3>
-                                    <p className="text-sm font-semibold mb-1">{item.metric}</p>
-                                    <p className="text-xs text-gray-400">{item.desc}</p>
-                                </motion.div>
+                                    </div>
+                                    <p className="text-xs font-semibold text-white mb-1">
+                                        {item.metric}
+                                    </p>
+                                    <p className="text-xs text-slate-400">{item.desc}</p>
+                                </div>
                             ))}
                         </div>
-                    </motion.div>
+                    </div>
+                </section>
 
-                    {/* Platforms */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        className="mb-32"
-                    >
-                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-                            <span className="holographic">Platforms We Work With</span>
+                {/* Platforms */}
+                <section className="px-4 sm:px-6 py-16 sm:py-20">
+                    <div className="max-w-6xl mx-auto">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 sm:mb-12">
+                            Platforms we work with
                         </h2>
+
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-                            {platforms.map((platform, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, scale: 0.8 }}
-                                    whileInView={{ opacity: 1, scale: 1 }}
-                                    viewport={{ once: true, margin: "-50px" }}
-                                    transition={{ delay: index * 0.1 }}
-                                    whileHover={{ scale: 1.1, y: -5 }}
-                                    className="glass-card p-6 text-center cursor-pointer group"
+                            {platforms.map((platform) => (
+                                <div
+                                    key={platform.name}
+                                    className="rounded-xl border border-slate-800 bg-slate-900 p-4 text-center"
                                 >
-                                    <motion.div
-                                        className={`w-12 h-12 mx-auto mb-3 rounded-lg bg-gradient-to-br ${platform.color} flex items-center justify-center`}
-                                        whileHover={{ rotate: 360 }}
-                                        transition={{ duration: 0.6 }}
-                                    >
-                                        <span className="text-white font-bold text-xl">{platform.name[0]}</span>
-                                    </motion.div>
-                                    <h3 className="text-lg font-bold mb-1">{platform.name}</h3>
-                                    <p className="text-xs text-gray-400">{platform.desc}</p>
-                                </motion.div>
+                                    <h3 className="text-sm font-semibold text-rose-300 mb-1">
+                                        {platform.name}
+                                    </h3>
+                                    <p className="text-xs text-slate-400">{platform.desc}</p>
+                                </div>
                             ))}
                         </div>
-                    </motion.div>
+                    </div>
+                </section>
 
-                    {/* Process Timeline */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        className="mb-32"
-                    >
-                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-                            Our <span className="holographic">Strategy Process</span>
+                {/* Process */}
+                <section className="border-t border-slate-800 bg-slate-900 px-4 sm:px-6 py-16 sm:py-20">
+                    <div className="max-w-5xl mx-auto">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 sm:mb-12">
+                            How strategy is delivered
                         </h2>
-                        <div className="space-y-6 max-w-4xl mx-auto">
+
+                        <div className="space-y-5">
                             {process.map((item, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, x: -50 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true, margin: "-50px" }}
-                                    transition={{ delay: index * 0.1 }}
-                                    whileHover={{ scale: 1.02, x: 10 }}
-                                    className="glass-card p-8 flex items-start gap-6 relative overflow-hidden group cursor-pointer"
+                                <div
+                                    key={item.step}
+                                    className="rounded-xl border border-slate-800 bg-slate-950 px-5 py-4 sm:px-6 sm:py-5 flex gap-4"
                                 >
-                                    <motion.div
-                                        className="w-12 h-12 rounded-full bg-gradient-to-br from-rose-500 to-pink-500 flex items-center justify-center font-bold text-xl flex-shrink-0 relative z-10"
-                                        whileHover={{ scale: 1.2, rotate: 360 }}
-                                        transition={{ duration: 0.6 }}
-                                    >
+                                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-800 text-xs font-semibold text-slate-200">
                                         {index + 1}
-                                    </motion.div>
-                                    <div className="relative z-10">
-                                        <h3 className="text-xl font-bold mb-2">{item.step}</h3>
-                                        <p className="text-gray-400">{item.desc}</p>
                                     </div>
-                                </motion.div>
+                                    <div>
+                                        <h3 className="text-sm sm:text-base font-semibold text-white mb-1.5">
+                                            {item.step}
+                                        </h3>
+                                        <p className="text-sm text-slate-400 leading-relaxed">
+                                            {item.desc}
+                                        </p>
+                                    </div>
+                                </div>
                             ))}
                         </div>
-                    </motion.div>
+                    </div>
+                </section>
 
-                    {/* Case Studies */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        className="mb-32"
-                    >
-                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-                            <span className="holographic">Success Stories</span>
+                {/* Case studies */}
+                <section className="px-4 sm:px-6 py-16 sm:py-20">
+                    <div className="max-w-6xl mx-auto">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 sm:mb-12">
+                            Success stories
                         </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            {caseStudies.map((study, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 30 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, margin: "-50px" }}
-                                    transition={{ delay: index * 0.15 }}
-                                    whileHover={{ scale: 1.03, y: -5 }}
-                                    className="glass-card p-8 relative overflow-hidden group cursor-pointer"
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {caseStudies.map((study) => (
+                                <article
+                                    key={study.title}
+                                    className="rounded-xl border border-slate-800 bg-slate-900 p-6"
                                 >
-                                    <motion.div
-                                        className="absolute inset-0 bg-gradient-to-br from-rose-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100"
-                                        transition={{ duration: 0.5 }}
-                                    />
-                                    <div className="relative z-10">
-                                        <h3 className="text-2xl font-bold mb-4">{study.title}</h3>
-                                        <div className="space-y-3 mb-4">
-                                            <div>
-                                                <p className="text-sm font-semibold text-rose-400 mb-1">Challenge</p>
-                                                <p className="text-gray-400 text-sm">{study.challenge}</p>
-                                            </div>
-                                            <div>
-                                                <p className="text-sm font-semibold text-pink-400 mb-1">Solution</p>
-                                                <p className="text-gray-400 text-sm">{study.solution}</p>
-                                            </div>
-                                            <div>
-                                                <p className="text-sm font-semibold text-green-400 mb-1">Result</p>
-                                                <p className="text-gray-300 text-sm font-medium">{study.result}</p>
-                                            </div>
+                                    <h3 className="text-lg font-semibold text-white mb-3">
+                                        {study.title}
+                                    </h3>
+                                    <div className="space-y-3 text-sm">
+                                        <div>
+                                            <p className="font-semibold text-rose-400 mb-1">Challenge</p>
+                                            <p className="text-slate-400">{study.challenge}</p>
+                                        </div>
+                                        <div>
+                                            <p className="font-semibold text-pink-400 mb-1">Solution</p>
+                                            <p className="text-slate-400">{study.solution}</p>
+                                        </div>
+                                        <div>
+                                            <p className="font-semibold text-emerald-400 mb-1">Result</p>
+                                            <p className="text-slate-200 font-medium">{study.result}</p>
                                         </div>
                                     </div>
-                                </motion.div>
+                                </article>
                             ))}
                         </div>
-                    </motion.div>
+                    </div>
+                </section>
 
-                    {/* Featured Projects */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        className="mb-32"
-                    >
-                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-                            <span className="holographic">Recent Projects</span>
+                {/* Projects */}
+                <section className="border-t border-slate-800 bg-slate-900 px-4 sm:px-6 py-16 sm:py-20">
+                    <div className="max-w-6xl mx-auto">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 sm:mb-12">
+                            Recent projects
                         </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            {projects.map((project, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 30 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, margin: "-50px" }}
-                                    transition={{ delay: index * 0.15 }}
-                                    whileHover={{ scale: 1.05, y: -10 }}
-                                    className="glass-card p-8 relative overflow-hidden group cursor-pointer"
+
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            {projects.map((project) => (
+                                <article
+                                    key={project.title}
+                                    className="rounded-xl border border-slate-800 bg-slate-950 p-6"
                                 >
-                                    <div className="relative z-10">
-                                        <div className="flex items-center gap-2 mb-4">
-                                            <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
-                                            <span className="text-sm font-semibold bg-gradient-to-r from-rose-500 to-pink-500 bg-clip-text text-transparent">
-                                                {project.impact}
-                                            </span>
-                                        </div>
-                                        <h3 className="text-2xl font-bold mb-3">{project.title}</h3>
-                                        <p className="text-gray-400">{project.desc}</p>
+                                    <div className="flex items-center gap-2 mb-3">
+                                        <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                                        <span className="text-xs font-semibold text-slate-200">
+                                            {project.impact}
+                                        </span>
                                     </div>
-                                </motion.div>
+                                    <h3 className="text-lg font-semibold text-white mb-2">
+                                        {project.title}
+                                    </h3>
+                                    <p className="text-sm text-slate-400 leading-relaxed">
+                                        {project.desc}
+                                    </p>
+                                </article>
                             ))}
                         </div>
-                    </motion.div>
+                    </div>
+                </section>
 
-                    {/* FAQ */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        className="mb-20"
-                    >
-                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-                            <span className="holographic">Frequently Asked Questions</span>
+                {/* FAQ */}
+                <section className="px-4 sm:px-6 py-16 sm:py-20">
+                    <div className="max-w-4xl mx-auto">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 sm:mb-12">
+                            E‑commerce FAQ
                         </h2>
-                        <div className="space-y-4 max-w-3xl mx-auto">
-                            {faq.map((item, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, margin: "-50px" }}
-                                    transition={{ delay: index * 0.1 }}
-                                    whileHover={{ scale: 1.02 }}
-                                    className="glass-card p-6 cursor-pointer"
+
+                        <div className="space-y-4">
+                            {faq.map((item) => (
+                                <article
+                                    key={item.q}
+                                    className="rounded-xl border border-slate-800 bg-slate-950 px-5 py-4 sm:px-6 sm:py-5"
                                 >
-                                    <h3 className="font-semibold text-lg mb-2">{item.q}</h3>
-                                    <p className="text-gray-400">{item.a}</p>
-                                </motion.div>
+                                    <h3 className="text-sm sm:text-base font-semibold text-white mb-2">
+                                        {item.q}
+                                    </h3>
+                                    <p className="text-sm text-slate-400 leading-relaxed">
+                                        {item.a}
+                                    </p>
+                                </article>
                             ))}
                         </div>
-                    </motion.div>
+                    </div>
+                </section>
 
-                    {/* CTA */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-center"
-                    >
-                        <div className="glass-card p-12 rounded-3xl">
-                            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                                Ready to <span className="holographic">Grow Your Sales</span>?
+                {/* CTA */}
+                <section className="border-t border-slate-800 bg-slate-900 px-4 sm:px-6 py-16 sm:py-20">
+                    <div className="max-w-4xl mx-auto">
+                        <div className="rounded-2xl border border-slate-800 bg-slate-950 p-8 sm:p-10 text-center">
+                            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+                                Ready to grow your online store?
                             </h2>
-                            <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
-                                Let's build a winning e-commerce strategy that converts visitors into loyal customers.
+                            <p className="text-sm sm:text-base text-slate-400 mb-8 max-w-xl mx-auto">
+                                Share your current setup and goals, and we’ll help you plan a
+                                practical strategy to increase conversions and revenue.
                             </p>
-                            <MagneticButton>
-                                <Link href="/contact">
-                                    <motion.button
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
-                                        className="px-10 py-5 bg-gradient-to-r from-rose-500 via-pink-500 to-fuchsia-500 rounded-2xl font-bold text-lg flex items-center gap-3 mx-auto hover:shadow-2xl hover:shadow-rose-500/60 transition-all"
-                                    >
-                                        Get Strategy Consultation <ArrowRight className="w-6 h-6" />
-                                    </motion.button>
-                                </Link>
-                            </MagneticButton>
+                            <Link href="/contact">
+                                <button className="inline-flex items-center gap-2 rounded-lg bg-rose-400 px-6 py-3 text-sm sm:text-base font-semibold text-slate-950 hover:bg-rose-300 transition-colors">
+                                    Get strategy consultation
+                                    <ArrowRight className="w-4 h-4" />
+                                </button>
+                            </Link>
                         </div>
-                    </motion.div>
-                </div>
-            </section>
+                    </div>
+                </section>
+            </main>
+
             <Footer />
         </>
     );
