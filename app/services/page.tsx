@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import Script from "next/script";
 import Footer from "@/components/sections/footer";
 import {
   Palette,
@@ -10,7 +13,10 @@ import {
   Share2,
   ArrowRight,
   CheckCircle,
+  Calendar,
 } from "lucide-react";
+import { CALENDLY_URL } from "@/lib/calendly";
+
 
 const services = [
   {
@@ -27,7 +33,6 @@ const services = [
       "Usability testing",
       "Design systems",
     ],
-    stats: { label: "Projects Done", value: "150+" },
     technologies: ["Figma", "Sketch", "Adobe XD", "InVision", "Miro"],
   },
   {
@@ -44,7 +49,6 @@ const services = [
       "Easy scaling",
       "API integration",
     ],
-    stats: { label: "Apps Launched", value: "80+" },
     technologies: ["Bubble", "Webflow", "FlutterFlow", "Adalo", "Glide"],
   },
   {
@@ -61,7 +65,6 @@ const services = [
       "Responsive UI design",
       "Performance optimization",
     ],
-    stats: { label: "Full Stack Apps", value: "120+" },
     technologies: [
       "React",
       "Node.js",
@@ -85,7 +88,6 @@ const services = [
       "Inventory management",
       "Report and analytics tools",
     ],
-    stats: { label: "Desktop Apps", value: "65+" },
     technologies: ["Java", "JavaFX", "Swing", "Spring Boot", "PostgreSQL"],
   },
   {
@@ -125,7 +127,6 @@ const services = [
       "Multilingual support",
       "Performance optimization",
     ],
-    stats: { label: "CMS Deployed", value: "110+" },
     technologies: ["WordPress", "Strapi", "Contentful", "Sanity", "Ghost"],
   },
   {
@@ -154,8 +155,24 @@ const services = [
 ];
 
 export default function ServicesPage() {
+  const openCalendly = () => {
+    if ((window as any).Calendly) {
+      (window as any).Calendly.initPopupWidget({ url: CALENDLY_URL });
+    }
+  };
+
   return (
     <>
+      {/* Calendly scripts — loaded once at page level */}
+      <Script
+        src="https://assets.calendly.com/assets/external/widget.js"
+        strategy="lazyOnload"
+      />
+      <link
+        href="https://assets.calendly.com/assets/external/widget.css"
+        rel="stylesheet"
+      />
+
       <main className="bg-slate-950 text-white min-h-screen">
         {/* Hero */}
         <section className="max-w-6xl mx-auto px-4 sm:px-6 pt-28 sm:pt-36 pb-14 sm:pb-16">
@@ -165,7 +182,8 @@ export default function ServicesPage() {
             </span>
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-5">
-              Services that <span className="text-sky-400">help you build</span>
+              Services that{" "}
+              <span className="text-sky-400">help you build</span>
             </h1>
 
             <p className="text-base sm:text-lg text-slate-400 leading-relaxed max-w-2xl">
@@ -190,15 +208,6 @@ export default function ServicesPage() {
                   <div className="flex items-start justify-between gap-4 mb-5">
                     <div className="w-12 h-12 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center">
                       <Icon className="w-5 h-5 text-sky-400" />
-                    </div>
-
-                    <div className="text-right">
-                      <p className="text-[11px] uppercase tracking-widest text-slate-500 mb-1">
-                        {/* {service.stats.label} */}
-                      </p>
-                      <p className="text-lg font-semibold text-white">
-                        {/* {service.stats.value} */}
-                      </p>
                     </div>
                   </div>
 
@@ -248,24 +257,38 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* CTA */}
+        {/* CTA — Calendly replaces "Start your project" link */}
         <section className="border-t border-slate-800 bg-slate-900">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 py-14 sm:py-16 text-center">
             <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
               Start your next project with Arani
             </h2>
             <p className="text-sm sm:text-base text-slate-400 max-w-2xl mx-auto mb-8 leading-relaxed">
-              Work with a team focused on clean execution, scalable technology,
-              and business results.
+              Book a free 30‑minute call and we&apos;ll walk through your
+              requirements, suggest the right stack, and give you a clear plan
+              of action.
             </p>
 
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 rounded-lg bg-sky-500 px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-sky-400 transition-colors"
-            >
-              Start your project
-              <ArrowRight className="w-4 h-4" />
-            </Link>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              {/* Primary — Calendly popup */}
+              <button
+                type="button"
+                onClick={openCalendly}
+                className="inline-flex items-center gap-2 rounded-lg bg-sky-500 px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-sky-400 transition-colors"
+              >
+                <Calendar className="w-4 h-4" />
+                Book a Free Call
+              </button>
+
+              {/* Secondary — contact form */}
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 rounded-lg border border-slate-700 px-5 py-3 text-sm font-semibold text-white hover:bg-slate-800 transition-colors"
+              >
+                Send a brief
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
           </div>
         </section>
       </main>

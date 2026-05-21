@@ -154,7 +154,46 @@ export default function AboutPage() {
                         {/* Vertical line */}
                         <div className="absolute left-5 top-0 bottom-0 w-px bg-slate-800 hidden sm:block" />
 
-                       
+                        <div className="flex flex-col gap-8 sm:gap-10">
+                            {journeyMilestones.map((milestone) => (
+                                <div
+                                    key={milestone.title}
+                                    className={`sm:pl-16 relative rounded-xl border ${milestone.border} bg-slate-900 p-5 sm:p-6`}
+                                >
+                                    {/* Timeline dot */}
+                                    <div
+                                        className={`hidden sm:flex absolute left-3.5 top-6 w-3 h-3 rounded-full border-2 border-slate-800 bg-slate-950 items-center justify-center`}
+                                    >
+                                        <div className={`w-1.5 h-1.5 rounded-full bg-current ${milestone.accent}`} />
+                                    </div>
+
+                                    {/* Year + icon row */}
+                                    <div className="flex items-center gap-3 mb-3">
+                                       
+                                        <milestone.icon className={`w-4 h-4 ${milestone.accent}`} />
+                                    </div>
+
+                                    <h3 className="text-base sm:text-lg font-semibold text-white mb-2">
+                                        {milestone.title}
+                                    </h3>
+                                    <p className="text-sm text-slate-400 leading-relaxed mb-4">
+                                        {milestone.description}
+                                    </p>
+
+                                    {/* Tech tags */}
+                                    <div className="flex flex-wrap gap-1.5">
+                                        {milestone.tech.map((tech) => (
+                                            <span
+                                                key={tech}
+                                                className="rounded-md bg-slate-800 px-2.5 py-1 text-xs font-medium text-slate-200"
+                                            >
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </section>
 

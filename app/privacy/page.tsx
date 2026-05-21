@@ -220,7 +220,7 @@ export default function PrivacyPolicy() {
                                                 For privacy or data protection inquiries:
                                             </p>
                                             <a
-                                                href="mailto:privacy@aranisoftware.com"
+                                                href="mailto:contact@arani.soft.solutions"
                                                 className="text-sky-300 hover:text-sky-200 transition-colors"
                                             >
                                                 privacy@aranisoftware.com
@@ -281,10 +281,10 @@ export default function PrivacyPolicy() {
                                             General privacy
                                         </p>
                                         <a
-                                            href="mailto:privacy@aranisoftware.com"
+                                            href="mailto:contact@arani.soft.solutions"
                                             className="text-sky-400 hover:text-sky-300 transition-colors"
                                         >
-                                            privacy@aranisoftware.com
+                                            contact@arani.soft.solutions
                                         </a>
                                     </div>
                                     <div>
@@ -292,10 +292,10 @@ export default function PrivacyPolicy() {
                                             Data protection contact
                                         </p>
                                         <a
-                                            href="mailto:dpo@aranisoftware.com"
+                                            href="mailto:contact@arani.soft.solutions"
                                             className="text-sky-400 hover:text-sky-300 transition-colors"
                                         >
-                                            dpo@aranisoftware.com
+                                            contact@arani.soft.solutions
                                         </a>
                                     </div>
                                 </div>

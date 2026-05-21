@@ -18,6 +18,10 @@ import {
 import { useMemo, useState } from "react";
 import { allProjects } from "@/lib/projectsData";
 import Footer from "@/components/sections/footer";
+import CalendlyPopupButton from "@/components/ui/calendly-popup-button";
+import { CALENDLY_URL } from "@/lib/calendly";
+
+
 
 export default function ProjectsPage() {
     const [searchQuery, setSearchQuery] = useState("");
@@ -202,18 +206,26 @@ export default function ProjectsPage() {
                     <div className="max-w-4xl mx-auto text-center">
                         <div className="rounded-2xl border border-slate-800 bg-slate-950 p-8 sm:p-10">
                             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-                                Ready to start your <span className="text-sky-400">project?</span>
+                                Ready to start your{" "}
+                                <span className="text-sky-400">project?</span>
                             </h2>
                             <p className="text-base sm:text-lg text-slate-400 mb-8">
-                                Let’s build something useful, scalable, and professionally executed.
+                                Pick a time that works for you, and we&apos;ll walk through your
+                                requirements and next steps for your build.
                             </p>
-                            <Link
-                                href="/contact"
-                                className="inline-flex items-center gap-2 rounded-lg bg-sky-500 px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-sky-400 transition-colors"
-                            >
-                                Get in touch
-                                <ArrowRight className="w-4 h-4" />
-                            </Link>
+                            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                                {/* Primary: Calendly popup instead of "Get in touch" */}
+                                <CalendlyPopupButton url={CALENDLY_URL} />
+
+                                {/* Secondary: keep contact page link */}
+                                <Link
+                                    href="/contact"
+                                    className="inline-flex items-center gap-2 rounded-lg border border-slate-700 px-5 py-3 text-sm font-semibold text-white hover:bg-slate-800 transition-colors"
+                                >
+                                    Or send a brief
+                                    <ArrowRight className="w-4 h-4" />
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -350,7 +362,7 @@ function ProjectListItem({ project }: { project: any }) {
                     </div>
                 </div>
             </div>
-            <Footer/>
+            <Footer />
         </article>
     );
 }

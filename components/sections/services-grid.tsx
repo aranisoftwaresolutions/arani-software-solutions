@@ -1,5 +1,6 @@
 "use client";
 
+import { CALENDLY_URL } from "@/lib/calendly";
 import {
     Palette,
     Code2,
@@ -8,8 +9,10 @@ import {
     ShoppingCart,
     FileText,
     ArrowRight,
+    Calendar,
 } from "lucide-react";
 import Link from "next/link";
+
 
 const services = [
     {
@@ -37,7 +40,6 @@ const services = [
             "Cost-effective solutions for startups",
             "Easy updates and maintenance",
         ],
-
         accent: "text-amber-400",
         border: "hover:border-amber-500/40",
     },
@@ -52,7 +54,6 @@ const services = [
             "Scalable architecture for growing businesses",
             "API integration and database optimization",
         ],
-
         accent: "text-sky-400",
         border: "hover:border-sky-500/40",
     },
@@ -67,7 +68,6 @@ const services = [
             "Process automation and workflow optimization",
             "Seamless integration with existing systems",
         ],
-
         accent: "text-violet-400",
         border: "hover:border-violet-500/40",
     },
@@ -102,6 +102,12 @@ const services = [
 ];
 
 export default function ServicesGrid() {
+    const openCalendly = () => {
+        if ((window as any).Calendly) {
+            (window as any).Calendly.initPopupWidget({ url: CALENDLY_URL });
+        }
+    };
+
     return (
         <section className="bg-slate-950 py-20 sm:py-28 px-4 sm:px-6">
             <div className="max-w-7xl mx-auto">
@@ -152,13 +158,15 @@ export default function ServicesGrid() {
                                         key={feature}
                                         className="flex items-start gap-2 text-sm text-slate-400"
                                     >
-                                        <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 bg-current ${service.accent}`} />
+                                        <span
+                                            className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 bg-current ${service.accent}`}
+                                        />
                                         {feature}
                                     </li>
                                 ))}
                             </ul>
 
-                            {/* Footer: stat + CTA */}
+                            {/* Footer: CTA */}
                             <div className="flex items-end justify-between border-t border-slate-800 pt-4 mt-auto">
                                 <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-300 group-hover:text-white transition-colors">
                                     View Details
@@ -169,12 +177,21 @@ export default function ServicesGrid() {
                     ))}
                 </div>
 
-                {/* CTA */}
+                {/* CTA — Calendly popup */}
                 <div className="mt-14 sm:mt-16 text-center">
-                    <button className="inline-flex items-center gap-2 rounded-md bg-sky-500 px-6 py-3 text-sm font-semibold text-slate-950 hover:bg-sky-400 transition-colors duration-150">
-                        Start Your Project Today
-                        <ArrowRight className="w-4 h-4" />
-                    </button>
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                        {/* Primary — opens Calendly */}
+                        <button
+                            type="button"
+                            onClick={openCalendly}
+                            className="inline-flex items-center gap-2 rounded-md bg-sky-500 px-6 py-3 text-sm font-semibold text-slate-950 hover:bg-sky-400 transition-colors duration-150"
+                        >
+                            <Calendar className="w-4 h-4" />
+                            Book a Free Consultation
+                        </button>
+
+                    </div>
+
                     <p className="mt-4 text-xs text-slate-500">
                         Free consultation · 24/7 support · 100% satisfaction guarantee
                     </p>

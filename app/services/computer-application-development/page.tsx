@@ -1,5 +1,6 @@
 "use client";
 
+import Script from "next/script";
 import {
     Monitor,
     Package,
@@ -10,9 +11,13 @@ import {
     ArrowRight,
     Star,
     CheckCircle,
+    Calendar,
 } from "lucide-react";
 import Footer from "@/components/sections/footer";
 import Link from "next/link";
+import { CALENDLY_URL } from "@/lib/calendly";
+
+
 
 const solutions = [
     {
@@ -140,8 +145,23 @@ const faq = [
 ];
 
 export default function DesktopApplicationPage() {
+    const openCalendly = () => {
+        if ((window as any).Calendly) {
+            (window as any).Calendly.initPopupWidget({ url: CALENDLY_URL });
+        }
+    };
+
     return (
         <>
+            <Script
+                src="https://assets.calendly.com/assets/external/widget.js"
+                strategy="lazyOnload"
+            />
+            <link
+                href="https://assets.calendly.com/assets/external/widget.css"
+                rel="stylesheet"
+            />
+
             <main className="bg-slate-950 text-white min-h-screen">
                 {/* Hero */}
                 <section className="pt-28 sm:pt-36 pb-14 sm:pb-16 px-4 sm:px-6">
@@ -162,12 +182,14 @@ export default function DesktopApplicationPage() {
                         </p>
 
                         <div className="flex flex-wrap justify-center gap-4">
-                            <Link href="/contact">
-                                <button className="inline-flex items-center gap-2 rounded-lg bg-emerald-400 px-6 py-3 text-sm sm:text-base font-semibold text-slate-950 hover:bg-emerald-300 transition-colors">
-                                    Discuss your desktop app
-                                    <ArrowRight className="w-4 h-4" />
-                                </button>
-                            </Link>
+                            <button
+                                type="button"
+                                onClick={openCalendly}
+                                className="inline-flex items-center gap-2 rounded-lg bg-emerald-400 px-6 py-3 text-sm sm:text-base font-semibold text-slate-950 hover:bg-emerald-300 transition-colors"
+                            >
+                                <Calendar className="w-4 h-4" />
+                                Discuss your desktop app
+                            </button>
                         </div>
                     </div>
                 </section>
@@ -354,12 +376,25 @@ export default function DesktopApplicationPage() {
                                 Share how your team works today, and we’ll explore how a focused
                                 desktop application could support them better.
                             </p>
-                            <Link href="/contact">
-                                <button className="inline-flex items-center gap-2 rounded-lg bg-emerald-400 px-6 py-3 text-sm sm:text-base font-semibold text-slate-950 hover:bg-emerald-300 transition-colors">
+
+                            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                                <button
+                                    type="button"
+                                    onClick={openCalendly}
+                                    className="inline-flex items-center gap-2 rounded-lg bg-emerald-400 px-6 py-3 text-sm sm:text-base font-semibold text-slate-950 hover:bg-emerald-300 transition-colors"
+                                >
+                                    <Calendar className="w-4 h-4" />
                                     Start a desktop project
-                                    <ArrowRight className="w-4 h-4" />
                                 </button>
-                            </Link>
+
+                                <Link
+                                    href="/contact"
+                                    className="inline-flex items-center gap-2 rounded-lg border border-slate-700 px-6 py-3 text-sm sm:text-base font-semibold text-white hover:bg-slate-800 transition-colors"
+                                >
+                                    Send a brief
+                                    <ArrowRight className="w-4 h-4" />
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </section>

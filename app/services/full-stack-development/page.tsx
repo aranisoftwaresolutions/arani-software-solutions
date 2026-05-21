@@ -9,9 +9,13 @@ import {
     Shield,
     ArrowRight,
     Star,
+    Calendar,
 } from "lucide-react";
 import Footer from "@/components/sections/footer";
 import Link from "next/link";
+import { CALENDLY_URL } from "@/lib/calendly";
+
+
 
 const solutions = [
     {
@@ -130,6 +134,12 @@ const faq = [
 ];
 
 export default function FullStackDevelopmentPage() {
+    const openCalendly = () => {
+        if ((window as any).Calendly) {
+            (window as any).Calendly.initPopupWidget({ url: CALENDLY_URL });
+        }
+    };
+
     return (
         <>
             <main className="bg-slate-950 text-white min-h-screen">
@@ -152,12 +162,14 @@ export default function FullStackDevelopmentPage() {
                         </p>
 
                         <div className="flex flex-wrap justify-center gap-4">
-                            <Link href="/contact">
-                                <button className="inline-flex items-center gap-2 rounded-lg bg-sky-500 px-6 py-3 text-sm sm:text-base font-semibold text-slate-950 hover:bg-sky-400 transition-colors">
-                                    Get a quote
-                                    <ArrowRight className="w-4 h-4" />
-                                </button>
-                            </Link>
+                            <button
+                                type="button"
+                                onClick={openCalendly}
+                                className="inline-flex items-center gap-2 rounded-lg bg-sky-500 px-6 py-3 text-sm sm:text-base font-semibold text-slate-950 hover:bg-sky-400 transition-colors"
+                            >
+                                <Calendar className="w-4 h-4" />
+                                Get a quote
+                            </button>
                         </div>
                     </div>
                 </section>
@@ -349,12 +361,25 @@ export default function FullStackDevelopmentPage() {
                                 Share your idea, existing system, or roadmap, and we’ll explore how to
                                 design and deliver the application end‑to‑end.
                             </p>
-                            <Link href="/contact">
-                                <button className="inline-flex items-center gap-2 rounded-lg bg-sky-500 px-6 py-3 text-sm sm:text-base font-semibold text-slate-950 hover:bg-sky-400 transition-colors">
+
+                            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                                <button
+                                    type="button"
+                                    onClick={openCalendly}
+                                    className="inline-flex items-center gap-2 rounded-lg bg-sky-500 px-6 py-3 text-sm sm:text-base font-semibold text-slate-950 hover:bg-sky-400 transition-colors"
+                                >
+                                    <Calendar className="w-4 h-4" />
                                     Get in touch
-                                    <ArrowRight className="w-4 h-4" />
                                 </button>
-                            </Link>
+
+                                <Link
+                                    href="/contact"
+                                    className="inline-flex items-center gap-2 rounded-lg border border-slate-700 px-6 py-3 text-sm sm:text-base font-semibold text-white hover:bg-slate-800 transition-colors"
+                                >
+                                    Send a brief
+                                    <ArrowRight className="w-4 h-4" />
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </section>

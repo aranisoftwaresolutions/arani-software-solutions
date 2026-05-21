@@ -36,7 +36,7 @@ export default function Hero() {
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                        <Link href="/about">
+                        <Link href="/services">
                             <button className="inline-flex items-center justify-center gap-2 rounded-md bg-sky-500 px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-sky-400 transition-colors duration-150">
                                 Explore Our Services
                                 <ArrowRight className="w-4 h-4" />
@@ -53,7 +53,7 @@ export default function Hero() {
                     {stats.map((stat) => (
                         <div key={stat.label} className="space-y-1">
                             <div className="text-2xl sm:text-3xl font-bold text-sky-400">
-                                {stat.value}
+                               
                             </div>
                             <div className="text-xs sm:text-sm text-slate-400">
                                 {stat.label}

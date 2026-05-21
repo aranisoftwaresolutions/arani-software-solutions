@@ -7,9 +7,12 @@ import { Mail, MapPin, Phone, Linkedin, Twitter, ArrowRight } from "lucide-react
 const footerLinks = {
     Company: [
         { name: "About Us", href: "/about" },
-        { name: "Careers", href: "/careers" },
-        { name: "Blog", href: "/blog" },
-        { name: "Press Kit", href: "/press" },
+        { name: "Services", href: "/services" },
+        { name: "Our Projects", href: "/projects" },
+        { name: "Contact", href: "/contact" },
+        // { name: "Careers", href: "/careers" },
+        // { name: "Blog", href: "/blog" },
+        // { name: "Press Kit", href: "/press" },
     ],
     Services: [
         { name: "UI & UX Design", href: "/services/computer-application-development" },

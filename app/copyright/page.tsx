@@ -216,10 +216,10 @@ export default function CopyrightPolicy() {
                                                 For notices about content on our services:
                                             </p>
                                             <a
-                                                href="mailto:dmca@aranisoftware.com"
+                                                href="mailto:contact@arani.soft.solutions"
                                                 className="text-amber-300 hover:text-amber-200 transition-colors"
                                             >
-                                                dmca@aranisoftware.com
+                                                contact@arani.soft.solutions
                                             </a>
                                         </div>
                                     </div>
@@ -277,10 +277,10 @@ export default function CopyrightPolicy() {
                                             General copyright
                                         </p>
                                         <a
-                                            href="mailto:legal@aranisoftware.com"
+                                            href="mailto:contact@arani.soft.solutions"
                                             className="text-sky-400 hover:text-sky-300 transition-colors"
                                         >
-                                            legal@aranisoftware.com
+                                            contact@arani.soft.solutions
                                         </a>
                                     </div>
                                     <div>
@@ -288,10 +288,10 @@ export default function CopyrightPolicy() {
                                             DMCA notices
                                         </p>
                                         <a
-                                            href="mailto:dmca@aranisoftware.com"
+                                            href="mailto:contact@arani.soft.solutions"
                                             className="text-sky-400 hover:text-sky-300 transition-colors"
                                         >
-                                            dmca@aranisoftware.com
+                                            contact@arani.soft.solutions
                                         </a>
                                     </div>
                                 </div>

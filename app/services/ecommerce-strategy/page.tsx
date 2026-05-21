@@ -10,9 +10,13 @@ import {
     ArrowRight,
     Star,
     CheckCircle,
+    Calendar,
 } from "lucide-react";
 import Footer from "@/components/sections/footer";
 import Link from "next/link";
+import { CALENDLY_URL } from "@/lib/calendly";
+
+
 
 const solutions = [
     {
@@ -137,6 +141,12 @@ const faq = [
 ];
 
 export default function EcommerceStrategyPage() {
+    const openCalendly = () => {
+        if ((window as any).Calendly) {
+            (window as any).Calendly.initPopupWidget({ url: CALENDLY_URL });
+        }
+    };
+
     return (
         <>
             <main className="bg-slate-950 text-white min-h-screen">
@@ -159,12 +169,14 @@ export default function EcommerceStrategyPage() {
                         </p>
 
                         <div className="flex flex-wrap justify-center gap-4">
-                            <Link href="/contact">
-                                <button className="inline-flex items-center gap-2 rounded-lg bg-rose-400 px-6 py-3 text-sm sm:text-base font-semibold text-slate-950 hover:bg-rose-300 transition-colors">
-                                    Talk about your store
-                                    <ArrowRight className="w-4 h-4" />
-                                </button>
-                            </Link>
+                            <button
+                                type="button"
+                                onClick={openCalendly}
+                                className="inline-flex items-center gap-2 rounded-lg bg-rose-400 px-6 py-3 text-sm sm:text-base font-semibold text-slate-950 hover:bg-rose-300 transition-colors"
+                            >
+                                <Calendar className="w-4 h-4" />
+                                Talk about your store
+                            </button>
                         </div>
                     </div>
                 </section>
@@ -382,12 +394,25 @@ export default function EcommerceStrategyPage() {
                                 Share your current setup and goals, and we’ll help you plan a
                                 practical strategy to increase conversions and revenue.
                             </p>
-                            <Link href="/contact">
-                                <button className="inline-flex items-center gap-2 rounded-lg bg-rose-400 px-6 py-3 text-sm sm:text-base font-semibold text-slate-950 hover:bg-rose-300 transition-colors">
+
+                            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                                <button
+                                    type="button"
+                                    onClick={openCalendly}
+                                    className="inline-flex items-center gap-2 rounded-lg bg-rose-400 px-6 py-3 text-sm sm:text-base font-semibold text-slate-950 hover:bg-rose-300 transition-colors"
+                                >
+                                    <Calendar className="w-4 h-4" />
                                     Get strategy consultation
-                                    <ArrowRight className="w-4 h-4" />
                                 </button>
-                            </Link>
+
+                                <Link
+                                    href="/contact"
+                                    className="inline-flex items-center gap-2 rounded-lg border border-slate-700 px-6 py-3 text-sm sm:text-base font-semibold text-white hover:bg-slate-800 transition-colors"
+                                >
+                                    Send a brief
+                                    <ArrowRight className="w-4 h-4" />
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </section>
