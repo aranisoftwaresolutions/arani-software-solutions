@@ -3,12 +3,7 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
-const stats = [
-    { label: "Projects Delivered" },
-    { label: "Enterprise Clients" },
-    { label: "Countries Served" },
-    { label: "Success Rate" },
-];
+
 
 export default function Hero() {
     return (
@@ -50,16 +45,7 @@ export default function Hero() {
 
                 {/* Stats Row */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 border-t border-slate-800 pt-10">
-                    {stats.map((stat) => (
-                        <div key={stat.label} className="space-y-1">
-                            <div className="text-2xl sm:text-3xl font-bold text-sky-400">
-                               
-                            </div>
-                            <div className="text-xs sm:text-sm text-slate-400">
-                                {stat.label}
-                            </div>
-                        </div>
-                    ))}
+                    
                 </div>
 
             </div>
