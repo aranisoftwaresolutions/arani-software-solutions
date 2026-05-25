@@ -26,7 +26,7 @@ export default function CalendlyPopupButton({ url }: { url: string }) {
                 className="inline-flex items-center gap-2 rounded-lg bg-sky-500 px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-sky-400 transition-colors"
             >
                 <Calendar className="w-4 h-4" />
-                Schedule a 30‑min Call
+                Book a Free Consultation
             </button>
         </>
     );

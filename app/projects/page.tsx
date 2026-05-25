@@ -11,7 +11,6 @@ import {
     List,
     Calendar,
     Users,
-    Clock,
     Zap,
     Star,
 } from "lucide-react";

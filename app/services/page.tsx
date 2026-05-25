@@ -264,7 +264,7 @@ export default function ServicesPage() {
               Start your next project with Arani
             </h2>
             <p className="text-sm sm:text-base text-slate-400 max-w-2xl mx-auto mb-8 leading-relaxed">
-              Book a free 30‑minute call and we&apos;ll walk through your
+              Book a Free Consultation 30‑minute call and we&apos;ll walk through your
               requirements, suggest the right stack, and give you a clear plan
               of action.
             </p>
@@ -277,7 +277,7 @@ export default function ServicesPage() {
                 className="inline-flex items-center gap-2 rounded-lg bg-sky-500 px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-sky-400 transition-colors"
               >
                 <Calendar className="w-4 h-4" />
-                Book a Free Call
+                Book a Free Consultation
               </button>
 
               {/* Secondary — contact form */}

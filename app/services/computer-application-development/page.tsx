@@ -188,7 +188,7 @@ export default function DesktopApplicationPage() {
                                 className="inline-flex items-center gap-2 rounded-lg bg-emerald-400 px-6 py-3 text-sm sm:text-base font-semibold text-slate-950 hover:bg-emerald-300 transition-colors"
                             >
                                 <Calendar className="w-4 h-4" />
-                                Discuss your desktop app
+                                Book a Free Consultation
                             </button>
                         </div>
                     </div>
@@ -384,7 +384,7 @@ export default function DesktopApplicationPage() {
                                     className="inline-flex items-center gap-2 rounded-lg bg-emerald-400 px-6 py-3 text-sm sm:text-base font-semibold text-slate-950 hover:bg-emerald-300 transition-colors"
                                 >
                                     <Calendar className="w-4 h-4" />
-                                    Start a desktop project
+                                    Book a Free Consultation
                                 </button>
 
                                 <Link

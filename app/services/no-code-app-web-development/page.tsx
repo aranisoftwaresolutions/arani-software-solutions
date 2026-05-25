@@ -147,7 +147,7 @@ export default function NoCodeDevelopmentPage() {
                                 className="inline-flex items-center gap-2 rounded-lg bg-amber-400 px-6 py-3 text-sm sm:text-base font-semibold text-slate-950 hover:bg-amber-300 transition-colors"
                             >
                                 <Calendar className="w-4 h-4" />
-                                Start your project
+                                Book a Free Consultation
                             </button>
                         </div>
                     </div>
@@ -312,7 +312,7 @@ export default function NoCodeDevelopmentPage() {
                                     className="inline-flex items-center gap-2 rounded-lg bg-amber-400 px-6 py-3 text-sm sm:text-base font-semibold text-slate-950 hover:bg-amber-300 transition-colors"
                                 >
                                     <Calendar className="w-4 h-4" />
-                                    Get started now
+                                    Book a Free Consultation
                                 </button>
 
                                 <Link

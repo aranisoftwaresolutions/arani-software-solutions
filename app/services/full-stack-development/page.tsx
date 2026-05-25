@@ -168,7 +168,7 @@ export default function FullStackDevelopmentPage() {
                                 className="inline-flex items-center gap-2 rounded-lg bg-sky-500 px-6 py-3 text-sm sm:text-base font-semibold text-slate-950 hover:bg-sky-400 transition-colors"
                             >
                                 <Calendar className="w-4 h-4" />
-                                Get a quote
+                                Book a Free Consultation
                             </button>
                         </div>
                     </div>
@@ -369,7 +369,7 @@ export default function FullStackDevelopmentPage() {
                                     className="inline-flex items-center gap-2 rounded-lg bg-sky-500 px-6 py-3 text-sm sm:text-base font-semibold text-slate-950 hover:bg-sky-400 transition-colors"
                                 >
                                     <Calendar className="w-4 h-4" />
-                                    Get in touch
+                                    Book a Free Consultation
                                 </button>
 
                                 <Link

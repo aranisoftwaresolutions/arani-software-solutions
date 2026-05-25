@@ -109,7 +109,7 @@ export default function ServicesGrid() {
     };
 
     return (
-        <section className="bg-slate-950 py-20 sm:py-28 px-4 sm:px-6">
+        <section className="bg-slate-950 py-20 sm:py-2 px-4 sm:px-6">
             <div className="max-w-7xl mx-auto">
 
                 {/* Section Header */}

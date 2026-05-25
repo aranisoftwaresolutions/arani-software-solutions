@@ -94,7 +94,7 @@ export default function NavMenu() {
                                 className="inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-900 px-4 py-2.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 hover:border-slate-600 transition-colors duration-150"
                             >
                                 <Calendar className="w-3.5 h-3.5" />
-                                Book a Call
+                                Book a Free Consultation
                             </button>
 
                             {/* Contact */}

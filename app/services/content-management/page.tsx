@@ -208,7 +208,7 @@ export default function ContentManagementPage() {
                                 className="inline-flex items-center gap-2 rounded-lg bg-indigo-400 px-6 py-3 text-sm sm:text-base font-semibold text-slate-950 hover:bg-indigo-300 transition-colors"
                             >
                                 <Calendar className="w-4 h-4" />
-                                Discuss your CMS project
+                                Book a Free Consultation
                             </button>
                         </div>
                     </div>
@@ -458,7 +458,7 @@ export default function ContentManagementPage() {
                                     className="inline-flex items-center gap-2 rounded-lg bg-indigo-400 px-6 py-3 text-sm sm:text-base font-semibold text-slate-950 hover:bg-indigo-300 transition-colors"
                                 >
                                     <Calendar className="w-4 h-4" />
-                                    Start a CMS conversation
+                                    Book a Free Consultation
                                 </button>
 
                                 <Link

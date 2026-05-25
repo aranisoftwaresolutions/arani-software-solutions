@@ -227,7 +227,7 @@ export default function ContactPage() {
                                     Prefer to talk?
                                 </h2>
                                 <p className="mt-3 text-sm sm:text-base text-slate-400 max-w-xl mx-auto">
-                                    Book a 30‑minute call directly in our calendar. Choose a time
+                                   Book a Free Consultation 30‑minute call directly in our calendar. Choose a time
                                     that works for you, and we&apos;ll send a Google Meet invite.
                                 </p>
                             </div>

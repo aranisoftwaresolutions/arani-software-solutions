@@ -402,7 +402,7 @@ export default function EcommerceStrategyPage() {
                                     className="inline-flex items-center gap-2 rounded-lg bg-rose-400 px-6 py-3 text-sm sm:text-base font-semibold text-slate-950 hover:bg-rose-300 transition-colors"
                                 >
                                     <Calendar className="w-4 h-4" />
-                                    Get strategy consultation
+                                    Book a Free Consultation
                                 </button>
 
                                 <Link

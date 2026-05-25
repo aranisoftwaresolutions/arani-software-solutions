@@ -8,7 +8,7 @@ import Link from "next/link";
 export default function Hero() {
     return (
         <section className="bg-slate-950 text-white">
-            <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-36">
+            <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-30">
 
                 {/* Badge */}
                 <div className="mb-6">
@@ -30,7 +30,7 @@ export default function Hero() {
                         automation.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                    <div className="flex flex-col sm:flex-row gap-3 pt-4">
                         <Link href="/services">
                             <button className="inline-flex items-center justify-center gap-2 rounded-md bg-sky-500 px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-sky-400 transition-colors duration-150">
                                 Explore Our Services
@@ -44,9 +44,9 @@ export default function Hero() {
                 </div>
 
                 {/* Stats Row */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 border-t border-slate-800 pt-10">
+                {/* <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 border-t border-slate-800 pt-10">
                     
-                </div>
+                </div> */}
 
             </div>
         </section>

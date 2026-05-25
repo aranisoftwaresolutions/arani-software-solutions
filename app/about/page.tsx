@@ -1,9 +1,5 @@
 import Footer from "@/components/sections/footer";
 import {
-    Award,
-    Users,
-    Globe,
-    Zap,
     Target,
     Rocket,
     Code,
@@ -75,12 +71,7 @@ const journeyMilestones = [
     },
 ];
 
-const stats = [
-    { icon: Award, value: "", label: "Years Experience" },
-    { icon: Users, value: "", label: "Expert Engineers" },
-    { icon: Globe, value: "", label: "Countries Served" },
-    { icon: Zap, value: "", label: "Projects Delivered" },
-];
+
 
 const values = [
     {
@@ -122,21 +113,7 @@ export default function AboutPage() {
                 </section>
 
                 {/* ── Stats ── */}
-                <section className="border-y border-slate-800 bg-slate-900">
-                    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-12">
-                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8">
-                            {stats.map((stat) => (
-                                <div key={stat.label} className="flex flex-col items-center text-center gap-2">
-                                    <stat.icon className="w-5 h-5 text-sky-400" />
-                                    <span className="text-2xl sm:text-3xl font-bold text-white">
-                                        {stat.value}
-                                    </span>
-                                    <span className="text-xs text-slate-400">{stat.label}</span>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
+               
 
                 {/* ── Journey Timeline ── */}
                 <section className="max-w-5xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
